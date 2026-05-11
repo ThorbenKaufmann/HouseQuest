@@ -1,0 +1,1391 @@
+<?xml version="1.0"?>
+<minder version="1.16.2" parent-etag="3787829511" etag="3438032107">
+  <theme name="solarized_dark" label="Solarized Dark" index="-1"/>
+  <styles>
+    <style level="0" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="rounded" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="10" nodepadding="10" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="1" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="2" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="3" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="4" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="5" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="6" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="7" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="8" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="9" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+    <style level="10" isset="true" branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true" connectiondash="dotted" connectionlwidth="2" connectionarrow="fromto" connectionpadding="3" connectionfont="Sans 10" connectiontwidth="100" calloutfont="Sans 12" calloutpadding="5" calloutptrwidth="20" calloutptrlength="20"/>
+  </styles>
+  <images/>
+  <nodes>
+    <node id="0" posx="723.5" posy="476" width="132" height="49" side="left" fold="false" treesize="2765" summarized="false" layout="Horizontal" group="false">
+      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+      <nodename maxwidth="200">
+        <text data="House Quest"/>
+      </nodename>
+      <nodenote># House Quest
+
+### Die Spielidee
+
+House Quest ist ein gemeinsames Spiel des Zusammenlebens.
+Alle Bewohner sind Spieler in derselben Welt: dem Haus.
+
+Das Ziel des Spiels ist einfach:
+
+&gt; Das Haus funktioniert gut, alle leben angenehm zusammen,
+&gt; und jeder tr&#xE4;gt seinen Teil dazu bei.
+
+House Quest ist kein Kontrollsystem und keine Strafe.
+Es ist eine Spielmechanik, die sichtbar macht, wie gut das Zusammenleben gerade funktioniert.
+
+---
+
+# Grundprinzip
+
+Jeder Spieler startet als **Mitbewohner** mit vollem Status.
+
+Durch Verhalten im Alltag ver&#xE4;ndert sich der Status:
+
+* **gute Beitr&#xE4;ge zur Gemeinschaft** st&#xE4;rken den Status
+* **sichtbare Regelverst&#xF6;&#xDF;e oder Verweigerung** schw&#xE4;chen ihn
+
+Das System arbeitet mit **XP und Leben**.
+
+Diese zeigen an, wie gut ein Spieler aktuell im House Quest unterwegs ist.
+
+---
+
+# Status im Spiel
+
+Es gibt zwei zentrale Spielzust&#xE4;nde.
+
+### Mitbewohner
+
+Der normale Spielmodus.
+
+Der Spieler ist vollwertiger Teil der Hausgemeinschaft und nutzt alle Ressourcen des Hauses.
+
+### Gast
+
+Dieser Modus tritt ein, wenn ein Spieler sich l&#xE4;ngere Zeit au&#xDF;erhalb der Spielregeln bewegt.
+
+Der Gastmodus ist kein Ausschluss, sondern eine **Pause zur Neuorientierung**.
+
+Ziel ist immer die R&#xFC;ckkehr zum **Mitbewohnerstatus**.
+
+---
+
+# Das Ziel
+
+House Quest hat kein Ende.
+
+Es ist ein dauerhaftes Spiel, in dem alle Spieler gemeinsam daf&#xFC;r sorgen,
+dass das Haus ein funktionierender und angenehmer Ort bleibt.
+
+Je besser die Spieler zusammenarbeiten, desto entspannter wird das Spiel.
+
+---
+
+# Wichtig
+
+House Quest funktioniert nur, wenn alle Spieler drei Dinge respektieren:
+
+* **Fairness**
+* **Eigenverantwortung**
+* **Respekt gegen&#xFC;ber der Gemeinschaft**
+
+Wenn diese drei Dinge funktionieren, l&#xE4;uft House Quest fast von allein.
+
+Und dann macht das Spiel sogar Spa&#xDF;.
+
+Diese Spielregeln gelten f&#xFC;r **alle**, Kinder **und** Erwachsene.
+Jeder ist befugt, Regelverst&#xF6;&#xDF;e anzuzeigen. Das sollte aber nicht im Stile der STASI passieren oder per anonymen Meldetelefon, sondern direkt und bei Bedarf, wenn man sich uneinig ist, mit der Zuhilfenahme eines Erwachsenen zur Kl&#xE4;rung.
+
+# Anhang A
+
+## XP-System
+
+House Quest nutzt ein einfaches Erfahrungs- und Lebenssystem.
+
+### XP (Experience Points)
+
+XP entstehen durch Beitr&#xE4;ge zur Hausgemeinschaft.
+
+Beispiele:
+
+* aktive Hilfe im Haushalt
+* eigenst&#xE4;ndige Probleml&#xF6;sung
+* verantwortungsvoller Umgang mit Ressourcen
+* Einhaltung der Hausregeln
+* Initiative ohne Aufforderung
+
+XP zeigen an, wie aktiv ein Spieler zur Gemeinschaft beitr&#xE4;gt.
+
+---
+
+### Leben
+
+Jeder Spieler verf&#xFC;gt &#xFC;ber eine begrenzte Anzahl von **Leben**.
+
+Leben k&#xF6;nnen verloren gehen durch:
+
+* offensichtliche Regelverst&#xF6;&#xDF;e
+* respektlosen Umgang
+* bewusste Verweigerung von Gemeinschaftspflichten
+* wiederholte Missachtung von Regeln
+
+Sinkt die Anzahl der Leben auf **Null**, wechselt der Spieler automatisch in den **Gaststatus**.
+
+---
+
+### Regeneration
+
+Leben k&#xF6;nnen sich wieder regenerieren durch:
+
+* l&#xE4;ngere regelkonforme Teilnahme am Spiel
+* sichtbare Beitr&#xE4;ge zur Hausgemeinschaft
+* eigenst&#xE4;ndige Probleml&#xF6;sung
+
+Ziel ist immer die R&#xFC;ckkehr in einen stabilen **Mitbewohnerstatus**.
+
+---
+
+# Anhang B
+
+## Achievements
+
+Achievements sind kleine Auszeichnungen f&#xFC;r besondere Beitr&#xE4;ge im House Quest.
+
+Sie dienen nicht der Kontrolle, sondern der Anerkennung.
+
+Beispiele:
+
+**Energy Saver**
+Besonders verantwortungsvoller Umgang mit Ressourcen.
+
+**Kitchen Master**
+Vorbildlicher Umgang mit K&#xFC;che und Lebensmittelhygiene.
+
+**Garden Keeper**
+Pflege und Engagement im Gartenbereich.
+
+**Clean Master**
+Besondere Sorgfalt bei Ordnung und Reinigung.
+
+**Team Player**
+Aktive Unterst&#xFC;tzung anderer Hausbewohner.
+
+**Fixer**
+Selbstst&#xE4;ndiges L&#xF6;sen von Problemen im Haushalt.
+
+---
+
+Achievements haben keine Pflichtfunktion.
+
+Sie machen sichtbar, wenn ein Spieler das House Quest besonders gut spielt.
+
+
+# Anhang C
+
+## House Quest Board
+
+Der aktuelle Spielstatus wird auf einem **House Quest Board** sichtbar gemacht.
+
+Das Board zeigt f&#xFC;r jeden Spieler:
+
+* aktueller Status (Mitbewohner / Gast)
+* verbleibende Leben
+* aktuelle XP
+
+Das Board dient ausschlie&#xDF;lich der Transparenz.
+
+Es erm&#xF6;glicht allen Spielern, den aktuellen Zustand des Spiels jederzeit zu sehen.
+
+---
+
+### Grundregeln des Boards
+
+* &#xC4;nderungen am Board erfolgen zeitnah nach relevanten Ereignissen.
+* Das Board stellt den aktuellen Zustand des Spiels dar.
+* Diskussionen &#xFC;ber Eintr&#xE4;ge finden au&#xDF;erhalb des Boards statt.
+* Das Board dient nicht zur Blo&#xDF;stellung, sondern zur Transparenz.
+
+---
+
+### Beispielstruktur
+
+| Spieler   | Status      | Leben | XP |
+| --------- | ----------- | ----- | -- |
+| Spieler 1 | Mitbewohner | 3     | 12 |
+| Spieler 2 | Mitbewohner | 2     | 7  |
+| Spieler 3 | Gast        | 0     | 1  |
+
+---
+
+Das Board kann als Whiteboard, Tabelle oder digitale &#xDC;bersicht gef&#xFC;hrt werden.
+
+---
+
+# Anhang D
+
+## Die drei Meta-Regeln
+
+&#xDC;ber allen Einzelregeln stehen drei grundlegende Prinzipien.
+
+Sie bilden die Grundlage des House Quest.
+
+---
+
+### 1. Fairness
+
+Alle Spieler werden nach denselben Regeln behandelt.
+
+Beitr&#xE4;ge zur Gemeinschaft werden anerkannt.
+Regelverst&#xF6;&#xDF;e haben nachvollziehbare Konsequenzen.
+
+---
+
+### 2. Eigenverantwortung
+
+Jeder Spieler ist verantwortlich f&#xFC;r:
+
+* sein Verhalten
+* seine Beitr&#xE4;ge
+* seinen Status im Spiel
+
+Das House Quest funktioniert nur, wenn jeder Verantwortung &#xFC;bernimmt.
+
+---
+
+### 3. Respekt
+
+Respekt gegen&#xFC;ber Menschen, Ressourcen und gemeinschaftlichen R&#xE4;umen ist Grundlage des Spiels.
+
+Respektloses Verhalten widerspricht dem House Quest und f&#xFC;hrt zu Spielkonsequenzen.
+
+</nodenote>
+      <nodes>
+        <node id="80" posx="955.5" posy="-784" width="111" height="49" side="right" fold="false" treesize="245" color="#cb4b16" colorroot="false" summarized="false" layout="Horizontal" group="true">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename maxwidth="200">
+            <text data="Grundwerte"/>
+          </nodename>
+          <nodenote></nodenote>
+          <nodes>
+            <node id="57" posx="1166.5" posy="-784" width="123" height="49" side="right" fold="false" treesize="245" color="#cb4b16" colorroot="false" summarized="false" layout="Horizontal" group="true">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Gemeinschaft"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="58" posx="1389.5" posy="-882" width="169" height="49" side="right" fold="false" treesize="49" color="#cb4b16" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="h&#xF6;flicher Umgang"/>
+                  </nodename>
+                  <nodenote>* In der Gemeinschaft ist grunds&#xE4;tzlich jeder gleichwertig.
+* Erwachsene haben aufgrund ihrer Verantwortung jedoch finale Entscheidungsgewalt.
+* Launen sind erlaubt. Respektlosigkeit nicht.
+* Allgemeine h&#xF6;fliche Umgangsformen sind einzuhalten.</nodenote>
+                </node>
+                <node id="59" posx="1389.5" posy="-833" width="155" height="49" side="right" fold="false" treesize="49" color="#cb4b16" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Kommunikation"/>
+                  </nodename>
+                  <nodenote>* Kommunikation ist einer der wichtigsten S&#xE4;ulen einer Gemeinschaft.
+* Dinge, die f&#xFC;r andere von Belang sind, sollten wenn m&#xF6;glich direkt kommuniziert werden.
+* Wenn jemand direkt angesprochen wird, antwortet er.
+* Diskussionen werden sachlich gef&#xFC;hrt. 
+* Kommt es zum Streit, ist dieser nach Beruhigung der Situation wieder durch sachliche Kommunikation beizulegen. F&#xFC;hlt sich der andere herabgew&#xFC;rdigt, sollte darauf eingegangen werden und eine Kl&#xE4;rung herbeigef&#xFC;hrt werden - ein lapidares "Sorry!" reicht an der Stelle nicht aus.
+* Konflikte werden innerhalb von 24 Stunden angesprochen.</nodenote>
+                </node>
+                <node id="60" posx="1389.5" posy="-784" width="138" height="49" side="right" fold="false" treesize="49" color="#cb4b16" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Ruhebereiche"/>
+                  </nodename>
+                  <nodenote>* Es gibt Bereiche, wo die Mitglieder von Zeit zu Zeit Ruhe suchen, wie z.B. Sofa, Terasse etc. 
+* Wer sichtbar Ruhe sucht, wird nicht gest&#xF6;rt.
+* Das Dauerbelagern von solchen Bereichen ist allerdings nicht im Sinne der Gemeinschaft.
+* Wer einen Gemeinschaftsort nutzt, hinterl&#xE4;sst ihn sauber. Hier z&#xE4;hlt das Verursacherprinzip.</nodenote>
+                </node>
+                <node id="61" posx="1389.5" posy="-735" width="142" height="49" side="right" fold="false" treesize="49" color="#cb4b16" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Privatbereiche"/>
+                  </nodename>
+                  <nodenote>* Zimmer sind Privatbereiche. Betreten nur nach Klopfen und Zustimmung.
+* Niemand hat das Recht, ohne triftigen Grund oder vorherige Frage in den Privatbereich eines anderen einzudringen oder ihn zu nutzen.
+</nodenote>
+                </node>
+                <node id="62" posx="1389.5" posy="-686" width="147" height="49" side="right" fold="false" treesize="49" color="#cb4b16" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Zusammenhalt"/>
+                  </nodename>
+                  <nodenote>* Eine weitere St&#xFC;tze der Gemeinschaft ist der Zusammenhalt.
+* Verschiedene Meinungen und Ansichten stellen f&#xFC;r die Grundwerte der Gemeinschaft kein Problem dar.
+* Ausgrenzung, Mobbing, Herabw&#xFC;rdigungen haben im gemeinschaftlichen Zusammenhalt nichts verloren.</nodenote>
+                </node>
+              </nodes>
+            </node>
+          </nodes>
+        </node>
+        <node id="81" posx="955.5" posy="416.5" width="107" height="49" side="right" fold="false" treesize="2156" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="true">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename maxwidth="200">
+            <text data="Hausregeln"/>
+          </nodename>
+          <nodenote></nodenote>
+          <nodes>
+            <node id="1" posx="1162.5" posy="-182" width="107" height="49" side="right" fold="false" treesize="959" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="true">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Ressourcen"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="10" posx="1369.5" posy="-612.5" width="108" height="49" side="right" fold="false" treesize="98" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Gas/W&#xE4;rme"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="51" posx="1577.5" posy="-637" width="170" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Heizen und L&#xFC;ften"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Gas/W&#xE4;rme &#x2192; Heizen und L&#xFC;ften**
+
+* In regelm&#xE4;&#xDF;ig genutzten R&#xE4;umen ist t&#xE4;glich Sto&#xDF;l&#xFC;ften durchzuf&#xFC;hren (mehrere Minuten mit weit ge&#xF6;ffnetem Fenster).
+* W&#xE4;hrend des L&#xFC;ftens sind Heizk&#xF6;rper herunterzudrehen oder auszuschalten.
+* Nach dem L&#xFC;ften sind Fenster vollst&#xE4;ndig zu schlie&#xDF;en und die Heizung wieder auf den vorherigen Wert zu stellen.
+* Dauerhaft gekippte Fenster bei laufender Heizung sind zu vermeiden.
+* R&#xE4;ume sind so zu beheizen, dass Feuchtigkeit und Schimmelbildung vermieden werden.
+* Beim Verlassen eines Raumes &#xFC;ber l&#xE4;ngere Zeit ist die Heizung auf einen reduzierten Wert zu stellen.
+
+</nodenote>
+                    </node>
+                    <node id="52" posx="1577.5" posy="-588" width="183" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Duschen und Baden"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Gas/W&#xE4;rme &#x2192; Duschen und Baden**
+
+* Duschen sind kurz und ressourcenschonend durchzuf&#xFC;hren.
+* Baden ist nur gelegentlich und nicht regelm&#xE4;&#xDF;ig durchzuf&#xFC;hren.
+* W&#xE4;hrend des Einseifens ist das Wasser abzustellen.
+* Warmwasser ist bewusst zu nutzen und nicht unn&#xF6;tig laufen zu lassen.
+* Nach dem Duschen oder Baden ist das Badezimmer zu l&#xFC;ften.
+* Wasser ist nach der Nutzung vollst&#xE4;ndig abzudrehen.
+</nodenote>
+                    </node>
+                  </nodes>
+                </node>
+                <node id="11" posx="1369.5" posy="-409.5" width="70" height="49" side="right" fold="false" treesize="308" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Strom"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="45" posx="1539.5" posy="-539" width="187" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="unn&#xF6;tiger Verbrauch"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Strom &#x2192; unn&#xF6;tiger Verbrauch**
+
+* Elektrische Ger&#xE4;te sind nach der Nutzung vollst&#xE4;ndig auszuschalten.
+* Licht ist beim Verlassen eines Raumes auszuschalten.
+* Standby-Betrieb ist m&#xF6;glichst zu vermeiden.
+* Ladeger&#xE4;te sind nach dem Laden vom Stromnetz zu trennen.
+* Ger&#xE4;te mit hohem Stromverbrauch sind bewusst und nur bei Bedarf zu nutzen.
+* R&#xE4;ume sind nicht dauerhaft zu beleuchten, wenn sie nicht genutzt werden.
+</nodenote>
+                    </node>
+                    <node id="46" posx="1539.5" posy="-490" width="205" height="70" side="right" fold="false" treesize="70" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Licht in nicht genutzten Bereichen"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Strom &#x2192; Licht in nicht genutzten Bereichen**
+
+* Licht ist beim Verlassen eines Raumes auszuschalten.
+* R&#xE4;ume, Flure und Nebenbereiche werden nur beleuchtet, solange sie genutzt werden.
+* Dauerbeleuchtung in ungenutzten Bereichen ist zu vermeiden.
+* Au&#xDF;en- und Gartenbeleuchtung ist nach Nutzung wieder auszuschalten.
+* Bei ausreichendem Tageslicht ist auf k&#xFC;nstliche Beleuchtung zu verzichten.
+</nodenote>
+                    </node>
+                    <node id="47" posx="1539.5" posy="-420" width="171" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Ger&#xE4;te im Standby"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Strom &#x2192; Ger&#xE4;te im Standby**
+
+* Ger&#xE4;te sind nach der Nutzung vollst&#xE4;ndig auszuschalten und nicht im Standby zu belassen.
+* Unterhaltungselektronik ist &#xFC;ber abschaltbare Steckdosenleisten komplett vom Netz zu trennen.
+* Ladeger&#xE4;te sind nach dem Laden vom Stromnetz zu entfernen.
+* Ger&#xE4;te mit dauerhaftem Standby-Verbrauch sind nur bei tats&#xE4;chlichem Bedarf eingeschaltet zu lassen.
+* Ger&#xE4;te, die l&#xE4;ngere Zeit nicht genutzt werden, sind vollst&#xE4;ndig vom Stromnetz zu trennen.
+</nodenote>
+                    </node>
+                    <node id="48" posx="1539.5" posy="-371" width="227" height="70" side="right" fold="false" treesize="70" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Netztrennung ungenutzter Ger&#xE4;te"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Strom &#x2192; Netztrennung unbenutzter Ger&#xE4;te**
+
+* Ger&#xE4;te, die aktuell nicht genutzt werden, sind vollst&#xE4;ndig vom Stromnetz zu trennen.
+* Mehrfachsteckdosen mit Schalter sind zum vollst&#xE4;ndigen Abschalten von Ger&#xE4;tegruppen zu nutzen.
+* Elektronische Ger&#xE4;te mit Netzteilen sind bei l&#xE4;ngerer Nichtnutzung auszustecken.
+* Ger&#xE4;te in selten genutzten R&#xE4;umen sind nach der Nutzung vollst&#xE4;ndig stromlos zu schalten.
+* Vor l&#xE4;ngerer Abwesenheit sind nicht ben&#xF6;tigte Ger&#xE4;te vollst&#xE4;ndig vom Netz zu trennen.
+</nodenote>
+                    </node>
+                    <node id="49" posx="1539.5" posy="-301" width="226" height="70" side="right" fold="false" treesize="70" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="unn&#xF6;tiges Aufw&#xE4;rmen von Lebensmitteln"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Strom &#x2192; unn&#xF6;tiges Aufw&#xE4;rmen von Lebensmitteln**
+
+* Lebensmittel sind nur in der tats&#xE4;chlich ben&#xF6;tigten Menge zu erw&#xE4;rmen.
+* Mehrfaches Aufw&#xE4;rmen derselben Speisen ist zu vermeiden.
+* Geeignete Ger&#xE4;te (z. B. Wasserkocher statt Herd) sind energieeffizient zu nutzen.
+* Ger&#xE4;te zum Erw&#xE4;rmen von Speisen sind nach Gebrauch sofort auszuschalten.
+* Kleine Mengen sind m&#xF6;glichst energieeffizient zuzubereiten.
+</nodenote>
+                    </node>
+                  </nodes>
+                </node>
+                <node id="7" posx="1369.5" posy="-206.5" width="77" height="49" side="right" fold="false" treesize="98" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Wasser"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="22" posx="1546.5" posy="-231" width="190" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Warmwassernutzung"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Wasser &#x2192; Warmwassernutzung**
+
+* Warmwasser ist bewusst und sparsam zu nutzen.
+* Warmwasserh&#xE4;hne sind nur dann zu &#xF6;ffnen, wenn warmes Wasser tats&#xE4;chlich ben&#xF6;tigt wird.
+* W&#xE4;hrend des Einseifens, Z&#xE4;hneputzens oder vergleichbarer T&#xE4;tigkeiten ist das Wasser abzustellen.
+* Warmwasser ist nicht unn&#xF6;tig lange vorlaufen zu lassen.
+* F&#xFC;r kurze Nutzungen ist m&#xF6;glichst kaltes Wasser zu verwenden.
+</nodenote>
+                    </node>
+                    <node id="23" posx="1546.5" posy="-182" width="100" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="generell"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Wasser &#x2192; generell (Trinkwasser)**
+
+* Trinkwasser ist bewusst und sparsam zu nutzen.
+* Wasserh&#xE4;hne sind nach der Nutzung vollst&#xE4;ndig zu schlie&#xDF;en.
+* Laufendes Wasser ohne Nutzung ist zu vermeiden.
+* Beim Z&#xE4;hneputzen, Einseifen oder Absp&#xFC;len ist Wasser nur bei tats&#xE4;chlichem Bedarf laufen zu lassen.
+* Tropfende Wasserh&#xE4;hne oder Leckagen sind sofort zu melden.
+* Trinkwasser ist nicht unn&#xF6;tig zu verschwenden.
+</nodenote>
+                    </node>
+                  </nodes>
+                </node>
+                <node id="40" posx="1369.5" posy="-14" width="117" height="49" side="right" fold="false" treesize="287" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Lebensmittel"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="44" posx="1586.5" posy="-133" width="113" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Schonung"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Lebensmittel &#x2192; Schonung und Lebensmittelhygiene**
+
+* Lebensmittel sind sorgf&#xE4;ltig und hygienisch zu behandeln.
+* Nur die tats&#xE4;chlich ben&#xF6;tigte Menge an Lebensmitteln ist zu entnehmen.
+* Angebrochene Lebensmittel sind ordnungsgem&#xE4;&#xDF; zu verschlie&#xDF;en und wieder zu k&#xFC;hlen.
+* Lebensmittel sind so zu lagern, dass Verderb vermieden wird.
+* Verdorbene oder nicht mehr genie&#xDF;bare Lebensmittel sind zeitnah zu entsorgen.
+* Arbeitsfl&#xE4;chen und K&#xFC;chenutensilien sind nach der Nutzung zu reinigen.
+* Lebensmittelverschwendung ist zu vermeiden.
+</nodenote>
+                    </node>
+                    <node id="42" posx="1586.5" posy="-84" width="130" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Beschaffung"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Lebensmittel &#x2192; Beschaffung**
+
+* Lebensmittelbeschaffung erfolgt geplant und bedarfsorientiert.
+* Vor Eink&#xE4;ufen ist der vorhandene Bestand zu pr&#xFC;fen.
+* Gemeinschaftlich genutzte Lebensmittel werden nur in angemessenen Mengen entnommen.
+* Eink&#xE4;ufe f&#xFC;r den Gemeinschaftshaushalt werden transparent &#xFC;ber das Haushaltskonto organisiert.
+* Sonderw&#xFC;nsche oder individuelle Lebensmittel werden eigenst&#xE4;ndig beschafft und ggf. markiert.
+* Verderbliche Lebensmittel sind zeitnah zu verbrauchen.
+</nodenote>
+                    </node>
+                    <node id="71" posx="1586.5" posy="-35" width="124" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Herstellung"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Lebensmittel &#x2192; eigene Herstellung**
+
+* Lebensmittel sind m&#xF6;glichst effizient und in angemessenen Mengen herzustellen.
+* Zutaten sind vollst&#xE4;ndig zu verwenden und nicht unn&#xF6;tig zu verschwenden.
+* Arbeitsfl&#xE4;chen, Ger&#xE4;te und Kochutensilien sind nach der Nutzung zu reinigen.
+* Verwendete Ger&#xE4;te sind nach der Herstellung auszuschalten und zu s&#xE4;ubern.
+* Gemeinschaftlich genutzte Zutaten sind sparsam und verantwortungsvoll zu verwenden.
+* Zubereitete Lebensmittel sind ordnungsgem&#xE4;&#xDF; zu lagern oder zeitnah zu verzehren.
+</nodenote>
+                    </node>
+                    <node id="72" posx="1586.5" posy="14" width="196" height="91" side="right" fold="false" treesize="91" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Respekt vor personengebundenen Lebensmitteln"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Lebensmittel &#x2192; Respekt vor personengebundenen Lebensmitteln**
+
+* Personengebundene Lebensmittel d&#xFC;rfen nur vom jeweiligen Eigent&#xFC;mer genutzt werden.
+* Lebensmittel, die einer Person zugeordnet sind, sind zu respektieren und nicht ohne Zustimmung zu entnehmen.
+* Unklar zugeordnete Lebensmittel sind vor der Nutzung zu kl&#xE4;ren.
+* Private Lebensmittel sind getrennt von gemeinschaftlichen Lebensmitteln zu lagern.
+* Eigentum an Lebensmitteln ist zu respektieren.
+</nodenote>
+                    </node>
+                    <node id="43" posx="1586.5" posy="105" width="76" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Liste"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Lebensmittel &#x2192; Einkaufs- und Bedarfsliste**
+
+* Fehlende oder ben&#xF6;tigte Lebensmittel sind zeitnah in die gemeinsame Einkaufs- und Bedarfsliste einzutragen.
+* Die Einkaufs- und Bedarfsliste ist vor Eink&#xE4;ufen zu pr&#xFC;fen.
+* Entnommene oder aufgebrauchte Lebensmittel sind entsprechend auf der Liste zu vermerken.
+* Spontank&#xE4;ufe ohne Bezug zur Bedarfsliste sind zu vermeiden.
+* Die Bedarfsliste dient der transparenten Planung gemeinsamer Eink&#xE4;ufe.
+</nodenote>
+                    </node>
+                  </nodes>
+                </node>
+                <node id="73" posx="1369.5" posy="189" width="55" height="49" side="right" fold="false" treesize="119" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Luft"/>
+                  </nodename>
+                  <nodenote></nodenote>
+                  <nodes>
+                    <node id="74" posx="1524.5" posy="154" width="182" height="70" side="right" fold="false" treesize="70" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Vermeidung von Geruchsbel&#xE4;stigung"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Luft &#x2192; Vermeidung von Geruchsbel&#xE4;stigung**
+
+* R&#xE4;ume sind regelm&#xE4;&#xDF;ig zu l&#xFC;ften, um Geruchsbildung zu vermeiden.
+* Beim Kochen sind Dunstabzug oder L&#xFC;ftung zu nutzen.
+* Stark riechende T&#xE4;tigkeiten sind durch ausreichendes L&#xFC;ften zu begleiten.
+* M&#xFC;ll mit Geruchsentwicklung ist zeitnah zu entsorgen.
+* Lebensmittelreste sind nicht offen stehen zu lassen.
+* Geruchsbelastende Gegenst&#xE4;nde oder Kleidung sind nicht in Gemeinschaftsbereichen liegen zu lassen.
+* K&#xFC;nstliche Duftstoffe sind in Gemeinschaftsbereichen sparsam zu verwenden.
+* Stark parf&#xFC;mierte Kosmetika sind in Innenr&#xE4;umen nur in angemessener Menge zu nutzen.
+* Das Verspr&#xFC;hen von Parf&#xFC;m oder Spray in Gemeinschaftsbereichen ist zu vermeiden.
+* Duftstoffe sind bevorzugt in privaten R&#xE4;umen zu verwenden.
+* R&#xFC;cksicht auf empfindliche oder geruchssensible Personen ist zu nehmen.
+</nodenote>
+                    </node>
+                    <node id="75" posx="1524.5" posy="224" width="123" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                      <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                      <nodename maxwidth="200">
+                        <text data="Luftqualit&#xE4;t"/>
+                      </nodename>
+                      <nodenote>**Ressourcen &#x2192; Luft &#x2192; Luftqualit&#xE4;t**
+
+* Innenr&#xE4;ume sind regelm&#xE4;&#xDF;ig durch Sto&#xDF;l&#xFC;ften mit Frischluft zu versorgen.
+* Verbrauchte oder stickige Luft ist durch L&#xFC;ften zeitnah auszutauschen.
+* Rauchen ist in Innenr&#xE4;umen nicht gestattet.
+* T&#xE4;tigkeiten mit Staub- oder Schadstoffentwicklung sind zu vermeiden oder nur mit ausreichender L&#xFC;ftung durchzuf&#xFC;hren.
+* Gemeinschaftsr&#xE4;ume sind so zu nutzen, dass eine gute Luftqualit&#xE4;t erhalten bleibt.
+* Luftverschmutzende Stoffe sind nicht unn&#xF6;tig in Innenr&#xE4;ume einzubringen.
+</nodenote>
+                    </node>
+                  </nodes>
+                </node>
+                <node id="53" posx="1369.5" posy="273" width="121" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Monitoring"/>
+                  </nodename>
+                  <nodenote>**Ressourcen &#x2192; Monitoring**
+
+* Der Verbrauch zentraler Ressourcen (Strom, Wasser, W&#xE4;rme) wird regelm&#xE4;&#xDF;ig &#xFC;berwacht und transparent dargestellt.
+* Informationen zum Ressourcenverbrauch stehen allen Hausbewohnern offen zur Einsicht zur Verf&#xFC;gung.
+* Jeder Bewohner ist angehalten, seinen pers&#xF6;nlichen Ressourcenverbrauch bewusst wahrzunehmen.
+* Ein verantwortungsvoller Umgang mit Ressourcen wird von allen erwartet.
+* Ressourcenverbrauch und Ressourcenbeschaffung sollen in einem angemessenen Verh&#xE4;ltnis stehen.
+* Jeder Bewohner tr&#xE4;gt Verantwortung f&#xFC;r ein ausgewogenes Verh&#xE4;ltnis zwischen Nutzen und Beitrag zur Gemeinschaft.
+</nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="5" posx="1162.5" posy="381.5" width="67" height="49" side="right" fold="false" treesize="168" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="true">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Abfall"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="19" posx="1329.5" posy="322" width="110" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Trennung"/>
+                  </nodename>
+                  <nodenote>**Abfall &#x2192; Trennung**
+
+* Abf&#xE4;lle sind konsequent nach den vorgesehenen Kategorien zu trennen.
+* Verpackungen, Papier, Glas, Biom&#xFC;ll und Restm&#xFC;ll sind in die daf&#xFC;r vorgesehenen Beh&#xE4;lter zu entsorgen.
+* Falsch entsorgter Abfall ist durch den Verursacher zu korrigieren.
+* Beh&#xE4;lter f&#xFC;r getrennte Abf&#xE4;lle sind nicht zu &#xFC;berf&#xFC;llen.
+* Bei Unsicherheit &#xFC;ber die richtige Trennung ist dies vor der Entsorgung zu kl&#xE4;ren.
+* Sonderabf&#xE4;lle sind nicht &#xFC;ber den Hausm&#xFC;ll zu entsorgen.
+</nodenote>
+                </node>
+                <node id="20" posx="1329.5" posy="371" width="124" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Entsorgung"/>
+                  </nodename>
+                  <nodenote>**Abfall &#x2192; Entsorgung**
+
+* Abf&#xE4;lle sind zeitnah in die vorgesehenen Abfallbeh&#xE4;lter zu entsorgen.
+* &#xDC;berf&#xFC;llte Abfallbeh&#xE4;lter sind zu vermeiden und rechtzeitig zu leeren.
+* M&#xFC;llbeutel sind vor der Entsorgung ordnungsgem&#xE4;&#xDF; zu verschlie&#xDF;en.
+* Abf&#xE4;lle sind nicht offen oder lose in Gemeinschaftsbereichen liegen zu lassen.
+* M&#xFC;ll mit Geruchs- oder Hygieneproblemen ist unverz&#xFC;glich zu entsorgen.
+* Abfallbeh&#xE4;lter sind nach der Leerung wieder sauber und ordnungsgem&#xE4;&#xDF; bereitzustellen.
+
+**Abfall &#x2192; Entsorgung &#x2192; Eigenverantwortliches Leeren bei &#xDC;berf&#xFC;llung**
+
+* &#xDC;berf&#xFC;llte Abfallbeh&#xE4;lter sind durch den Nutzer eigenverantwortlich zu leeren.
+* Wer einen vollen Abfallbeh&#xE4;lter feststellt, sorgt f&#xFC;r dessen Entleerung.
+* M&#xFC;llbeutel sind vor dem Herausnehmen ordnungsgem&#xE4;&#xDF; zu verschlie&#xDF;en.
+* Neue M&#xFC;llbeutel sind nach dem Leeren einzusetzen.
+* Entnommene M&#xFC;llbeutel sind zeitnah in die vorgesehenen Au&#xDF;enbeh&#xE4;lter zu verbringen.
+</nodenote>
+                </node>
+                <node id="70" posx="1329.5" posy="420" width="156" height="70" side="right" fold="false" treesize="70" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Reinhaltung von Abfallbeh&#xE4;ltern"/>
+                  </nodename>
+                  <nodenote>**Abfall &#x2192; Reinhalten von Abfallbeh&#xE4;ltern**
+
+* Abf&#xE4;lle sind so zu entsorgen, dass Abfallbeh&#xE4;lter sauber bleiben.
+* Fl&#xFC;ssigkeiten oder stark verschmutzende Stoffe sind nicht lose in Abfallbeh&#xE4;lter zu geben.
+* Verschmutzungen an Abfallbeh&#xE4;ltern sind durch den Verursacher zu reinigen.
+* M&#xFC;llbeutel sind ordnungsgem&#xE4;&#xDF; einzusetzen und bei Bedarf zu wechseln.
+* Abfallbeh&#xE4;lter sind regelm&#xE4;&#xDF;ig auf Sauberkeit zu pr&#xFC;fen und bei Bedarf zu reinigen.
+</nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="6" posx="1162.5" posy="588" width="75" height="49" side="right" fold="false" treesize="245" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="true">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Garten"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="63" posx="1337.5" posy="490" width="85" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Rasen"/>
+                  </nodename>
+                  <nodenote>**Gartenpflege und Nutzung &#x2192; Rasen**
+
+* Der Rasen ist pfleglich zu behandeln und nicht unn&#xF6;tig zu besch&#xE4;digen.
+* M&#xFC;ll oder Gegenst&#xE4;nde sind nicht dauerhaft auf dem Rasen liegen zu lassen.
+* Der Rasen ist regelm&#xE4;&#xDF;ig zu m&#xE4;hen, sofern Wachstumsbedingungen dies erfordern.
+* Gartenm&#xF6;bel oder Ger&#xE4;te sind nach der Nutzung wieder geordnet abzustellen.
+* Besch&#xE4;digungen des Rasens sind zu vermeiden und bei Bedarf zu beheben.
+* Der Rasen ist als gemeinschaftliche Fl&#xE4;che respektvoll zu nutzen.
+</nodenote>
+                </node>
+                <node id="64" posx="1337.5" posy="539" width="79" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Teich"/>
+                  </nodename>
+                  <nodenote>**Gartenpflege und Nutzung &#x2192; Fischteich**
+
+* Der Fischteich ist als sensibler Lebensraum zu respektieren.
+* Fische d&#xFC;rfen nur durch daf&#xFC;r verantwortliche Personen gef&#xFC;ttert werden.
+* Fremdstoffe, Lebensmittelreste oder Abf&#xE4;lle d&#xFC;rfen nicht in den Teich eingebracht werden.
+* Pflanzen und technische Einrichtungen des Teiches sind nicht zu besch&#xE4;digen.
+* Kinder und Besucher sind im Bereich des Teiches zu beaufsichtigen.
+* Arbeiten am Teich oder Ver&#xE4;nderungen an der Anlage erfolgen nur nach Abstimmung.
+</nodenote>
+                </node>
+                <node id="65" posx="1337.5" posy="588" width="75" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Holz"/>
+                  </nodename>
+                  <nodenote>**Gartenpflege und Nutzung &#x2192; Brennholz**
+
+* Brennholz ist sparsam und nur bei tats&#xE4;chlichem Bedarf zu verwenden.
+* Entnommenes Brennholz ist aus den vorgesehenen Lagerbereichen zu nehmen.
+* Holzstapel sind nach der Entnahme wieder ordentlich zu schlie&#xDF;en.
+* Brennholz ist trocken und gesch&#xFC;tzt zu lagern.
+* Holzreste oder Sp&#xE4;ne sind nach der Nutzung zu beseitigen.
+* Brennholz ist ausschlie&#xDF;lich f&#xFC;r vorgesehene Feuerstellen oder Heizger&#xE4;te zu verwenden.
+</nodenote>
+                </node>
+                <node id="66" posx="1337.5" posy="637" width="218" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Gew&#xE4;chshaus und Anbau"/>
+                  </nodename>
+                  <nodenote>**Gartenpflege und Nutzung &#x2192; Gew&#xE4;chshaus und Gartenanbau**
+
+* Gew&#xE4;chshaus und Anbaufl&#xE4;chen sind pfleglich zu behandeln.
+* Pflanzen sind regelm&#xE4;&#xDF;ig zu kontrollieren, zu gie&#xDF;en und zu pflegen.
+* Werkzeuge und Ger&#xE4;te sind nach der Nutzung zu reinigen und an ihren Platz zur&#xFC;ckzulegen.
+* Ver&#xE4;nderungen an Beeten, Pflanzungen oder Einrichtungen erfolgen nur nach Abstimmung.
+* Ernte aus gemeinschaftlichem Anbau erfolgt in angemessener Menge und unter R&#xFC;cksicht auf andere.
+* Pflanzabf&#xE4;lle und Gartenreste sind ordnungsgem&#xE4;&#xDF; zu entsorgen oder zu kompostieren.
+</nodenote>
+                </node>
+                <node id="67" posx="1337.5" posy="686" width="127" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Reinhaltung"/>
+                  </nodename>
+                  <nodenote>**Gartenpflege und Nutzung &#x2192; allgemeine Reinhaltung und Pflegeverpflichtung**
+
+* Der Garten ist als gemeinschaftlicher Raum sauber und ordentlich zu halten.
+* M&#xFC;ll, Verpackungen oder sonstige Gegenst&#xE4;nde sind nach der Nutzung zu entfernen.
+* Gartenm&#xF6;bel und Ger&#xE4;te sind nach der Nutzung geordnet zur&#xFC;ckzustellen.
+* Verschmutzungen oder Besch&#xE4;digungen sind durch den Verursacher zu beseitigen.
+* Wege, Fl&#xE4;chen und Aufenthaltsbereiche sind frei und begehbar zu halten.
+* Jeder Nutzer tr&#xE4;gt Verantwortung f&#xFC;r den gepflegten Zustand des Gartens.
+</nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="4" posx="1162.5" posy="833" width="119" height="49" side="right" fold="false" treesize="245" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="true">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Wohnbereich"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="31" posx="1381.5" posy="735" width="152" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Mediennutzung"/>
+                  </nodename>
+                  <nodenote>**Wohnbereich &#x2192; Mediennutzung**
+
+* Medienger&#xE4;te sind r&#xFC;cksichtsvoll und in angemessener Lautst&#xE4;rke zu nutzen.
+* Gemeinschaftsbereiche sind nicht dauerhaft durch Mediennutzung zu blockieren.
+* Medieninhalte sind so zu w&#xE4;hlen, dass andere Hausbewohner nicht bel&#xE4;stigt werden.
+* Nach der Nutzung sind Ger&#xE4;te auszuschalten und ordnungsgem&#xE4;&#xDF; zu hinterlassen.
+* Kopfh&#xF6;rer sind zu verwenden, wenn andere Personen im Raum gest&#xF6;rt werden k&#xF6;nnten.
+* Mediennutzung darf nicht zu dauerhafter L&#xE4;rmbelastung im Wohnbereich f&#xFC;hren.
+</nodenote>
+                </node>
+                <node id="32" posx="1381.5" posy="784" width="114" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Kopfh&#xF6;rer"/>
+                  </nodename>
+                  <nodenote>**Wohnbereich &#x2192; Kopfh&#xF6;rer**
+
+* Kopfh&#xF6;rer sind im Wohnbereich nur bei individueller Mediennutzung zu verwenden.
+* Dauerhafte Nutzung von Kopfh&#xF6;rern in Gemeinschaftsbereichen ist zu vermeiden.
+* Bei direkter Ansprache sind Kopfh&#xF6;rer abzunehmen und zu reagieren.
+* Kopfh&#xF6;rer d&#xFC;rfen nicht als Mittel zur Abschottung von der Hausgemeinschaft genutzt werden.
+* In Gespr&#xE4;chen oder gemeinschaftlichen Situationen sind Kopfh&#xF6;rer abzulegen.
+* Gemeinschaftsr&#xE4;ume dienen der Begegnung und Kommunikation.
+</nodenote>
+                </node>
+                <node id="33" posx="1381.5" posy="833" width="189" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Sitzbereich und Tisch"/>
+                  </nodename>
+                  <nodenote>**Wohnbereich &#x2192; Sitzbereich und Tisch**
+
+* Sitzbereich und Tisch sind nach der Nutzung sauber und ordentlich zu hinterlassen.
+* Geschirr, Gl&#xE4;ser und Essensreste sind zeitnah abzur&#xE4;umen.
+* Versch&#xFC;ttete Fl&#xFC;ssigkeiten oder Verschmutzungen sind sofort zu beseitigen.
+* Gegenst&#xE4;nde sind nach der Nutzung wieder an ihren vorgesehenen Platz zu legen.
+* Der Sitzbereich ist nicht dauerhaft mit pers&#xF6;nlichen Gegenst&#xE4;nden zu belegen.
+* Gemeinschaftsfl&#xE4;chen sind f&#xFC;r alle Hausbewohner frei zug&#xE4;nglich zu halten.
+</nodenote>
+                </node>
+                <node id="34" posx="1381.5" posy="882" width="111" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Vorh&#xE4;nge"/>
+                  </nodename>
+                  <nodenote>**Wohnbereich &#x2192; Vorh&#xE4;nge**
+
+* Vorh&#xE4;nge sind pfleglich zu behandeln und nicht unn&#xF6;tig zu ber&#xFC;hren oder zu verschmutzen.
+* Vorh&#xE4;nge d&#xFC;rfen nicht als Ablage oder zum Abwischen von H&#xE4;nden genutzt werden.
+* Geruchsbelastungen durch Rauch, Lebensmittel oder Kosmetika sind in Vorhangn&#xE4;he zu vermeiden.
+* Vorh&#xE4;nge sind nicht unn&#xF6;tig zu verschieben oder zu verknoten.
+* Verschmutzungen an Vorh&#xE4;ngen sind zu vermeiden und bei Bedarf zu melden.
+</nodenote>
+                </node>
+                <node id="35" posx="1381.5" posy="931" width="114" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Reinigung"/>
+                  </nodename>
+                  <nodenote>**Wohnbereich &#x2192; Reinigung**
+
+* Der Wohnbereich ist unabh&#xE4;ngig vom Reinigungsplan sauber und ordentlich zu halten.
+* Verschmutzungen sind unmittelbar durch den Verursacher zu beseitigen.
+* Ein verbindlicher Reinigungsplan regelt die regelm&#xE4;&#xDF;igen Grundreinigungen.
+* Die im Reinigungsplan zugewiesenen Aufgaben sind termingerecht zu erledigen.
+* Gemeinschaftsfl&#xE4;chen sind nach der Nutzung in einen ordentlichen Zustand zu versetzen.
+* Reinigungsger&#xE4;te sind nach der Nutzung zu s&#xE4;ubern und an ihren vorgesehenen Platz zur&#xFC;ckzustellen.
+</nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="3" posx="1162.5" posy="1078" width="69" height="49" side="right" fold="false" treesize="245" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="true">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="B&#xE4;der"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="25" posx="1331.5" posy="980" width="94" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Toilette"/>
+                  </nodename>
+                  <nodenote>**B&#xE4;der &#x2192; Toilette**
+
+* Die Toilette ist nach jeder Nutzung sauber zu hinterlassen.
+* Verunreinigungen an Sitz, Sch&#xFC;ssel oder Boden sind unmittelbar zu beseitigen.
+* Die Toilettensp&#xFC;lung ist nach jeder Nutzung zu bet&#xE4;tigen.
+* Die Toilettenb&#xFC;rste ist bei Bedarf zu verwenden und anschlie&#xDF;end sauber zu hinterlassen.
+* Toilettenpapier ist ausschlie&#xDF;lich in der daf&#xFC;r vorgesehenen Weise zu entsorgen.
+* Fremdstoffe d&#xFC;rfen nicht &#xFC;ber die Toilette entsorgt werden.
+</nodenote>
+                </node>
+                <node id="26" posx="1331.5" posy="1029" width="137" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Waschbecken"/>
+                  </nodename>
+                  <nodenote>**B&#xE4;der &#x2192; Waschbecken**
+
+* Das Waschbecken ist nach jeder Nutzung sauber zu hinterlassen.
+* Zahnpasta-, Seifen- oder Haarreste sind unmittelbar zu entfernen.
+* Wasser ist nach der Nutzung vollst&#xE4;ndig abzudrehen.
+* Versch&#xFC;ttetes Wasser auf Ablagen oder Boden ist zu beseitigen.
+* Abfl&#xFC;sse sind frei von Haaren und R&#xFC;ckst&#xE4;nden zu halten.
+* Pers&#xF6;nliche Gegenst&#xE4;nde sind geordnet und platzsparend abzulegen.
+</nodenote>
+                </node>
+                <node id="28" posx="1331.5" posy="1078" width="181" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Dusche/Badewanne"/>
+                  </nodename>
+                  <nodenote>**B&#xE4;der &#x2192; Dusche / Badewanne**
+
+* Dusche und Badewanne sind nach jeder Nutzung sauber zu hinterlassen.
+* Haare und R&#xFC;ckst&#xE4;nde sind nach der Nutzung aus Ablauf und Fl&#xE4;chen zu entfernen.
+* Wasserreste auf Randfl&#xE4;chen oder Boden sind zu beseitigen.
+* Duschw&#xE4;nde oder -vorh&#xE4;nge sind nach der Nutzung so zu hinterlassen, dass sie trocknen k&#xF6;nnen.
+* Pers&#xF6;nliche Pflegeprodukte sind geordnet zu lagern und nicht dauerhaft zu verteilen.
+* Nach der Nutzung ist das Badezimmer zu l&#xFC;ften.
+</nodenote>
+                </node>
+                <node id="27" posx="1331.5" posy="1127" width="89" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Boden"/>
+                  </nodename>
+                  <nodenote>**B&#xE4;der &#x2192; Boden**
+
+* Der Badezimmerboden ist frei von Gegenst&#xE4;nden zu halten.
+* Kleidung, Handt&#xFC;cher oder pers&#xF6;nliche Gegenst&#xE4;nde sind nicht auf dem Boden liegen zu lassen.
+* Tuben, Verpackungen oder Pflegeprodukte sind nach der Nutzung wegzur&#xE4;umen.
+* Wasser, Haare oder Verschmutzungen auf dem Boden sind unmittelbar zu beseitigen.
+* Der Boden ist so zu hinterlassen, dass der Raum jederzeit sauber und nutzbar bleibt.
+</nodenote>
+                </node>
+                <node id="36" posx="1331.5" posy="1176" width="114" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Reinigung"/>
+                  </nodename>
+                  <nodenote>**B&#xE4;der &#x2192; Reinigung**
+
+* Die B&#xE4;der sind unabh&#xE4;ngig vom Reinigungsplan sauber und hygienisch zu halten.
+* Verschmutzungen sind unmittelbar durch den Verursacher zu beseitigen.
+* Ein verbindlicher Reinigungsplan regelt die regelm&#xE4;&#xDF;ige Grundreinigung der B&#xE4;der.
+* Die im Reinigungsplan zugewiesenen Aufgaben sind termingerecht auszuf&#xFC;hren.
+* Waschbecken, Dusche, Badewanne, Toilette und Boden sind regelm&#xE4;&#xDF;ig gr&#xFC;ndlich zu reinigen.
+* Reinigungsmittel und -ger&#xE4;te sind nach der Nutzung zu s&#xE4;ubern und ordnungsgem&#xE4;&#xDF; zur&#xFC;ckzustellen.
+</nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="2" posx="1162.5" posy="1347.5" width="70" height="49" side="right" fold="false" treesize="294" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="true">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="K&#xFC;che"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="14" posx="1332.5" posy="1225" width="145" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Geschirrsp&#xFC;ler"/>
+                  </nodename>
+                  <nodenote>**K&#xFC;che &#x2192; Geschirrsp&#xFC;ler**
+
+* Geschirr ist vor dem Einr&#xE4;umen von groben Speiseresten zu befreien.
+* Der Geschirrsp&#xFC;ler ist sachgerecht und platzsparend zu beladen.
+* Der Geschirrsp&#xFC;ler wird nur bei ausreichender F&#xFC;llung gestartet.
+* Nach Programmende ist der Geschirrsp&#xFC;ler zeitnah auszur&#xE4;umen.
+* Sauberes Geschirr ist an seinen vorgesehenen Platz zur&#xFC;ckzustellen.
+* Filter und Innenraum des Geschirrsp&#xFC;lers sind regelm&#xE4;&#xDF;ig zu kontrollieren und bei Bedarf zu reinigen.
+</nodenote>
+                </node>
+                <node id="15" posx="1332.5" posy="1274" width="116" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Ofen/Herd"/>
+                  </nodename>
+                  <nodenote>**K&#xFC;che &#x2192; Ofen / Herd**
+
+* Herd und Ofen sind nach jeder Nutzung sauber zu hinterlassen.
+* &#xDC;bergelaufene Fl&#xFC;ssigkeiten oder Speisereste sind unmittelbar zu entfernen.
+* Kochfelder sind nach dem Abk&#xFC;hlen zu reinigen.
+* Ofen und Backbleche sind nach Nutzung von Verschmutzungen zu befreien.
+* Kochger&#xE4;te sind nach der Nutzung vollst&#xE4;ndig auszuschalten.
+* Kochutensilien und verwendetes Zubeh&#xF6;r sind nach Gebrauch zu reinigen und zur&#xFC;ckzustellen.
+</nodenote>
+                </node>
+                <node id="16" posx="1332.5" posy="1323" width="120" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Mikrowelle"/>
+                  </nodename>
+                  <nodenote>**K&#xFC;che &#x2192; Mikrowelle**
+
+* Lebensmittel sind in der Mikrowelle nur mit geeigneter Abdeckung zu erw&#xE4;rmen.
+* Verschmutzungen im Innenraum sind unmittelbar nach der Nutzung zu entfernen.
+* &#xDC;bergelaufene oder verspritzte Lebensmittel sind vollst&#xE4;ndig zu reinigen.
+* Die Mikrowelle ist nach der Nutzung auszuschalten.
+* Drehteller und Innenfl&#xE4;chen sind sauber zu halten.
+* Die Mikrowelle ist frei von Lebensmittelresten zu hinterlassen.
+</nodenote>
+                </node>
+                <node id="39" posx="1332.5" posy="1372" width="129" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="K&#xFC;hlschrank"/>
+                  </nodename>
+                  <nodenote>**K&#xFC;che &#x2192; K&#xFC;hlschrank**
+
+* Lebensmittel sind im K&#xFC;hlschrank geordnet und hygienisch zu lagern.
+* Angebrochene Lebensmittel sind zu verschlie&#xDF;en oder abzudecken.
+* Lebensmittel sind so zu lagern, dass Verderb und Geruchsbildung vermieden werden.
+* Verdorbene oder &#xFC;berlagerte Lebensmittel sind unverz&#xFC;glich zu entsorgen.
+* Versch&#xFC;ttete Fl&#xFC;ssigkeiten oder Verschmutzungen im K&#xFC;hlschrank sind sofort zu reinigen.
+* Lebensmittel sind so zu platzieren, dass der K&#xFC;hlschrank effizient geschlossen werden kann.
+* Die K&#xFC;hlschrankt&#xFC;r ist nach jeder Nutzung vollst&#xE4;ndig zu schlie&#xDF;en.
+</nodenote>
+                </node>
+                <node id="17" posx="1332.5" posy="1421" width="195" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Kleinger&#xE4;te/Werkzeug"/>
+                  </nodename>
+                  <nodenote>**K&#xFC;che &#x2192; elektrische Kleinger&#xE4;te und Werkzeuge**
+
+* Elektrische K&#xFC;chenger&#xE4;te sind sachgerecht und nur f&#xFC;r ihren vorgesehenen Zweck zu verwenden.
+* Ger&#xE4;te sind nach der Nutzung auszuschalten und vom Stromnetz zu trennen, sofern sie nicht dauerhaft betrieben werden m&#xFC;ssen.
+* Ger&#xE4;te und Zubeh&#xF6;r sind nach der Nutzung zu reinigen.
+* Elektrische Kleinger&#xE4;te sind nach der Nutzung an ihren vorgesehenen Platz zur&#xFC;ckzustellen.
+* Besch&#xE4;digte oder fehlerhafte Ger&#xE4;te sind nicht weiter zu benutzen und zu melden.
+* Kabel, Aufs&#xE4;tze und Zubeh&#xF6;r sind vollst&#xE4;ndig und geordnet aufzubewahren.
+</nodenote>
+                </node>
+                <node id="37" posx="1332.5" posy="1470" width="114" height="49" side="right" fold="false" treesize="49" color="#b58900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Reinigung"/>
+                  </nodename>
+                  <nodenote>**K&#xFC;che &#x2192; Reinigung**
+
+* Die K&#xFC;che ist nach jeder Nutzung sauber und hygienisch zu hinterlassen.
+* Lebensmittelreste, Kr&#xFC;mel und Verschmutzungen sind unmittelbar zu entfernen.
+* Arbeitsfl&#xE4;chen sind nach der Nutzung mit sauberen T&#xFC;chern zu reinigen.
+* Fett und Speisereste sind nicht mit verschmutzten Lappen zu verteilen, sondern hygienisch zu entfernen.
+* Sp&#xFC;l- und Reinigungst&#xFC;cher sind regelm&#xE4;&#xDF;ig zu wechseln und sauber zu halten.
+* Schneidefl&#xE4;chen und Arbeitsbereiche sind lebensmittelhygienisch zu reinigen.
+* Ein verbindlicher Reinigungsplan regelt die regelm&#xE4;&#xDF;ige Grundreinigung der K&#xFC;che.
+</nodenote>
+                </node>
+              </nodes>
+            </node>
+          </nodes>
+        </node>
+        <node id="82" posx="955.5" posy="1676.5" width="128" height="49" side="right" fold="false" treesize="364" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="true">
+          <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+          <nodename maxwidth="200">
+            <text data="Spielmechanik"/>
+          </nodename>
+          <nodenote></nodenote>
+          <nodes>
+            <node id="83" posx="1183.5" posy="1568" width="166" height="49" side="right" fold="false" treesize="147" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Leben (Vertrauen)"/>
+              </nodename>
+              <nodenote>## Das Lebens-System (Game-Mechanik)
+
+### Grundzustand
+
+Jeder hat 3 Leben.
+
+Diese stehen f&#xFC;r Vertrauen und Gemeinschaftsf&#xE4;higkeit.
+
+Leben k&#xF6;nnen verloren werden und k&#xF6;nnen sich wieder regenerieren.</nodenote>
+              <nodes>
+                <node id="78" posx="1449.5" posy="1519" width="150" height="49" side="right" fold="false" treesize="49" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Leben verlieren"/>
+                  </nodename>
+                  <nodenote>Ein Leben wird verloren bei z.B.:
+
+* Respektlosem Verhalten
+* Ignorieren einer direkten Ansprache
+* Besch&#xE4;digung oder Missachtung von Gemeinschaftseigentum
+* Wiederholtem Regelbruch
+
+** Wichtig: **  nur klare Dinge, keine Interpretationsf&#xE4;lle.</nodenote>
+                </node>
+                <node id="77" posx="1449.5" posy="1568" width="179" height="49" side="right" fold="false" treesize="49" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Leben regenerieren"/>
+                  </nodename>
+                  <nodenote>### Leben regenerieren
+
+** Beispiel: ** 
+* 3 Tage ohne Regelbruch &#x2192; +1 Leben
+* aktive Hilfe im Haushalt &#x2192; +1 Leben
+* Konflikt selbst&#xE4;ndig kl&#xE4;ren &#x2192; +1 Leben
+
+So entsteht ein positives Spiel und kein Strafsystem.
+
+Wer schummelt, um ein Leben zu erlangen, bekommt 2 Leben abgezogen.</nodenote>
+                </node>
+                <node id="79" posx="1449.5" posy="1617" width="155" height="49" side="right" fold="false" treesize="49" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="0 Leben erreicht"/>
+                  </nodename>
+                  <nodenote>### 0 Leben erreicht
+
+Dann passiert kein emotionaler Ausbruch, sondern eine festgelegte Konsequenz.
+
+Beispiel:
+
+&#x201E;Gemeinschaftsauftrag&#x201C;
+
+Das k&#xF6;nnte sein:
+
+K&#xFC;che grundreinigen
+
+Gartenarbeit
+
+Werkstatt aufr&#xE4;umen
+
+Einkauf organisieren
+
+Wichtig:
+
+Es ist kein Strafdienst, sondern ein Beitrag zur Gemeinschaft.</nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="84" posx="1183.5" posy="1690.5" width="208" height="49" side="right" fold="false" treesize="98" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="XP (Gemeinschaftspunkte)"/>
+              </nodename>
+              <nodenote></nodenote>
+              <nodes>
+                <node id="85" posx="1491.5" posy="1666" width="190" height="49" side="right" fold="false" treesize="49" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Extra-Points erringen"/>
+                  </nodename>
+                  <nodenote>** Beispiele f&#xFC;r XP: **
+
+* Kochen helfen
+* M&#xFC;ll rausbringen ohne Aufforderung
+* Konflikt konstruktiv kl&#xE4;ren
+* jemanden unterst&#xFC;tzen
+
+_XP kann zu kleinen Privilegien f&#xFC;hren._</nodenote>
+                </node>
+                <node id="86" posx="1491.5" posy="1715" width="182" height="49" side="right" fold="false" treesize="49" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+                  <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+                  <nodename maxwidth="200">
+                    <text data="Extra-Point einl&#xF6;sen"/>
+                  </nodename>
+                  <nodenote>XP in Privilegien tauschen.
+
+** Beispiel: **
+* Film ausw&#xE4;hlen
+* sp&#xE4;ter ins Bett
+* G&#xE4;ste einladen</nodenote>
+                </node>
+              </nodes>
+            </node>
+            <node id="87" posx="1183.5" posy="1764" width="131" height="49" side="right" fold="false" treesize="49" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="Charaktere..."/>
+              </nodename>
+              <nodenote>###Die 7 typischen Rollen in Familiensystemen
+#### 1. Der Rebell
+
+**Merkmale:**
+
+* widerspricht reflexartig
+* testet Grenzen
+* muss &#x201E;das letzte Wort&#x201C; haben
+* provoziert Autorit&#xE4;t
+
+**Motivation:**
+
+* Kontrolle zur&#xFC;ckgewinnen.
+
+**Typischer Satz:**
+
+* &#x201E;Mir egal.&#x201C;
+
+**Wichtig:**
+Der Rebell reagiert sehr sensibel auf Ungerechtigkeit.
+
+Wenn Regeln fair sind, beruhigt er sich oft.
+
+#### 2. Der Unsichtbare
+
+**Merkmale:**
+
+* zieht sich zur&#xFC;ck
+* beteiligt sich kaum
+* vermeidet Konflikte
+* lebt im eigenen Raum
+
+**Motivation:**
+
+* Sicherheit durch R&#xFC;ckzug.
+
+Diese Rolle sieht man oft bei Kindern, die Konflikte vermeiden wollen.
+
+#### 3. Der Clown
+
+**Merkmale:**
+
+* macht Witze in ernsten Situationen
+* lenkt Gespr&#xE4;che ab
+* vermeidet Tiefe
+
+**Motivation:**
+
+* Spannung reduzieren.
+
+Diese Rolle ist eigentlich ein Friedensstifter, aber auf Umwegen.
+
+#### 4. Der Richter
+
+**Merkmale:**
+
+* bewertet st&#xE4;ndig
+* wei&#xDF; immer, wer &#x201E;schuld&#x201C; ist
+* moralische Kommentare
+
+**Motivation:**
+
+* Ordnung schaffen.
+
+Das kann auch ein Elternteil sein.
+
+#### 5. Der Retter
+
+**Merkmale:**
+
+* vermittelt st&#xE4;ndig
+* entschuldigt Verhalten anderer
+* &#xFC;bernimmt Verantwortung f&#xFC;r andere
+
+**Motivation:**
+
+* Harmonie herstellen.
+
+Viele &#xFC;berlastete Eltern landen in dieser Rolle.
+
+#### 6. Der Opfer-Spieler
+
+**Merkmale:**
+
+* f&#xFC;hlt sich st&#xE4;ndig unfair behandelt
+* sieht sich benachteiligt
+* Verantwortung wird abgegeben
+
+**Motivation:**
+
+* Schutz vor Verantwortung.
+
+#### 7. Der Stabilit&#xE4;tsanker
+
+Das ist die gesunde Rolle.
+
+**Merkmale:**
+
+* ruhig
+* klar
+* reagiert nicht emotional auf Provokationen
+* setzt Grenzen ohne Drama
+
+Das ist die Rolle, die ein Erwachsener idealerweise einnimmt.
+
+</nodenote>
+            </node>
+            <node id="88" posx="1183.5" posy="1813" width="194" height="70" side="right" fold="false" treesize="70" color="#859900" colorroot="false" summarized="false" layout="Horizontal" group="false">
+              <style branchmargin="100" branchradius="25" linktype="curved" linkwidth="4" linkarrow="false" linkdash="solid" nodeborder="underlined" nodewidth="200" nodeborderwidth="4" nodefill="false" nodemargin="8" nodepadding="6" nodefont="Sans 11" nodemarkup="true"/>
+              <nodename maxwidth="200">
+                <text data="offene Verweigerung/Konsequenzen"/>
+              </nodename>
+              <nodenote>**Spielmechanik &#x2192; offensichtliche Verweigerung / Konsequenzen**
+
+* Offensichtliche und bewusste Verweigerung der Hausregeln f&#xFC;hrt zum Verlust eines Lebenspunktes.
+* Wiederholte Regelverweigerung innerhalb kurzer Zeit f&#xFC;hrt zu zus&#xE4;tzlichem Verlust von Lebenspunkten.
+* Bei Erreichen von null Lebenspunkten wechselt der Status automatisch auf 
+
+**Gast**.
+* Gaststatus bedeutet eingeschr&#xE4;nkte Nutzung gemeinschaftlicher Ressourcen und Infrastruktur.
+* Der Wechsel in den Gaststatus erfolgt ohne Diskussion und basiert ausschlie&#xDF;lich auf dem Spielmechanik-System.
+* Eine R&#xFC;ckkehr in den Mitbewohnerstatus erfolgt erst nach erneuter positiver Entwicklung im XP/Leben-System.
+
+</nodenote>
+            </node>
+          </nodes>
+        </node>
+      </nodes>
+    </node>
+  </nodes>
+  <groups>
+    <group color="#dc322f">
+      <node id="1"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#cb4b16">
+      <node id="2"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#b58900">
+      <node id="3"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#859900">
+      <node id="4"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#268bd2">
+      <node id="5"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#6c71c4">
+      <node id="6"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#859900">
+      <node id="82"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#b58900">
+      <node id="81"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#cb4b16">
+      <node id="80"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#dc322f">
+      <node id="1"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#cb4b16">
+      <node id="2"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#b58900">
+      <node id="3"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#859900">
+      <node id="4"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#268bd2">
+      <node id="5"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#6c71c4">
+      <node id="6"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#859900">
+      <node id="82"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#b58900">
+      <node id="81"/>
+      <groupnote></groupnote>
+    </group>
+    <group color="#cb4b16">
+      <node id="80"/>
+      <groupnote></groupnote>
+    </group>
+  </groups>
+  <stickers/>
+  <nodelinks id="0"/>
+</minder>
