@@ -2,6 +2,7 @@
 #include <PubSubClient.h>
 #include <TFT_eSPI.h>
 #include <ArduinoJson.h>
+#include <LittleFS.h>
 
 const char* ssid        = "***REMOVED***";
 const char* password    = "***REMOVED***";
@@ -38,7 +39,9 @@ enum ScreenMode {
   SCREEN_AWARDS,
   SCREEN_ADMIN_PIN,
   SCREEN_ADMIN_SELECT,
-  SCREEN_ADMIN_ACTION
+  SCREEN_ADMIN_ACTION,
+  SCREEN_ADMIN_RULE,
+  SCREEN_ADMIN_SETTINGS
 };
 ScreenMode currentScreen = SCREEN_PLAYERS;
 
@@ -49,8 +52,8 @@ unsigned long lastPageSwitch = 0;
 struct Player {
   String name;
   int    xp;
-  int    hp;
-  String role;
+  int    hp;           // >= 0 → resident;  < 0 → guest (penalty)
+  String lastAction;   // e.g. "hp-10:2.1.2"  or  "xp+5"
 };
 
 struct Award {
@@ -64,12 +67,29 @@ int    playerCount   = 0;
 Award  currentAward;
 bool   awardAvailable = false;
 
+// ── Global game settings ──────────────────────────────────────────────────────
+int gameLevel = 1;   // applies to all players; persisted via MQTT retained
+
 // ── Admin state ───────────────────────────────────────────────────────────────
 static char pinInput[5]     = "";
 static int  pinLen          = 0;
 static bool pinError        = false;
 static int  adminTarget     = -1;
 static int  adminSelectPage = 0;
+
+// ── Ruleset / By-Rule state ───────────────────────────────────────────────────
+bool rulesetAvailable = false;
+
+#define RULE_ID_MAX  12
+static char ruleIdInput[RULE_ID_MAX + 1] = "";
+static int  ruleIdLen                    = 0;
+static bool ruleConfirm                  = false;  // false=entry, true=confirm
+static bool ruleNotFound                 = false;
+
+static int  ruleFoundHp                  = 0;
+static int  ruleFoundXp                  = 0;
+static int  ruleFoundLevel               = 0;
+static char ruleFoundText[82]            = "";
 
 // ── Display ───────────────────────────────────────────────────────────────────
 TFT_eSPI tft = TFT_eSPI();
@@ -79,6 +99,8 @@ void drawScreen();
 void drawAdminPin();
 void drawAdminSelect();
 void drawAdminAction();
+void drawAdminRule();
+void drawAdminSettings();
 
 
 // =============================================================================
@@ -122,8 +144,58 @@ void handleMQTT()
   lastMQTTAttempt = millis();
   if (client.connect("housequest_panel")) {
     client.subscribe("house/quest/players/+/state");
+    client.subscribe("house/quest/settings");
     mqttConnected = true;
   }
+}
+
+
+// =============================================================================
+// Ruleset — LittleFS
+// =============================================================================
+
+void initRuleset()
+{
+  if (!LittleFS.begin(false)) {
+    Serial.println("LittleFS: mount failed");
+    return;
+  }
+  rulesetAvailable = LittleFS.exists("/ruleset.json");
+  Serial.printf("Ruleset: %s\n", rulesetAvailable ? "loaded" : "not found");
+}
+
+// Scan JSONL file line-by-line — only one line in RAM at a time.
+bool getRuleById(const char* id)
+{
+  if (!rulesetAvailable) return false;
+
+  fs::File f = LittleFS.open("/ruleset.json", "r");
+  if (!f) return false;
+
+  bool found = false;
+  while (f.available()) {
+    String line = f.readStringUntil('\n');
+    line.trim();
+    if (line.isEmpty()) continue;
+
+    // Fast pre-check before full JSON parse
+    if (line.indexOf(id) < 0) continue;
+
+    JsonDocument doc;
+    if (deserializeJson(doc, line) != DeserializationError::Ok) continue;
+
+    if (strcmp(doc["id"] | "", id) == 0) {
+      ruleFoundHp    = doc["hp"] | 10;
+      ruleFoundXp    = doc["xp"] | 0;
+      ruleFoundLevel = doc["l"]  | 1;
+      strncpy(ruleFoundText, doc["t"] | "?", sizeof(ruleFoundText) - 1);
+      ruleFoundText[sizeof(ruleFoundText) - 1] = '\0';
+      found = true;
+      break;
+    }
+  }
+  f.close();
+  return found;
 }
 
 
@@ -155,13 +227,24 @@ bool publishPlayerState(int idx)
 
   char payload[256];
   JsonDocument doc;
-  doc["name"] = p.name;
-  doc["xp"]   = p.xp;
-  doc["hp"]   = p.hp;
-  doc["role"] = p.role;
+  doc["name"]        = p.name;
+  doc["xp"]          = p.xp;
+  doc["hp"]          = p.hp;
+  doc["role"]        = (p.hp >= 0) ? "resident" : "guest";
+  doc["last_action"] = p.lastAction;
   serializeJson(doc, payload, sizeof(payload));
 
   return client.publish(topic.c_str(), (uint8_t*)payload, strlen(payload), true);
+}
+
+void publishGameSettings()
+{
+  if (!client.connected()) return;
+  char payload[64];
+  JsonDocument doc;
+  doc["level"] = gameLevel;
+  serializeJson(doc, payload, sizeof(payload));
+  client.publish("house/quest/settings", (uint8_t*)payload, strlen(payload), true);
 }
 
 void callback(char* topic, byte* payload, unsigned int length)
@@ -175,11 +258,14 @@ void callback(char* topic, byte* payload, unsigned int length)
     if (name == "") return;
     int idx = findOrCreatePlayer(name);
     if (idx >= 0) {
-      players[idx].xp   = doc["xp"]   | 0;
-      players[idx].hp   = doc["hp"]   | 100;
-      players[idx].role = doc["role"] | "resident";
+      players[idx].xp         = doc["xp"]          | 0;
+      players[idx].hp         = doc["hp"]          | 100;
+      players[idx].lastAction = doc["last_action"] | "";
     }
     dataReceived = true;
+  }
+  else if (topicStr == "house/quest/settings") {
+    gameLevel = doc["level"] | 1;
   }
   else if (topicStr == "house/quest/awards") {
     currentAward.title    = doc["title"]    | "";
@@ -219,18 +305,28 @@ void drawHeader()
 
 void drawPlayer(int y, Player p)
 {
+  bool isGuest = (p.hp < 0);
+
   tft.setTextSize(2);
   tft.setTextColor(TFT_WHITE);
-  tft.setCursor(10, y);   tft.print(p.name);
-  tft.setCursor(120, y);  tft.printf("XP %d", p.xp);
-  tft.setCursor(200, y);  tft.printf("HP %d", p.hp);
+  tft.setCursor(10, y);  tft.print(p.name);
+  tft.setCursor(120, y); tft.printf("XP %d", p.xp);
 
-  uint16_t hpColor = (p.hp < 15) ? TFT_MAGENTA :
-                     (p.hp < 25) ? TFT_RED      :
-                     (p.hp < 75) ? TFT_YELLOW   : TFT_GREEN;
-  int bar = map(p.hp, 0, 100, 0, 200);
+  tft.setTextColor(isGuest ? TFT_RED : TFT_WHITE);
+  tft.setCursor(200, y); tft.printf("HP %d", p.hp);   // negative prints naturally
+
+  int bar = map(abs(p.hp), 0, 100, 0, 200);
   tft.fillRect(10, y + 20, 200, 10, TFT_DARKGREY);
-  tft.fillRect(10, y + 20, bar,  10, hpColor);
+
+  if (isGuest) {
+    // Red penalty bar grows from the right
+    tft.fillRect(10 + (200 - bar), y + 20, bar, 10, TFT_RED);
+  } else {
+    uint16_t hpColor = (p.hp < 15) ? TFT_MAGENTA :
+                       (p.hp < 25) ? TFT_RED      :
+                       (p.hp < 75) ? TFT_YELLOW   : TFT_GREEN;
+    tft.fillRect(10, y + 20, bar, 10, hpColor);
+  }
 }
 
 void drawPlayersPage()
@@ -443,12 +539,13 @@ void drawAdminSelect()
                players[i].name.c_str(), 2);
   }
 
-  // Bottom bar — always show BACK; show PREV/NEXT only when applicable
-  drawButton(  3, 208, 104, 28, TFT_MAROON,   TFT_WHITE, "BACK",   1);
+  // Bottom bar: [BACK] [SETTINGS] [< PREV / NEXT >]
+  drawButton(  3, 208, 100, 28, TFT_MAROON,  TFT_WHITE, "BACK",     1);
+  drawButton(107, 208, 106, 28, TFT_DARKGREY, TFT_WHITE, "SETTINGS", 1);
   if (adminSelectPage > 0)
-    drawButton(111, 208, 100, 28, TFT_DARKGREY, TFT_WHITE, "< PREV", 1);
-  if (adminSelectPage < totalPages - 1)
-    drawButton(215, 208, 102, 28, TFT_DARKGREY, TFT_WHITE, "NEXT >", 1);
+    drawButton(217, 208, 100, 28, TFT_DARKGREY, TFT_WHITE, "< PREV", 1);
+  else if (adminSelectPage < totalPages - 1)
+    drawButton(217, 208, 100, 28, TFT_DARKGREY, TFT_WHITE, "NEXT >", 1);
 }
 
 void handleAdminSelectTouch(uint16_t tx, uint16_t ty)
@@ -457,13 +554,16 @@ void handleAdminSelectTouch(uint16_t tx, uint16_t ty)
 
   // Bottom bar
   if (ty >= 208) {
-    if (tx <= 107) {
+    if (tx <= 106) {
       currentScreen = SCREEN_PLAYERS;
       drawPlayersPage();
-    } else if (tx >= 111 && tx <= 210 && adminSelectPage > 0) {
+    } else if (tx >= 107 && tx <= 212) {
+      currentScreen = SCREEN_ADMIN_SETTINGS;
+      drawAdminSettings();
+    } else if (tx >= 217 && adminSelectPage > 0) {
       adminSelectPage--;
       drawAdminSelect();
-    } else if (tx >= 215 && adminSelectPage < totalPages - 1) {
+    } else if (tx >= 217 && adminSelectPage < totalPages - 1) {
       adminSelectPage++;
       drawAdminSelect();
     }
@@ -489,13 +589,12 @@ void handleAdminSelectTouch(uint16_t tx, uint16_t ty)
 // =============================================================================
 // Admin UI — Action panel  (320×240)
 //
-//  0- 34  player name
-// 35- 62  XP / HP values
-// 65- 65  divider
-// 68-113  [-5 XP]   [+5 XP]
-//117-162  [-10 HP]  [+10 HP]
-//168-203  [Toggle role]
-//208-239  [BACK]
+//  0- 64  header: name / role / XP + HP
+// 67-109  [-5 XP]   [+5 XP]
+//109-152  [-10 HP]  [+10 HP]
+//152-182  [BY RULE]
+//182-210  [Toggle role]
+//210-239  [BACK]
 // =============================================================================
 
 void drawAdminAction()
@@ -511,7 +610,7 @@ void drawAdminAction()
   tft.setCursor(10, 6);
   tft.print(p.name);
 
-  bool isResident = (p.role == "resident");
+  bool isResident = (p.hp >= 0);
   tft.setTextSize(1);
   tft.setTextColor(isResident ? TFT_GREEN : TFT_ORANGE);
   tft.setCursor(10, 28);
@@ -531,22 +630,29 @@ void drawAdminAction()
   tft.drawFastHLine(0, 64, 320, TFT_DARKGREY);
 
   // XP row
-  drawButton(  3, 68, 152, 46, TFT_MAROON,    TFT_WHITE, "-5 XP",  2);
-  drawButton(162, 68, 152, 46, TFT_DARKGREEN, TFT_WHITE, "+5 XP",  2);
+  drawButton(  3,  67, 152, 40, TFT_MAROON,    TFT_WHITE, "-5 XP",  2);
+  drawButton(162,  67, 152, 40, TFT_DARKGREEN, TFT_WHITE, "+5 XP",  2);
 
   // HP row
-  drawButton(  3, 117, 152, 46, TFT_MAROON,    TFT_WHITE, "-10 HP", 2);
-  drawButton(162, 117, 152, 46, TFT_DARKGREEN, TFT_WHITE, "+10 HP", 2);
+  drawButton(  3, 109, 152, 40, TFT_MAROON,    TFT_WHITE, "-10 HP", 2);
+  drawButton(162, 109, 152, 40, TFT_DARKGREEN, TFT_WHITE, "+10 HP", 2);
 
-  // Role toggle
-  char roleLbl[32];
-  snprintf(roleLbl, sizeof(roleLbl),
-           isResident ? "-> Set as GAST" : "-> Set as MITBEWOHNER");
+  // By Rule
+  uint16_t ruleBg = rulesetAvailable ? TFT_NAVY : TFT_DARKGREY;
+  drawButton(3, 152, 314, 28, ruleBg, TFT_WHITE, "BY RULE", 1);
+
+  // Role override (forces HP across the 0 boundary)
   uint16_t roleBg = isResident ? TFT_MAROON : TFT_DARKGREEN;
-  drawButton(3, 168, 314, 36, roleBg, TFT_WHITE, roleLbl, 1);
+  drawButton(3, 182, 314, 26, roleBg, TFT_WHITE,
+             isResident ? "-> Set as GAST" : "-> Set as MITBEWOHNER", 1);
 
   // Back
-  drawButton(3, 208, 314, 28, TFT_DARKGREY, TFT_WHITE, "BACK", 1);
+  drawButton(3, 210, 314, 28, TFT_DARKGREY, TFT_WHITE, "BACK", 1);
+}
+
+void applyHpDelta(Player &p, int delta)
+{
+  p.hp = max(-100, min(100, p.hp + delta));
 }
 
 void handleAdminActionTouch(uint16_t tx, uint16_t ty)
@@ -555,23 +661,41 @@ void handleAdminActionTouch(uint16_t tx, uint16_t ty)
   Player &p    = players[adminTarget];
   bool changed = false;
 
-  if (ty >= 68 && ty < 113) {
+  if (ty >= 67 && ty < 109) {
     // XP row
-    p.xp += (tx < 160) ? -XP_STEP : XP_STEP;
+    int delta = (tx < 160) ? -XP_STEP : XP_STEP;
+    p.xp += delta;
+    char act[16];
+    snprintf(act, sizeof(act), "xp%+d", delta);
+    p.lastAction = act;
     changed = true;
   }
-  else if (ty >= 117 && ty < 163) {
+  else if (ty >= 109 && ty < 152) {
     // HP row
-    if (tx < 160) p.hp = max(0,   p.hp - HP_STEP);
-    else          p.hp = min(100, p.hp + HP_STEP);
+    int delta = (tx < 160) ? -HP_STEP : HP_STEP;
+    applyHpDelta(p, delta);
+    char act[16];
+    snprintf(act, sizeof(act), "hp%+d", delta);
+    p.lastAction = act;
     changed = true;
   }
-  else if (ty >= 168 && ty < 204) {
-    // Role toggle
-    p.role  = (p.role == "resident") ? "guest" : "resident";
+  else if (ty >= 152 && ty < 182) {
+    // By Rule — open rule entry screen
+    if (rulesetAvailable) {
+      ruleIdLen = 0; ruleIdInput[0] = '\0';
+      ruleConfirm = false; ruleNotFound = false;
+      currentScreen = SCREEN_ADMIN_RULE;
+      drawAdminRule();
+    }
+    return;
+  }
+  else if (ty >= 182 && ty < 210) {
+    // Role override — force hp across the 0 boundary
+    p.hp = (p.hp >= 0) ? -1 : 0;
+    p.lastAction = (p.hp < 0) ? "demote" : "promote";
     changed = true;
   }
-  else if (ty >= 208) {
+  else if (ty >= 210) {
     // Back to player select
     currentScreen = SCREEN_ADMIN_SELECT;
     drawAdminSelect();
@@ -594,6 +718,303 @@ void handleAdminActionTouch(uint16_t tx, uint16_t ty)
 
 
 // =============================================================================
+// Admin UI — By Rule  (320×240)
+//
+//  0- 14  header "BY RULE  →  PlayerName"
+// 17- 47  input box  (entry mode)  /  rule title  (confirm mode)
+// 50- 80  rule text lines          (confirm mode only)
+// 55-213  numpad                   (entry mode only)
+// 85-155  HP/XP impact + HP preview (confirm mode only)
+//160-200  [CANCEL] [APPLY]         (confirm mode only)
+//213-239  [BACK]  /  [BACK] [OK]   (both modes)
+// =============================================================================
+
+#define RULE_BW   105
+#define RULE_BH    40
+#define RULE_Y0    55
+
+static const char* RULE_LABELS[12] = {
+  "1","2","3","4","5","6","7","8","9",".","0","DEL"
+};
+
+void drawAdminRule()
+{
+  if (adminTarget < 0) return;
+  Player &p = players[adminTarget];
+
+  tft.fillScreen(TFT_BLACK);
+
+  // Header
+  tft.setTextColor(TFT_CYAN);
+  tft.setTextSize(1);
+  tft.setCursor(5, 4);
+  tft.printf("BY RULE  ->  %s", p.name.c_str());
+
+  if (!ruleConfirm) {
+    // ── Entry mode ────────────────────────────────────────────────────────────
+    tft.drawRect(4, 18, 232, 28, TFT_WHITE);
+    tft.setTextColor(TFT_WHITE);
+    tft.setTextSize(2);
+    tft.setCursor(9, 24);
+    tft.print(ruleIdInput);
+    tft.print("_");
+
+    if (ruleNotFound) {
+      tft.setTextColor(TFT_RED);
+      tft.setTextSize(1);
+      tft.setCursor(242, 25);
+      tft.print("not found");
+    }
+
+    // Numpad
+    for (int r = 0; r < 4; r++) {
+      for (int c = 0; c < 3; c++) {
+        int     idx = r * 3 + c;
+        int     bx  = c * (RULE_BW + 1);
+        int     by  = RULE_Y0 + r * RULE_BH;
+        uint16_t bg = (strcmp(RULE_LABELS[idx], "DEL") == 0) ? TFT_MAROON : TFT_DARKGREY;
+        drawButton(bx, by, RULE_BW, RULE_BH - 2, bg, TFT_WHITE, RULE_LABELS[idx], 2);
+      }
+    }
+
+    // BACK | OK
+    drawButton(  3, 213, 152, 25, TFT_DARKGREY,  TFT_WHITE, "BACK", 1);
+    drawButton(162, 213, 152, 25, TFT_DARKGREEN, TFT_WHITE, "OK",   1);
+
+  } else {
+    // ── Confirm mode ──────────────────────────────────────────────────────────
+
+    // Rule ID
+    tft.setTextColor(TFT_YELLOW);
+    tft.setTextSize(2);
+    tft.setCursor(5, 18);
+    tft.printf("Rule  %s", ruleIdInput);
+
+    // Rule text — wrap at ~53 chars (size 1 = 6px/char, 320px wide)
+    tft.setTextColor(TFT_WHITE);
+    tft.setTextSize(1);
+    int   tlen   = strlen(ruleFoundText);
+    const int wrap = 53;
+    if (tlen <= wrap) {
+      tft.setCursor(5, 40); tft.print(ruleFoundText);
+    } else {
+      int brk = wrap;
+      while (brk > 0 && ruleFoundText[brk] != ' ') brk--;
+      if (brk == 0) brk = wrap;
+      char line1[wrap + 1];
+      strncpy(line1, ruleFoundText, brk); line1[brk] = '\0';
+      tft.setCursor(5, 40); tft.print(line1);
+      tft.setCursor(5, 52); tft.print(ruleFoundText + brk + 1);
+    }
+
+    tft.drawFastHLine(0, 68, 320, TFT_DARKGREY);
+
+    // HP / XP impact
+    char impactHp[16], impactXp[16];
+    snprintf(impactHp, sizeof(impactHp), "HP -%d", ruleFoundHp);
+    snprintf(impactXp, sizeof(impactXp), "XP +%d", ruleFoundXp);
+    tft.setTextSize(2);
+    tft.setTextColor(ruleFoundHp > 0 ? TFT_RED : TFT_YELLOW);
+    tft.setCursor(5, 74); tft.print(impactHp);
+    if (ruleFoundXp > 0) {
+      tft.setTextColor(TFT_GREEN);
+      tft.setCursor(170, 74); tft.print(impactXp);
+    }
+
+    // Before → after preview
+    int simHp = max(-100, min(100, p.hp - ruleFoundHp));
+    bool crossesBoundary = (p.hp >= 0) && (simHp < 0);
+    tft.setTextSize(1);
+    tft.setCursor(5, 98);
+    tft.setTextColor(crossesBoundary ? TFT_ORANGE : TFT_DARKGREY);
+    tft.printf("%s: %d HP -> %d HP%s",
+               p.name.c_str(), p.hp, simHp,
+               crossesBoundary ? "  -> GAST!" : "");
+
+    // Level indicator — red if rule level exceeds the global game level
+    bool levelOk = (ruleFoundLevel <= gameLevel);
+    tft.setTextColor(levelOk ? TFT_DARKGREY : TFT_RED);
+    tft.setCursor(5, 110);
+    if (levelOk) {
+      tft.printf("Lvl-%d rule", ruleFoundLevel);
+    } else {
+      tft.printf("Lvl-%d rule — game is Lvl %d  NOT APPLICABLE", ruleFoundLevel, gameLevel);
+    }
+
+    tft.drawFastHLine(0, 122, 320, TFT_DARKGREY);
+
+    // Buttons — APPLY greyed out when rule level exceeds game level
+    uint16_t applyBg = levelOk ? TFT_DARKGREEN : TFT_DARKGREY;
+    drawButton(  3, 130, 152, 44, TFT_DARKGREY, TFT_WHITE, "CANCEL", 2);
+    drawButton(162, 130, 152, 44, applyBg,      TFT_WHITE, "APPLY",  2);
+    drawButton(  3, 208, 314, 28, TFT_MAROON,   TFT_WHITE, "BACK",   1);
+  }
+}
+
+void handleAdminRuleTouch(uint16_t tx, uint16_t ty)
+{
+  if (adminTarget < 0) return;
+
+  if (!ruleConfirm) {
+    // ── Entry mode ────────────────────────────────────────────────────────────
+    if (ty >= 213) {
+      if (tx < 160) {
+        // BACK → return to action screen
+        currentScreen = SCREEN_ADMIN_ACTION;
+        drawAdminAction();
+      } else {
+        // OK → look up the rule
+        if (ruleIdLen > 0) {
+          if (getRuleById(ruleIdInput)) {
+            ruleConfirm  = true;
+            ruleNotFound = false;
+          } else {
+            ruleNotFound = true;
+          }
+          drawAdminRule();
+        }
+      }
+      return;
+    }
+
+    // Numpad
+    if (ty < RULE_Y0) return;
+    int c = tx / (RULE_BW + 1);
+    int r = (ty - RULE_Y0) / RULE_BH;
+    if (c > 2 || r > 3) return;
+    int idx = r * 3 + c;
+
+    if (strcmp(RULE_LABELS[idx], "DEL") == 0) {
+      if (ruleIdLen > 0) ruleIdInput[--ruleIdLen] = '\0';
+    } else if (ruleIdLen < RULE_ID_MAX) {
+      ruleIdInput[ruleIdLen++] = RULE_LABELS[idx][0];
+      ruleIdInput[ruleIdLen]   = '\0';
+    }
+    ruleNotFound = false;
+    drawAdminRule();
+
+  } else {
+    // ── Confirm mode ──────────────────────────────────────────────────────────
+    if (ty >= 130 && ty < 174) {
+      if (tx < 160) {
+        // CANCEL → back to entry
+        ruleConfirm = false;
+        drawAdminRule();
+      } else {
+        // APPLY — blocked if rule level exceeds global game level
+        Player &p = players[adminTarget];
+        if (ruleFoundLevel > gameLevel) return;
+
+        // Build action string before mutating scores
+        char act[32];
+        if (ruleFoundHp > 0 && ruleFoundXp > 0)
+          snprintf(act, sizeof(act), "hp-%d,xp+%d:%s", ruleFoundHp, ruleFoundXp, ruleIdInput);
+        else if (ruleFoundHp > 0)
+          snprintf(act, sizeof(act), "hp-%d:%s", ruleFoundHp, ruleIdInput);
+        else if (ruleFoundXp > 0)
+          snprintf(act, sizeof(act), "xp+%d:%s", ruleFoundXp, ruleIdInput);
+        else
+          snprintf(act, sizeof(act), "rule:%s", ruleIdInput);
+        p.lastAction = act;
+
+        if (ruleFoundHp > 0) applyHpDelta(p, -ruleFoundHp);
+        if (ruleFoundXp > 0) p.xp = min(999, p.xp + ruleFoundXp);
+
+        bool ok = publishPlayerState(adminTarget);
+
+        // Reset and return to action screen
+        ruleIdLen = 0; ruleIdInput[0] = '\0';
+        ruleConfirm = false; ruleNotFound = false;
+        currentScreen = SCREEN_ADMIN_ACTION;
+        drawAdminAction();
+
+        if (!ok) {
+          tft.setTextColor(TFT_RED);
+          tft.setTextSize(1);
+          tft.fillRect(0, 56, 320, 9, TFT_BLACK);
+          tft.setCursor(5, 57);
+          tft.print("MQTT offline — stored locally only");
+        }
+      }
+    }
+    else if (ty >= 208) {
+      // BACK → entry mode
+      ruleConfirm = false;
+      drawAdminRule();
+    }
+  }
+}
+
+
+// =============================================================================
+// Admin UI — Settings  (320×240)
+//
+//  0- 35  header "SETTINGS"
+// 40- 60  "Game Level" label + current level (large)
+// 70-130  [Lvl -]  [Lvl +]
+//         ... future settings rows ...
+//208-239  [BACK]
+// =============================================================================
+
+void drawAdminSettings()
+{
+  tft.fillScreen(TFT_BLACK);
+
+  // Header
+  tft.setTextColor(TFT_CYAN);
+  tft.setTextSize(2);
+  tft.setCursor(80, 8);
+  tft.print("SETTINGS");
+
+  tft.drawFastHLine(0, 34, 320, TFT_DARKGREY);
+
+  // Game Level section
+  tft.setTextColor(TFT_DARKGREY);
+  tft.setTextSize(1);
+  tft.setCursor(5, 42);
+  tft.print("GAME LEVEL");
+
+  tft.setTextColor(TFT_WHITE);
+  tft.setTextSize(4);
+  tft.setCursor(140, 56);
+  tft.printf("%d", gameLevel);
+
+  tft.setTextColor(TFT_DARKGREY);
+  tft.setTextSize(1);
+  tft.setCursor(5, 58);
+  tft.print("Rules above this level");
+  tft.setCursor(5, 68);
+  tft.print("are not applicable.");
+
+  drawButton(  3,  95, 152, 50, TFT_MAROON,    TFT_WHITE, "Lvl -", 2);
+  drawButton(162,  95, 152, 50, TFT_DARKGREEN, TFT_WHITE, "Lvl +", 2);
+
+  tft.drawFastHLine(0, 152, 320, TFT_DARKGREY);
+
+  // Back
+  drawButton(3, 208, 314, 28, TFT_DARKGREY, TFT_WHITE, "BACK", 1);
+}
+
+void handleAdminSettingsTouch(uint16_t tx, uint16_t ty)
+{
+  if (ty >= 95 && ty < 145) {
+    int prev = gameLevel;
+    if (tx < 160) gameLevel = max(0, gameLevel - 1);
+    else          gameLevel = min(9, gameLevel + 1);
+    if (gameLevel != prev) {
+      publishGameSettings();
+      drawAdminSettings();
+    }
+    return;
+  }
+  if (ty >= 208) {
+    currentScreen = SCREEN_ADMIN_SELECT;
+    drawAdminSelect();
+  }
+}
+
+
+// =============================================================================
 // Screen dispatch
 // =============================================================================
 
@@ -608,9 +1029,11 @@ void drawScreen()
       drawHeader();
       awardAvailable ? drawAwardsPage() : drawPlayersPage();
       break;
-    case SCREEN_ADMIN_PIN:    drawAdminPin();    break;
-    case SCREEN_ADMIN_SELECT: drawAdminSelect(); break;
-    case SCREEN_ADMIN_ACTION: drawAdminAction(); break;
+    case SCREEN_ADMIN_PIN:      drawAdminPin();      break;
+    case SCREEN_ADMIN_SELECT:   drawAdminSelect();   break;
+    case SCREEN_ADMIN_ACTION:   drawAdminAction();   break;
+    case SCREEN_ADMIN_RULE:     drawAdminRule();     break;
+    case SCREEN_ADMIN_SETTINGS: drawAdminSettings(); break;
   }
 }
 
@@ -640,9 +1063,11 @@ void handleTouch()
         drawAdminPin();
       }
       break;
-    case SCREEN_ADMIN_PIN:    handleAdminPinTouch(tx, ty);    break;
-    case SCREEN_ADMIN_SELECT: handleAdminSelectTouch(tx, ty); break;
-    case SCREEN_ADMIN_ACTION: handleAdminActionTouch(tx, ty); break;
+    case SCREEN_ADMIN_PIN:      handleAdminPinTouch(tx, ty);      break;
+    case SCREEN_ADMIN_SELECT:   handleAdminSelectTouch(tx, ty);   break;
+    case SCREEN_ADMIN_ACTION:   handleAdminActionTouch(tx, ty);   break;
+    case SCREEN_ADMIN_RULE:     handleAdminRuleTouch(tx, ty);     break;
+    case SCREEN_ADMIN_SETTINGS: handleAdminSettingsTouch(tx, ty); break;
   }
 }
 
@@ -701,6 +1126,7 @@ void setup()
   runTouchCalibration();
 #endif
 
+  initRuleset();
   drawScreen();
   setup_wifi();
 

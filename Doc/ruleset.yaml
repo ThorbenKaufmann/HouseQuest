@@ -1,0 +1,1370 @@
+ruleset:
+- title: 0. Unser Fundament (Erwachsenen-/Wir-Ebene)
+  children:
+  - title: 0.1 Unser _Wir_ ist ein sicherer Ort
+    rules:
+    - text: Wir gehören zusammen und verlieren uns auch in schwierigen Zeiten nicht
+        aus dem Blick. Probleme lösen wir miteinander und nicht gegeneinander.
+      xp: 0
+      hp: 0
+      level: 0
+  - title: 0.2 Liebe und Zugehörigkeit sind kein Druckmittel
+    rules:
+    - text: Nähe, Liebe und Zugehörigkeit werden nicht als Belohnung oder Strafe eingesetzt.
+        Wir sprechen ehrlich über Gefühle, Zweifel und Bedürfnisse.
+      xp: 0
+      hp: 0
+      level: 0
+  - title: 0.3 Wir, die Erwachsenen, tragen gemeinsam Verantwortung
+    rules:
+    - text: Die Erwachsenen geben Orientierung, treffen Absprachen miteinander und
+        schützen das gute Zusammenleben.
+      xp: 0
+      hp: 0
+      level: 0
+- title: 1. Grundrechte und Gemeinschaft (Haus- und Familienebene)
+  children:
+  - title: 1.1 Wir sind freundlich zueinander und achten uns
+    rules:
+    - text: Wir behandeln einander mit Respekt, auch wenn wir unterschiedlicher Meinung
+        sind.
+      xp: 0
+      hp: 0
+      level: 0
+  - title: 1.2 Jeder darf sich sicher und willkommen fühlen
+    rules:
+    - text: Dieses Haus soll ein Ort sein, an dem sich niemand ausgegrenzt, bedroht
+        oder dauerhaft unerwünscht fühlen muss.
+      xp: 0
+      hp: 0
+      level: 0
+  - title: 1.3 Wir achten Ruhe und Rückzug
+    rules:
+    - text: Schlaf, Ruhe und persönliche Rückzugszeiten verdienen Respekt.
+      xp: 0
+      hp: 0
+      level: 0
+  - title: 1.4 Probleme dürfen angesprochen werden
+    rules:
+    - text: Schwierigkeiten, Wünsche und Belastungen dürfen offen und respektvoll
+        angesprochen werden. Wir sammeln Konflikte nicht heimlich an.
+      xp: 0
+      hp: 0
+      level: 0
+  - title: 1.5 Jeder trägt seinen Teil zum Haus und Zusammenleben bei
+    rules:
+    - text: Ein Zuhause lebt davon, dass alle nach ihren Möglichkeiten Verantwortung
+        übernehmen und beitragen.
+      xp: 0
+      hp: 0
+      level: 0
+  - title: 1.6 Fehler sind erlaubt – Reparatur gehört dazu
+    rules:
+    - text: Wir dürfen Fehler machen. Wichtig ist, Verantwortung zu übernehmen und
+        wieder aufeinander zuzugehen.
+      xp: 0
+      hp: 0
+      level: 0
+- title: 2. Gemeinschaft
+  children:
+  - title: 2.1 Höflicher Umgang
+    rules:
+    - text: In der Gemeinschaft ist grundsätzlich jeder gleichwertig.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Erwachsene haben aufgrund ihrer Verantwortung jedoch finale Entscheidungsgewalt.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Launen sind erlaubt. Respektlosigkeit nicht.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Allgemeine höfliche Umgangsformen sind einzuhalten.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 2.2 Kommunikation
+    rules:
+    - text: Kommunikation ist eine der wichtigsten Säulen einer Gemeinschaft.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Dinge, die für andere von Belang sind, sollten wenn möglich direkt kommuniziert
+        werden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Wenn jemand direkt angesprochen wird, antwortet er.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Diskussionen werden sachlich geführt.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Kommt es zum Streit, ist dieser nach Beruhigung der Situation wieder durch
+        sachliche Kommunikation beizulegen. Fühlt sich der andere herabgewürdigt,
+        sollte darauf eingegangen werden und eine Klärung herbeigeführt werden – ein
+        lapidares "Sorry!" reicht an der Stelle nicht aus.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Konflikte werden innerhalb von 24 Stunden angesprochen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 2.3 Ruhebereiche
+    rules:
+    - text: Es gibt Bereiche, wo die Mitglieder von Zeit zu Zeit Ruhe suchen, wie
+        z.B. Sofa, Terrasse etc.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Wer sichtbar Ruhe sucht, wird nicht gestört.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Das Dauerbelagern von solchen Bereichen ist allerdings nicht im Sinne
+        der Gemeinschaft.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Wer einen Gemeinschaftsort nutzt, hinterlässt ihn sauber. Hier zählt das
+        Verursacherprinzip.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 2.4 Privatbereiche
+    rules:
+    - text: Zimmer sind Privatbereiche. Betreten nur nach Klopfen und Zustimmung.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Niemand hat das Recht, ohne triftigen Grund oder vorherige Frage in den
+        Privatbereich eines anderen einzudringen oder ihn zu nutzen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 2.5 Zusammenhalt
+    rules:
+    - text: Eine weitere Stütze der Gemeinschaft ist der Zusammenhalt.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschiedene Meinungen und Ansichten stellen für die Grundwerte der Gemeinschaft
+        kein Problem dar.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Ausgrenzung, Mobbing, Herabwürdigungen haben im gemeinschaftlichen Zusammenhalt
+        nichts verloren.
+      xp: 0
+      hp: 10
+      level: 1
+- title: 3 Ressourcen
+  children:
+  - title: 3.1 Gas/Wärme
+    children:
+    - title: 3.1.1 Heizen und Lüften
+      rules:
+      - text: In regelmäßig genutzten Räumen ist täglich Stoßlüften durchzuführen
+          (mehrere Minuten mit weit geöffnetem Fenster).
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Während des Lüftens sind Heizkörper herunterzudrehen oder auszuschalten.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Nach dem Lüften sind Fenster vollständig zu schließen und die Heizung
+          wieder auf den vorherigen Wert zu stellen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Dauerhaft gekippte Fenster bei laufender Heizung sind zu vermeiden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Räume sind so zu beheizen, dass Feuchtigkeit und Schimmelbildung vermieden
+          werden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Beim Verlassen eines Raumes über längere Zeit ist die Heizung auf einen
+          reduzierten Wert zu stellen.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.1.2 Duschen und Baden
+      rules:
+      - text: Duschen sind kurz und ressourcenschonend durchzuführen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Baden ist nur gelegentlich und nicht regelmäßig durchzuführen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Während des Einseifens ist das Wasser abzustellen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Warmwasser ist bewusst zu nutzen und nicht unnötig laufen zu lassen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Nach dem Duschen oder Baden ist das Badezimmer zu lüften.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Wasser ist nach der Nutzung vollständig abzudrehen.
+        xp: 0
+        hp: 10
+        level: 1
+  - title: 3.2 Strom
+    children:
+    - title: 3.2.1 Unnötiger Verbrauch
+      rules:
+      - text: Elektrische Geräte sind nach der Nutzung vollständig auszuschalten.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Licht ist beim Verlassen eines Raumes auszuschalten.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Standby-Betrieb ist möglichst zu vermeiden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Ladegeräte sind nach dem Laden vom Stromnetz zu trennen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Geräte mit hohem Stromverbrauch sind bewusst und nur bei Bedarf zu nutzen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Räume sind nicht dauerhaft zu beleuchten, wenn sie nicht genutzt werden.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.2.2 Licht in nicht genutzten Bereichen
+      rules:
+      - text: Licht ist beim Verlassen eines Raumes auszuschalten.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Räume, Flure und Nebenbereiche werden nur beleuchtet, solange sie genutzt
+          werden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Dauerbeleuchtung in ungenutzten Bereichen ist zu vermeiden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Außen- und Gartenbeleuchtung ist nach Nutzung wieder auszuschalten.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Bei ausreichendem Tageslicht ist auf künstliche Beleuchtung zu verzichten.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.2.3 Geräte im Standby
+      rules:
+      - text: Geräte sind nach der Nutzung vollständig auszuschalten und nicht im
+          Standby zu belassen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Unterhaltungselektronik ist über abschaltbare Steckdosenleisten komplett
+          vom Netz zu trennen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Ladegeräte sind nach dem Laden vom Stromnetz zu entfernen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Geräte mit dauerhaftem Standby-Verbrauch sind nur bei tatsächlichem
+          Bedarf eingeschaltet zu lassen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Geräte, die längere Zeit nicht genutzt werden, sind vollständig vom
+          Stromnetz zu trennen.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.2.4 Netztrennung ungenutzter Geräte
+      rules:
+      - text: Geräte, die aktuell nicht genutzt werden, sind vollständig vom Stromnetz
+          zu trennen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Mehrfachsteckdosen mit Schalter sind zum vollständigen Abschalten von
+          Gerätegruppen zu nutzen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Elektronische Geräte mit Netzteilen sind bei längerer Nichtnutzung auszustecken.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Geräte in selten genutzten Räumen sind nach der Nutzung vollständig
+          stromlos zu schalten.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Vor längerer Abwesenheit sind nicht benötigte Geräte vollständig vom
+          Netz zu trennen.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.2.5 Unnötiges Aufwärmen von Lebensmitteln
+      rules:
+      - text: Lebensmittel sind nur in der tatsächlich benötigten Menge zu erwärmen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Mehrfaches Aufwärmen derselben Speisen ist zu vermeiden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Geeignete Geräte (z. B. Wasserkocher statt Herd) sind energieeffizient
+          zu nutzen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Geräte zum Erwärmen von Speisen sind nach Gebrauch sofort auszuschalten.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Kleine Mengen sind möglichst energieeffizient zuzubereiten.
+        xp: 0
+        hp: 10
+        level: 1
+  - title: 3.3 Wasser
+    children:
+    - title: 3.3.1 Warmwassernutzung
+      rules:
+      - text: Warmwasser ist bewusst und sparsam zu nutzen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Warmwasserhähne sind nur dann zu öffnen, wenn warmes Wasser tatsächlich
+          benötigt wird.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Während des Einseifens, Zähneputzens oder vergleichbarer Tätigkeiten
+          ist das Wasser abzustellen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Warmwasser ist nicht unnötig lange vorlaufen zu lassen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Für kurze Nutzungen ist möglichst kaltes Wasser zu verwenden.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.3.2 Trinkwasser (generell)
+      rules:
+      - text: Trinkwasser ist bewusst und sparsam zu nutzen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Wasserhähne sind nach der Nutzung vollständig zu schließen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Laufendes Wasser ohne Nutzung ist zu vermeiden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Beim Zähneputzen, Einseifen oder Abspülen ist Wasser nur bei tatsächlichem
+          Bedarf laufen zu lassen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Tropfende Wasserhähne oder Leckagen sind sofort zu melden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Trinkwasser ist nicht unnötig zu verschwenden.
+        xp: 0
+        hp: 10
+        level: 1
+  - title: 3.4 Lebensmittel
+    children:
+    - title: 3.4.1 Schonung und Hygiene
+      rules:
+      - text: Lebensmittel sind sorgfältig und hygienisch zu behandeln.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Nur die tatsächlich benötigte Menge an Lebensmitteln ist zu entnehmen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Angebrochene Lebensmittel sind ordnungsgemäß zu verschließen und wieder
+          zu kühlen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Lebensmittel sind so zu lagern, dass Verderb vermieden wird.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Verdorbene oder nicht mehr genießbare Lebensmittel sind zeitnah zu entsorgen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Arbeitsflächen und Küchenutensilien sind nach der Nutzung zu reinigen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Lebensmittelverschwendung ist zu vermeiden.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.4.2 Beschaffung
+      rules:
+      - text: Lebensmittelbeschaffung erfolgt geplant und bedarfsorientiert.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Vor Einkäufen ist der vorhandene Bestand zu prüfen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Gemeinschaftlich genutzte Lebensmittel werden nur in angemessenen Mengen
+          entnommen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Einkäufe für den Gemeinschaftshaushalt werden transparent über das Haushaltskonto
+          organisiert.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Sonderwünsche oder individuelle Lebensmittel werden eigenständig beschafft
+          und ggf. markiert.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Verderbliche Lebensmittel sind zeitnah zu verbrauchen.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.4.3 Herstellung
+      rules:
+      - text: Lebensmittel sind möglichst effizient und in angemessenen Mengen herzustellen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Zutaten sind vollständig zu verwenden und nicht unnötig zu verschwenden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Arbeitsflächen, Geräte und Kochutensilien sind nach der Nutzung zu reinigen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Verwendete Geräte sind nach der Herstellung auszuschalten und zu säubern.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Gemeinschaftlich genutzte Zutaten sind sparsam und verantwortungsvoll
+          zu verwenden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Zubereitete Lebensmittel sind ordnungsgemäß zu lagern oder zeitnah zu
+          verzehren.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.4.4 Respekt vor personengebundenen Lebensmitteln
+      rules:
+      - text: Personengebundene Lebensmittel dürfen nur vom jeweiligen Eigentümer
+          genutzt werden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Lebensmittel, die einer Person zugeordnet sind, sind zu respektieren
+          und nicht ohne Zustimmung zu entnehmen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Unklar zugeordnete Lebensmittel sind vor der Nutzung zu klären.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Private Lebensmittel sind getrennt von gemeinschaftlichen Lebensmitteln
+          zu lagern.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.4.5 Einkaufs- und Bedarfsliste
+      rules:
+      - text: Fehlende oder benötigte Lebensmittel sind zeitnah in die gemeinsame
+          Einkaufs- und Bedarfsliste einzutragen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Die Einkaufs- und Bedarfsliste ist vor Einkäufen zu prüfen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Entnommene oder aufgebrauchte Lebensmittel sind entsprechend auf der
+          Liste zu vermerken.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Spontankäufe ohne Bezug zur Bedarfsliste sind zu vermeiden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Die Bedarfsliste dient der transparenten Planung gemeinsamer Einkäufe.
+        xp: 0
+        hp: 10
+        level: 1
+  - title: 3.5 Luft
+    children:
+    - title: 3.5.1 Vermeidung von Geruchsbelästigung
+      rules:
+      - text: Räume sind regelmäßig zu lüften, um Geruchsbildung zu vermeiden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Beim Kochen sind Dunstabzug oder Lüftung zu nutzen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Stark riechende Tätigkeiten sind durch ausreichendes Lüften zu begleiten.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Müll mit Geruchsentwicklung ist zeitnah zu entsorgen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Lebensmittelreste sind nicht offen stehen zu lassen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Geruchsbelastende Gegenstände oder Kleidung sind nicht in Gemeinschaftsbereichen
+          liegen zu lassen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Künstliche Duftstoffe sind in Gemeinschaftsbereichen sparsam zu verwenden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Stark parfümierte Kosmetika sind in Innenräumen nur in angemessener
+          Menge zu nutzen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Das Versprühen von Parfüm oder Spray in Gemeinschaftsbereichen ist zu
+          vermeiden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Duftstoffe sind bevorzugt in privaten Räumen zu verwenden.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Rücksicht auf empfindliche oder geruchssensible Personen ist zu nehmen.
+        xp: 0
+        hp: 10
+        level: 1
+    - title: 3.5.2 Luftqualität
+      rules:
+      - text: Innenräume sind regelmäßig durch Stoßlüften mit Frischluft zu versorgen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Verbrauchte oder stickige Luft ist durch Lüften zeitnah auszutauschen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Rauchen ist in Innenräumen nicht gestattet.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Tätigkeiten mit Staub- oder Schadstoffentwicklung sind zu vermeiden
+          oder nur mit ausreichender Lüftung durchzuführen.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Gemeinschaftsräume sind so zu nutzen, dass eine gute Luftqualität erhalten
+          bleibt.
+        xp: 0
+        hp: 10
+        level: 1
+      - text: Luftverschmutzende Stoffe sind nicht unnötig in Innenräume einzubringen.
+        xp: 0
+        hp: 10
+        level: 1
+  - title: 3.6 Monitoring
+    rules:
+    - text: Der Verbrauch zentraler Ressourcen (Strom, Wasser, Wärme) wird regelmäßig
+        überwacht und transparent dargestellt.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Informationen zum Ressourcenverbrauch stehen allen Hausbewohnern offen
+        zur Einsicht zur Verfügung.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Jeder Bewohner ist angehalten, seinen persönlichen Ressourcenverbrauch
+        bewusst wahrzunehmen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Ein verantwortungsvoller Umgang mit Ressourcen wird von allen erwartet.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Ressourcenverbrauch und Ressourcenbeschaffung sollen in einem angemessenen
+        Verhältnis stehen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Jeder Bewohner trägt Verantwortung für ein ausgewogenes Verhältnis zwischen
+        Nutzen und Beitrag zur Gemeinschaft.
+      xp: 0
+      hp: 10
+      level: 1
+- title: 4 Abfall
+  children:
+  - title: 4.1 Trennung
+    rules:
+    - text: Abfälle sind konsequent nach den vorgesehenen Kategorien zu trennen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verpackungen, Papier, Glas, Biomüll und Restmüll sind in die dafür vorgesehenen
+        Behälter zu entsorgen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Falsch entsorgter Abfall ist durch den Verursacher zu korrigieren.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Behälter für getrennte Abfälle sind nicht zu überfüllen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Bei Unsicherheit über die richtige Trennung ist dies vor der Entsorgung
+        zu klären.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Sonderabfälle sind nicht über den Hausmüll zu entsorgen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 4.2 Entsorgung
+    rules:
+    - text: Abfälle sind zeitnah in die vorgesehenen Abfallbehälter zu entsorgen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Überfüllte Abfallbehälter sind zu vermeiden und rechtzeitig zu leeren.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Müllbeutel sind vor der Entsorgung ordnungsgemäß zu verschließen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Abfälle sind nicht offen oder lose in Gemeinschaftsbereichen liegen zu
+        lassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Müll mit Geruchs- oder Hygieneproblemen ist unverzüglich zu entsorgen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Abfallbehälter sind nach der Leerung wieder sauber und ordnungsgemäß bereitzustellen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 4.3 Eigenverantwortliches Leeren bei Überfüllung
+    rules:
+    - text: Überfüllte Abfallbehälter sind durch den Nutzer eigenverantwortlich zu
+        leeren.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Wer einen vollen Abfallbehälter feststellt, sorgt für dessen Entleerung.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Müllbeutel sind vor dem Herausnehmen ordnungsgemäß zu verschließen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Neue Müllbeutel sind nach dem Leeren einzusetzen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Entnommene Müllbeutel sind zeitnah in die vorgesehenen Außenbehälter zu
+        verbringen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 4.4 Reinhaltung von Abfallbehältern
+    rules:
+    - text: Abfälle sind so zu entsorgen, dass Abfallbehälter sauber bleiben.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Flüssigkeiten oder stark verschmutzende Stoffe sind nicht lose in Abfallbehälter
+        zu geben.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschmutzungen an Abfallbehältern sind durch den Verursacher zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Müllbeutel sind ordnungsgemäß einzusetzen und bei Bedarf zu wechseln.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Abfallbehälter sind regelmäßig auf Sauberkeit zu prüfen und bei Bedarf
+        zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+- title: 5 Garten
+  children:
+  - title: 5.1 Rasen
+    rules:
+    - text: Der Rasen ist pfleglich zu behandeln und nicht unnötig zu beschädigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Müll oder Gegenstände sind nicht dauerhaft auf dem Rasen liegen zu lassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Der Rasen ist regelmäßig zu mähen, sofern Wachstumsbedingungen dies erfordern.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Gartenmöbel oder Geräte sind nach der Nutzung wieder geordnet abzustellen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Beschädigungen des Rasens sind zu vermeiden und bei Bedarf zu beheben.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Der Rasen ist als gemeinschaftliche Fläche respektvoll zu nutzen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 5.2 Teich
+    rules:
+    - text: Der Fischteich ist als sensibler Lebensraum zu respektieren.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Fische dürfen nur durch dafür verantwortliche Personen gefüttert werden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Fremdstoffe, Lebensmittelreste oder Abfälle dürfen nicht in den Teich
+        eingebracht werden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Pflanzen und technische Einrichtungen des Teiches sind nicht zu beschädigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Kinder und Besucher sind im Bereich des Teiches zu beaufsichtigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Arbeiten am Teich oder Veränderungen an der Anlage erfolgen nur nach Abstimmung.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 5.3 Holz
+    rules:
+    - text: Brennholz ist sparsam und nur bei tatsächlichem Bedarf zu verwenden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Entnommenes Brennholz ist aus den vorgesehenen Lagerbereichen zu nehmen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Holzstapel sind nach der Entnahme wieder ordentlich zu schließen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Brennholz ist trocken und geschützt zu lagern.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Holzreste oder Späne sind nach der Nutzung zu beseitigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Brennholz ist ausschließlich für vorgesehene Feuerstellen oder Heizgeräte
+        zu verwenden.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 5.4 Gewächshaus und Anbau
+    rules:
+    - text: Gewächshaus und Anbauflächen sind pfleglich zu behandeln.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Pflanzen sind regelmäßig zu kontrollieren, zu gießen und zu pflegen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Werkzeuge und Geräte sind nach der Nutzung zu reinigen und an ihren Platz
+        zurückzulegen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Veränderungen an Beeten, Pflanzungen oder Einrichtungen erfolgen nur nach
+        Abstimmung.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Ernte aus gemeinschaftlichem Anbau erfolgt in angemessener Menge und unter
+        Rücksicht auf andere.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Pflanzabfälle und Gartenreste sind ordnungsgemäß zu entsorgen oder zu
+        kompostieren.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 5.5 Reinhaltung
+    rules:
+    - text: Der Garten ist als gemeinschaftlicher Raum sauber und ordentlich zu halten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Müll, Verpackungen oder sonstige Gegenstände sind nach der Nutzung zu
+        entfernen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Gartenmöbel und Geräte sind nach der Nutzung geordnet zurückzustellen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschmutzungen oder Beschädigungen sind durch den Verursacher zu beseitigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Wege, Flächen und Aufenthaltsbereiche sind frei und begehbar zu halten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Jeder Nutzer trägt Verantwortung für den gepflegten Zustand des Gartens.
+      xp: 0
+      hp: 10
+      level: 1
+- title: 6 Wohnbereich
+  children:
+  - title: 6.1 Mediennutzung
+    rules:
+    - text: Mediengeräte sind rücksichtsvoll und in angemessener Lautstärke zu nutzen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Gemeinschaftsbereiche sind nicht dauerhaft durch Mediennutzung zu blockieren.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Medieninhalte sind so zu wählen, dass andere Hausbewohner nicht belästigt
+        werden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Nach der Nutzung sind Geräte auszuschalten und ordnungsgemäß zu hinterlassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Kopfhörer sind zu verwenden, wenn andere Personen im Raum gestört werden
+        könnten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Mediennutzung darf nicht zu dauerhafter Lärmbelastung im Wohnbereich führen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 6.2 Kopfhörer
+    rules:
+    - text: Kopfhörer sind im Wohnbereich nur bei individueller Mediennutzung zu verwenden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Dauerhafte Nutzung von Kopfhörern in Gemeinschaftsbereichen ist zu vermeiden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Bei direkter Ansprache sind Kopfhörer abzunehmen und zu reagieren.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Kopfhörer dürfen nicht als Mittel zur Abschottung von der Hausgemeinschaft
+        genutzt werden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: In Gesprächen oder gemeinschaftlichen Situationen sind Kopfhörer abzulegen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Gemeinschaftsräume dienen der Begegnung und Kommunikation.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 6.3 Sitzbereich und Tisch
+    rules:
+    - text: Sitzbereich und Tisch sind nach der Nutzung sauber und ordentlich zu hinterlassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Geschirr, Gläser und Essensreste sind zeitnah abzuräumen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschüttete Flüssigkeiten oder Verschmutzungen sind sofort zu beseitigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Gegenstände sind nach der Nutzung wieder an ihren vorgesehenen Platz zu
+        legen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Der Sitzbereich ist nicht dauerhaft mit persönlichen Gegenständen zu belegen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Gemeinschaftsflächen sind für alle Hausbewohner frei zugänglich zu halten.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 6.4 Vorhänge
+    rules:
+    - text: Vorhänge sind pfleglich zu behandeln und nicht unnötig zu berühren oder
+        zu verschmutzen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Vorhänge dürfen nicht als Ablage oder zum Abwischen von Händen genutzt
+        werden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Geruchsbelastungen durch Rauch, Lebensmittel oder Kosmetika sind in Vorhangnähe
+        zu vermeiden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Vorhänge sind nicht unnötig zu verschieben oder zu verknoten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschmutzungen an Vorhängen sind zu vermeiden und bei Bedarf zu melden.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 6.5 Reinigung
+    rules:
+    - text: Der Wohnbereich ist unabhängig vom Reinigungsplan sauber und ordentlich
+        zu halten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschmutzungen sind unmittelbar durch den Verursacher zu beseitigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Ein verbindlicher Reinigungsplan regelt die regelmäßigen Grundreinigungen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Die im Reinigungsplan zugewiesenen Aufgaben sind termingerecht zu erledigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Gemeinschaftsflächen sind nach der Nutzung in einen ordentlichen Zustand
+        zu versetzen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Reinigungsgeräte sind nach der Nutzung zu säubern und an ihren vorgesehenen
+        Platz zurückzustellen.
+      xp: 0
+      hp: 10
+      level: 1
+- title: 7 Bäder
+  children:
+  - title: 7.1 Toilette
+    rules:
+    - text: Die Toilette ist nach jeder Nutzung sauber zu hinterlassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verunreinigungen an Sitz, Schüssel oder Boden sind unmittelbar zu beseitigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Die Toilettenspülung ist nach jeder Nutzung zu betätigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Die Toilettenbürste ist bei Bedarf zu verwenden und anschließend sauber
+        zu hinterlassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Toilettenpapier ist ausschließlich in der dafür vorgesehenen Weise zu
+        entsorgen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Fremdstoffe dürfen nicht über die Toilette entsorgt werden.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 7.2 Waschbecken
+    rules:
+    - text: Das Waschbecken ist nach jeder Nutzung sauber zu hinterlassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Zahnpasta-, Seifen- oder Haarreste sind unmittelbar zu entfernen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Wasser ist nach der Nutzung vollständig abzudrehen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschüttetes Wasser auf Ablagen oder Boden ist zu beseitigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Abflüsse sind frei von Haaren und Rückständen zu halten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Persönliche Gegenstände sind geordnet und platzsparend abzulegen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 7.3 Dusche und Badewanne
+    rules:
+    - text: Dusche und Badewanne sind nach jeder Nutzung sauber zu hinterlassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Haare und Rückstände sind nach der Nutzung aus Ablauf und Flächen zu entfernen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Wasserreste auf Randflächen oder Boden sind zu beseitigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Duschwände oder -vorhänge sind nach der Nutzung so zu hinterlassen, dass
+        sie trocknen können.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Persönliche Pflegeprodukte sind geordnet zu lagern und nicht dauerhaft
+        zu verteilen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Nach der Nutzung ist das Badezimmer zu lüften.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 7.4 Boden
+    rules:
+    - text: Der Badezimmerboden ist frei von Gegenständen zu halten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Kleidung, Handtücher oder persönliche Gegenstände sind nicht auf dem Boden
+        liegen zu lassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Tuben, Verpackungen oder Pflegeprodukte sind nach der Nutzung wegzuräumen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Wasser, Haare oder Verschmutzungen auf dem Boden sind unmittelbar zu beseitigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Der Boden ist so zu hinterlassen, dass der Raum jederzeit sauber und nutzbar
+        bleibt.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 7.5 Reinigung
+    rules:
+    - text: Die Bäder sind unabhängig vom Reinigungsplan sauber und hygienisch zu
+        halten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschmutzungen sind unmittelbar durch den Verursacher zu beseitigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Ein verbindlicher Reinigungsplan regelt die regelmäßige Grundreinigung
+        der Bäder.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Die im Reinigungsplan zugewiesenen Aufgaben sind termingerecht auszuführen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Waschbecken, Dusche, Badewanne, Toilette und Boden sind regelmäßig gründlich
+        zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Reinigungsmittel und -geräte sind nach der Nutzung zu säubern und ordnungsgemäß
+        zurückzustellen.
+      xp: 0
+      hp: 10
+      level: 1
+- title: 8 Küche
+  children:
+  - title: 8.1 Geschirrspüler
+    rules:
+    - text: Geschirr ist vor dem Einräumen von groben Speiseresten zu befreien.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Der Geschirrspüler ist sachgerecht und platzsparend zu beladen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Der Geschirrspüler wird nur bei ausreichender Füllung gestartet.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Nach Programmende ist der Geschirrspüler zeitnah auszuräumen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Sauberes Geschirr ist an seinen vorgesehenen Platz zurückzustellen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Filter und Innenraum des Geschirrspülers sind regelmäßig zu kontrollieren
+        und bei Bedarf zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 8.2 Ofen und Herd
+    rules:
+    - text: Herd und Ofen sind nach jeder Nutzung sauber zu hinterlassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Übergelaufene Flüssigkeiten oder Speisereste sind unmittelbar zu entfernen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Kochfelder sind nach dem Abkühlen zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Ofen und Backbleche sind nach Nutzung von Verschmutzungen zu befreien.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Kochgeräte sind nach der Nutzung vollständig auszuschalten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Kochutensilien und verwendetes Zubehör sind nach Gebrauch zu reinigen
+        und zurückzustellen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 8.3 Mikrowelle
+    rules:
+    - text: Lebensmittel sind in der Mikrowelle nur mit geeigneter Abdeckung zu erwärmen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschmutzungen im Innenraum sind unmittelbar nach der Nutzung zu entfernen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Übergelaufene oder verspritzte Lebensmittel sind vollständig zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Die Mikrowelle ist nach der Nutzung auszuschalten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Drehteller und Innenflächen sind sauber zu halten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Die Mikrowelle ist frei von Lebensmittelresten zu hinterlassen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 8.4 Kühlschrank
+    rules:
+    - text: Lebensmittel sind im Kühlschrank geordnet und hygienisch zu lagern.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Angebrochene Lebensmittel sind zu verschließen oder abzudecken.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Lebensmittel sind so zu lagern, dass Verderb und Geruchsbildung vermieden
+        werden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verdorbene oder überlagerte Lebensmittel sind unverzüglich zu entsorgen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Verschüttete Flüssigkeiten oder Verschmutzungen im Kühlschrank sind sofort
+        zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Lebensmittel sind so zu platzieren, dass der Kühlschrank effizient geschlossen
+        werden kann.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Die Kühlschranktür ist nach jeder Nutzung vollständig zu schließen.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 8.5 Elektrische Kleingeräte und Werkzeuge
+    rules:
+    - text: Elektrische Küchengeräte sind sachgerecht und nur für ihren vorgesehenen
+        Zweck zu verwenden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Geräte sind nach der Nutzung auszuschalten und vom Stromnetz zu trennen,
+        sofern sie nicht dauerhaft betrieben werden müssen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Geräte und Zubehör sind nach der Nutzung zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Elektrische Kleingeräte sind nach der Nutzung an ihren vorgesehenen Platz
+        zurückzustellen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Beschädigte oder fehlerhafte Geräte sind nicht weiter zu benutzen und
+        zu melden.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Kabel, Aufsätze und Zubehör sind vollständig und geordnet aufzubewahren.
+      xp: 0
+      hp: 10
+      level: 1
+  - title: 8.6 Reinigung
+    rules:
+    - text: Die Küche ist nach jeder Nutzung sauber und hygienisch zu hinterlassen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Lebensmittelreste, Krümel und Verschmutzungen sind unmittelbar zu entfernen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Arbeitsflächen sind nach der Nutzung mit sauberen Tüchern zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Fett und Speisereste sind nicht mit verschmutzten Lappen zu verteilen,
+        sondern hygienisch zu entfernen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Spül- und Reinigungstücher sind regelmäßig zu wechseln und sauber zu halten.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Schneideflächen und Arbeitsbereiche sind lebensmittelhygienisch zu reinigen.
+      xp: 0
+      hp: 10
+      level: 1
+    - text: Ein verbindlicher Reinigungsplan regelt die regelmäßige Grundreinigung
+        der Küche.
+      xp: 0
+      hp: 10
+      level: 1
+- title: 10 XP-Claims
+  children:
+  - title: 10.1 Easy Tasks XP+5
+    rules:
+    - text: Geschirrspüler ausräumen.
+      xp: 5
+      hp: 0
+      level: 1
+    - text: Müll rausbringen.
+      xp: 5
+      hp: 0
+      level: 1
+  - title: 10.2 Normal Tasks XP+10
+    rules:
+    - text: Küche putzen.
+      xp: 10
+      hp: 0
+      level: 1
+  - title: 10.3 Hard Tasks XP+20
+    rules:
+    - text: Bad und Klo putzen.
+      xp: 20
+      hp: 0
+      level: 1
