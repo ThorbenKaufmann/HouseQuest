@@ -121,10 +121,10 @@
 
 ## 9 Zimmer
 ### 9.1 Private Zimmer
-- **9.1.1** Die privaten Zimmer sind sauber und ordentlich zu halten.
-- **9.1.2** Der Boden ist sauber und frei von Wäsche, Unrat, Lebensmitteln/Geschirr zu halten.
-- **9.1.3** Gebrauchtes Geschirr ist zeitnah wieder in die Küche zu bringen und zu reinigen.
-- **9.1.4** Dinge, die keinen Platz haben, müssen einen Platz bekommen. Fehlt dieser, ist eine Lösung zu finden - auch gemeinsam.
+- **9.1.1** Die privaten Zimmer sind sauber und ordentlich zu halten. Der Boden ist begehbar und frei von herumliegender Wäsche, Unrat, Geschirr und Lebensmitteln zu halten.
+- **9.1.2** Gebrauchtes Geschirr ist spätestens am selben Tag in Küche oder Spülmaschine zurückzubringen.
+- **9.1.3** Müll und verderbliche Lebensmittel dürfen nicht im Zimmer lagern.
+- **9.1.4** Gegenstände benötigen einen festen Platz. Fehlt dieser, ist gemeinsam eine Lösung zu schaffen.
 
 
 ## 10 XP-Claims
