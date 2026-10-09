@@ -4,7 +4,7 @@
 {"id": "1.1.1", "hp": 0, "xp": 0, "l": 0, "t": "Wir behandeln einander mit Respekt, auch wenn wir unterschiedlicher Meinung sin…"}
 {"id": "1.2.1", "hp": 0, "xp": 0, "l": 0, "t": "Dieses Haus soll ein Ort sein, an dem sich niemand ausgegrenzt, bedroht oder da…"}
 {"id": "1.3.1", "hp": 0, "xp": 0, "l": 0, "t": "Schlaf, Ruhe und persönliche Rückzugszeiten verdienen Respekt."}
-{"id": "1.4.1", "hp": 0, "xp": 0, "l": 0, "t": "Schwierigkeiten, Wünsche und Belastungen dürfen offen und respektvoll angesproc…"}
+{"id": "1.4.1", "hp": 0, "xp": 0, "l": 0, "t": "Schwierigkeiten, Wünsche und Belastungen sollen offen und respektvoll angesproc…"}
 {"id": "1.5.1", "hp": 0, "xp": 0, "l": 0, "t": "Ein Zuhause lebt davon, dass alle nach ihren Möglichkeiten Verantwortung überne…"}
 {"id": "1.6.1", "hp": 0, "xp": 0, "l": 0, "t": "Wir dürfen Fehler machen. Wichtig ist, Verantwortung zu übernehmen und wieder a…"}
 {"id": "2.1.1", "hp": 10, "xp": 0, "l": 1, "t": "In der Gemeinschaft ist grundsätzlich jeder gleichwertig."}
@@ -17,263 +17,267 @@
 {"id": "2.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Diskussionen werden sachlich geführt."}
 {"id": "2.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Kommt es zum Streit, ist dieser nach Beruhigung der Situation wieder durch sach…"}
 {"id": "2.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Konflikte werden innerhalb von 24 Stunden angesprochen."}
-{"id": "2.3.1", "hp": 10, "xp": 0, "l": 1, "t": "Es gibt Bereiche, wo die Mitglieder von Zeit zu Zeit Ruhe suchen, wie z.B. Sofa…"}
+{"id": "2.3.1", "hp": 10, "xp": 0, "l": 2, "t": "Es gibt Bereiche, wo die Mitglieder von Zeit zu Zeit Ruhe suchen, wie z.B. Sofa…"}
 {"id": "2.3.2", "hp": 10, "xp": 0, "l": 1, "t": "Wer sichtbar Ruhe sucht, wird nicht gestört."}
-{"id": "2.3.3", "hp": 10, "xp": 0, "l": 1, "t": "Das Dauerbelagern von solchen Bereichen ist allerdings nicht im Sinne der Gemei…"}
+{"id": "2.3.3", "hp": 10, "xp": 0, "l": 2, "t": "Das Dauerbelagern von solchen Bereichen ist allerdings nicht im Sinne der Gemei…"}
 {"id": "2.3.4", "hp": 10, "xp": 0, "l": 1, "t": "Wer einen Gemeinschaftsort nutzt, hinterlässt ihn sauber. Hier zählt das Verurs…"}
 {"id": "2.4.1", "hp": 10, "xp": 0, "l": 1, "t": "Zimmer sind Privatbereiche. Betreten nur nach Klopfen und Zustimmung."}
 {"id": "2.4.2", "hp": 10, "xp": 0, "l": 1, "t": "Niemand hat das Recht, ohne triftigen Grund oder vorherige Frage in den Privatb…"}
 {"id": "2.5.1", "hp": 10, "xp": 0, "l": 1, "t": "Eine weitere Stütze der Gemeinschaft ist der Zusammenhalt."}
 {"id": "2.5.2", "hp": 10, "xp": 0, "l": 1, "t": "Verschiedene Meinungen und Ansichten stellen für die Grundwerte der Gemeinschaf…"}
 {"id": "2.5.3", "hp": 10, "xp": 0, "l": 1, "t": "Ausgrenzung, Mobbing, Herabwürdigungen haben im gemeinschaftlichen Zusammenhalt…"}
-{"id": "3.1.1.1", "hp": 10, "xp": 0, "l": 1, "t": "In regelmäßig genutzten Räumen ist täglich Stoßlüften durchzuführen (mehrere Mi…"}
-{"id": "3.1.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Während des Lüftens sind Heizkörper herunterzudrehen oder auszuschalten."}
-{"id": "3.1.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Nach dem Lüften sind Fenster vollständig zu schließen und die Heizung wieder au…"}
-{"id": "3.1.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Dauerhaft gekippte Fenster bei laufender Heizung sind zu vermeiden."}
-{"id": "3.1.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Räume sind so zu beheizen, dass Feuchtigkeit und Schimmelbildung vermieden werd…"}
-{"id": "3.1.1.6", "hp": 10, "xp": 0, "l": 1, "t": "Beim Verlassen eines Raumes über längere Zeit ist die Heizung auf einen reduzie…"}
-{"id": "3.1.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Duschen sind kurz und ressourcenschonend durchzuführen."}
-{"id": "3.1.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Baden ist nur gelegentlich und nicht regelmäßig durchzuführen."}
-{"id": "3.1.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Während des Einseifens ist das Wasser abzustellen."}
-{"id": "3.1.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Warmwasser ist bewusst zu nutzen und nicht unnötig laufen zu lassen."}
-{"id": "3.1.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Nach dem Duschen oder Baden ist das Badezimmer zu lüften."}
-{"id": "3.1.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Wasser ist nach der Nutzung vollständig abzudrehen."}
-{"id": "3.2.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Elektrische Geräte sind nach der Nutzung vollständig auszuschalten."}
-{"id": "3.2.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Licht ist beim Verlassen eines Raumes auszuschalten."}
-{"id": "3.2.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Standby-Betrieb ist möglichst zu vermeiden."}
-{"id": "3.2.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Ladegeräte sind nach dem Laden vom Stromnetz zu trennen."}
-{"id": "3.2.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Geräte mit hohem Stromverbrauch sind bewusst und nur bei Bedarf zu nutzen."}
-{"id": "3.2.1.6", "hp": 10, "xp": 0, "l": 1, "t": "Räume sind nicht dauerhaft zu beleuchten, wenn sie nicht genutzt werden."}
-{"id": "3.2.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Licht ist beim Verlassen eines Raumes auszuschalten."}
-{"id": "3.2.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Räume, Flure und Nebenbereiche werden nur beleuchtet, solange sie genutzt werde…"}
-{"id": "3.2.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Dauerbeleuchtung in ungenutzten Bereichen ist zu vermeiden."}
-{"id": "3.2.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Außen- und Gartenbeleuchtung ist nach Nutzung wieder auszuschalten."}
-{"id": "3.2.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Bei ausreichendem Tageslicht ist auf künstliche Beleuchtung zu verzichten."}
-{"id": "3.2.3.1", "hp": 10, "xp": 0, "l": 1, "t": "Geräte sind nach der Nutzung vollständig auszuschalten und nicht im Standby zu …"}
-{"id": "3.2.3.2", "hp": 10, "xp": 0, "l": 1, "t": "Unterhaltungselektronik ist über abschaltbare Steckdosenleisten komplett vom Ne…"}
-{"id": "3.2.3.3", "hp": 10, "xp": 0, "l": 1, "t": "Ladegeräte sind nach dem Laden vom Stromnetz zu entfernen."}
-{"id": "3.2.3.4", "hp": 10, "xp": 0, "l": 1, "t": "Geräte mit dauerhaftem Standby-Verbrauch sind nur bei tatsächlichem Bedarf eing…"}
-{"id": "3.2.3.5", "hp": 10, "xp": 0, "l": 1, "t": "Geräte, die längere Zeit nicht genutzt werden, sind vollständig vom Stromnetz z…"}
-{"id": "3.2.4.1", "hp": 10, "xp": 0, "l": 1, "t": "Geräte, die aktuell nicht genutzt werden, sind vollständig vom Stromnetz zu tre…"}
-{"id": "3.2.4.2", "hp": 10, "xp": 0, "l": 1, "t": "Mehrfachsteckdosen mit Schalter sind zum vollständigen Abschalten von Gerätegru…"}
-{"id": "3.2.4.3", "hp": 10, "xp": 0, "l": 1, "t": "Elektronische Geräte mit Netzteilen sind bei längerer Nichtnutzung auszustecken."}
-{"id": "3.2.4.4", "hp": 10, "xp": 0, "l": 1, "t": "Geräte in selten genutzten Räumen sind nach der Nutzung vollständig stromlos zu…"}
-{"id": "3.2.4.5", "hp": 10, "xp": 0, "l": 1, "t": "Vor längerer Abwesenheit sind nicht benötigte Geräte vollständig vom Netz zu tr…"}
-{"id": "3.2.5.1", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittel sind nur in der tatsächlich benötigten Menge zu erwärmen."}
-{"id": "3.2.5.2", "hp": 10, "xp": 0, "l": 1, "t": "Mehrfaches Aufwärmen derselben Speisen ist zu vermeiden."}
-{"id": "3.2.5.3", "hp": 10, "xp": 0, "l": 1, "t": "Geeignete Geräte (z. B. Wasserkocher statt Herd) sind energieeffizient zu nutze…"}
-{"id": "3.2.5.4", "hp": 10, "xp": 0, "l": 1, "t": "Geräte zum Erwärmen von Speisen sind nach Gebrauch sofort auszuschalten."}
-{"id": "3.2.5.5", "hp": 10, "xp": 0, "l": 1, "t": "Kleine Mengen sind möglichst energieeffizient zuzubereiten."}
-{"id": "3.3.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Warmwasser ist bewusst und sparsam zu nutzen."}
-{"id": "3.3.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Warmwasserhähne sind nur dann zu öffnen, wenn warmes Wasser tatsächlich benötig…"}
-{"id": "3.3.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Während des Einseifens, Zähneputzens oder vergleichbarer Tätigkeiten ist das Wa…"}
-{"id": "3.3.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Warmwasser ist nicht unnötig lange vorlaufen zu lassen."}
-{"id": "3.3.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Für kurze Nutzungen ist möglichst kaltes Wasser zu verwenden."}
-{"id": "3.3.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Trinkwasser ist bewusst und sparsam zu nutzen."}
-{"id": "3.3.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Wasserhähne sind nach der Nutzung vollständig zu schließen."}
-{"id": "3.3.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Laufendes Wasser ohne Nutzung ist zu vermeiden."}
-{"id": "3.3.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Beim Zähneputzen, Einseifen oder Abspülen ist Wasser nur bei tatsächlichem Beda…"}
-{"id": "3.3.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Tropfende Wasserhähne oder Leckagen sind sofort zu melden."}
-{"id": "3.3.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Trinkwasser ist nicht unnötig zu verschwenden."}
-{"id": "3.4.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittel sind sorgfältig und hygienisch zu behandeln."}
-{"id": "3.4.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Nur die tatsächlich benötigte Menge an Lebensmitteln ist zu entnehmen."}
-{"id": "3.4.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Angebrochene Lebensmittel sind ordnungsgemäß zu verschließen und wieder zu kühl…"}
-{"id": "3.4.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittel sind so zu lagern, dass Verderb vermieden wird."}
-{"id": "3.4.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Verdorbene oder nicht mehr genießbare Lebensmittel sind zeitnah zu entsorgen."}
-{"id": "3.4.1.6", "hp": 10, "xp": 0, "l": 1, "t": "Arbeitsflächen und Küchenutensilien sind nach der Nutzung zu reinigen."}
-{"id": "3.4.1.7", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittelverschwendung ist zu vermeiden."}
-{"id": "3.4.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittelbeschaffung erfolgt geplant und bedarfsorientiert."}
-{"id": "3.4.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Vor Einkäufen ist der vorhandene Bestand zu prüfen."}
-{"id": "3.4.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Gemeinschaftlich genutzte Lebensmittel werden nur in angemessenen Mengen entnom…"}
-{"id": "3.4.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Einkäufe für den Gemeinschaftshaushalt werden transparent über das Haushaltskon…"}
-{"id": "3.4.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Sonderwünsche oder individuelle Lebensmittel werden eigenständig beschafft und …"}
-{"id": "3.4.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Verderbliche Lebensmittel sind zeitnah zu verbrauchen."}
-{"id": "3.4.3.1", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittel sind möglichst effizient und in angemessenen Mengen herzustellen."}
-{"id": "3.4.3.2", "hp": 10, "xp": 0, "l": 1, "t": "Zutaten sind vollständig zu verwenden und nicht unnötig zu verschwenden."}
-{"id": "3.4.3.3", "hp": 10, "xp": 0, "l": 1, "t": "Arbeitsflächen, Geräte und Kochutensilien sind nach der Nutzung zu reinigen."}
-{"id": "3.4.3.4", "hp": 10, "xp": 0, "l": 1, "t": "Verwendete Geräte sind nach der Herstellung auszuschalten und zu säubern."}
-{"id": "3.4.3.5", "hp": 10, "xp": 0, "l": 1, "t": "Gemeinschaftlich genutzte Zutaten sind sparsam und verantwortungsvoll zu verwen…"}
-{"id": "3.4.3.6", "hp": 10, "xp": 0, "l": 1, "t": "Zubereitete Lebensmittel sind ordnungsgemäß zu lagern oder zeitnah zu verzehren."}
+{"id": "3.1.1.1", "hp": 10, "xp": 0, "l": 2, "t": "In regelmäßig genutzten Räumen ist täglich Stoßlüften durchzuführen (mehrere Mi…"}
+{"id": "3.1.1.2", "hp": 10, "xp": 0, "l": 2, "t": "Während des Lüftens sind Heizkörper herunterzudrehen oder auszuschalten."}
+{"id": "3.1.1.3", "hp": 10, "xp": 0, "l": 2, "t": "Nach dem Lüften sind Fenster vollständig zu schließen und die Heizung wieder au…"}
+{"id": "3.1.1.4", "hp": 10, "xp": 0, "l": 2, "t": "Dauerhaft gekippte Fenster bei laufender Heizung sind zu vermeiden."}
+{"id": "3.1.1.5", "hp": 10, "xp": 0, "l": 2, "t": "Räume sind so zu beheizen, dass Feuchtigkeit und Schimmelbildung vermieden werd…"}
+{"id": "3.1.1.6", "hp": 10, "xp": 0, "l": 2, "t": "Beim Verlassen eines Raumes über längere Zeit ist die Heizung auf einen reduzie…"}
+{"id": "3.1.2.1", "hp": 10, "xp": 0, "l": 2, "t": "Duschen sind kurz und ressourcenschonend durchzuführen."}
+{"id": "3.1.2.2", "hp": 10, "xp": 0, "l": 2, "t": "Baden ist nur gelegentlich und nicht regelmäßig durchzuführen."}
+{"id": "3.1.2.3", "hp": 10, "xp": 0, "l": 2, "t": "Während des Einseifens ist das Wasser abzustellen."}
+{"id": "3.1.2.4", "hp": 10, "xp": 0, "l": 2, "t": "Warmwasser ist bewusst zu nutzen und nicht unnötig laufen zu lassen."}
+{"id": "3.1.2.5", "hp": 10, "xp": 0, "l": 2, "t": "Nach dem Duschen oder Baden ist das Badezimmer zu lüften."}
+{"id": "3.1.2.6", "hp": 10, "xp": 0, "l": 2, "t": "Wasser ist nach der Nutzung vollständig abzudrehen."}
+{"id": "3.2.1.1", "hp": 10, "xp": 0, "l": 2, "t": "Elektrische Geräte sind nach der Nutzung vollständig auszuschalten."}
+{"id": "3.2.1.2", "hp": 10, "xp": 0, "l": 2, "t": "Licht ist beim Verlassen eines Raumes auszuschalten."}
+{"id": "3.2.1.3", "hp": 10, "xp": 0, "l": 2, "t": "Standby-Betrieb ist möglichst zu vermeiden."}
+{"id": "3.2.1.4", "hp": 10, "xp": 0, "l": 2, "t": "Ladegeräte sind nach dem Laden vom Stromnetz zu trennen."}
+{"id": "3.2.1.5", "hp": 10, "xp": 0, "l": 2, "t": "Geräte mit hohem Stromverbrauch sind bewusst und nur bei Bedarf zu nutzen."}
+{"id": "3.2.1.6", "hp": 10, "xp": 0, "l": 2, "t": "Räume sind nicht dauerhaft zu beleuchten, wenn sie nicht genutzt werden."}
+{"id": "3.2.2.1", "hp": 10, "xp": 0, "l": 2, "t": "Licht ist beim Verlassen eines Raumes auszuschalten."}
+{"id": "3.2.2.2", "hp": 10, "xp": 0, "l": 2, "t": "Räume, Flure und Nebenbereiche werden nur beleuchtet, solange sie genutzt werde…"}
+{"id": "3.2.2.3", "hp": 10, "xp": 0, "l": 2, "t": "Dauerbeleuchtung in ungenutzten Bereichen ist zu vermeiden."}
+{"id": "3.2.2.4", "hp": 10, "xp": 0, "l": 2, "t": "Außen- und Gartenbeleuchtung ist nach Nutzung wieder auszuschalten."}
+{"id": "3.2.2.5", "hp": 10, "xp": 0, "l": 2, "t": "Bei ausreichendem Tageslicht ist auf künstliche Beleuchtung zu verzichten."}
+{"id": "3.2.3.1", "hp": 10, "xp": 0, "l": 2, "t": "Geräte sind nach der Nutzung vollständig auszuschalten und nicht im Standby zu …"}
+{"id": "3.2.3.2", "hp": 10, "xp": 0, "l": 2, "t": "Unterhaltungselektronik ist über abschaltbare Steckdosenleisten komplett vom Ne…"}
+{"id": "3.2.3.3", "hp": 10, "xp": 0, "l": 2, "t": "Ladegeräte sind nach dem Laden vom Stromnetz zu entfernen."}
+{"id": "3.2.3.4", "hp": 10, "xp": 0, "l": 2, "t": "Geräte mit dauerhaftem Standby-Verbrauch sind nur bei tatsächlichem Bedarf eing…"}
+{"id": "3.2.3.5", "hp": 10, "xp": 0, "l": 2, "t": "Geräte, die längere Zeit nicht genutzt werden, sind vollständig vom Stromnetz z…"}
+{"id": "3.2.4.1", "hp": 10, "xp": 0, "l": 2, "t": "Geräte, die aktuell nicht genutzt werden, sind vollständig vom Stromnetz zu tre…"}
+{"id": "3.2.4.2", "hp": 10, "xp": 0, "l": 2, "t": "Mehrfachsteckdosen mit Schalter sind zum vollständigen Abschalten von Gerätegru…"}
+{"id": "3.2.4.3", "hp": 10, "xp": 0, "l": 2, "t": "Elektronische Geräte mit Netzteilen sind bei längerer Nichtnutzung auszustecken."}
+{"id": "3.2.4.4", "hp": 10, "xp": 0, "l": 2, "t": "Geräte in selten genutzten Räumen sind nach der Nutzung vollständig stromlos zu…"}
+{"id": "3.2.4.5", "hp": 10, "xp": 0, "l": 2, "t": "Vor längerer Abwesenheit sind nicht benötigte Geräte vollständig vom Netz zu tr…"}
+{"id": "3.2.5.1", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittel sind nur in der tatsächlich benötigten Menge zu erwärmen."}
+{"id": "3.2.5.2", "hp": 10, "xp": 0, "l": 2, "t": "Mehrfaches Aufwärmen derselben Speisen ist zu vermeiden."}
+{"id": "3.2.5.3", "hp": 10, "xp": 0, "l": 2, "t": "Geeignete Geräte (z. B. Wasserkocher statt Herd) sind energieeffizient zu nutze…"}
+{"id": "3.2.5.4", "hp": 10, "xp": 0, "l": 2, "t": "Geräte zum Erwärmen von Speisen sind nach Gebrauch sofort auszuschalten."}
+{"id": "3.2.5.5", "hp": 10, "xp": 0, "l": 2, "t": "Kleine Mengen sind möglichst energieeffizient zuzubereiten."}
+{"id": "3.3.1.1", "hp": 10, "xp": 0, "l": 2, "t": "Warmwasser ist bewusst und sparsam zu nutzen."}
+{"id": "3.3.1.2", "hp": 10, "xp": 0, "l": 2, "t": "Warmwasserhähne sind nur dann zu öffnen, wenn warmes Wasser tatsächlich benötig…"}
+{"id": "3.3.1.3", "hp": 10, "xp": 0, "l": 2, "t": "Während des Einseifens, Zähneputzens oder vergleichbarer Tätigkeiten ist das Wa…"}
+{"id": "3.3.1.4", "hp": 10, "xp": 0, "l": 2, "t": "Warmwasser ist nicht unnötig lange vorlaufen zu lassen."}
+{"id": "3.3.1.5", "hp": 10, "xp": 0, "l": 2, "t": "Für kurze Nutzungen ist möglichst kaltes Wasser zu verwenden."}
+{"id": "3.3.2.1", "hp": 10, "xp": 0, "l": 2, "t": "Trinkwasser ist bewusst und sparsam zu nutzen."}
+{"id": "3.3.2.2", "hp": 10, "xp": 0, "l": 2, "t": "Wasserhähne sind nach der Nutzung vollständig zu schließen."}
+{"id": "3.3.2.3", "hp": 10, "xp": 0, "l": 2, "t": "Laufendes Wasser ohne Nutzung ist zu vermeiden."}
+{"id": "3.3.2.4", "hp": 10, "xp": 0, "l": 2, "t": "Beim Zähneputzen, Einseifen oder Abspülen ist Wasser nur bei tatsächlichem Beda…"}
+{"id": "3.3.2.5", "hp": 10, "xp": 0, "l": 2, "t": "Tropfende Wasserhähne oder Leckagen sind sofort zu melden."}
+{"id": "3.3.2.6", "hp": 10, "xp": 0, "l": 2, "t": "Trinkwasser ist nicht unnötig zu verschwenden."}
+{"id": "3.4.1.1", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittel sind sorgfältig und hygienisch zu behandeln."}
+{"id": "3.4.1.2", "hp": 10, "xp": 0, "l": 2, "t": "Nur die tatsächlich benötigte Menge an Lebensmitteln ist zu entnehmen."}
+{"id": "3.4.1.3", "hp": 10, "xp": 0, "l": 2, "t": "Angebrochene Lebensmittel sind ordnungsgemäß zu verschließen und wieder zu kühl…"}
+{"id": "3.4.1.4", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittel sind so zu lagern, dass Verderb vermieden wird."}
+{"id": "3.4.1.5", "hp": 10, "xp": 0, "l": 2, "t": "Verdorbene oder nicht mehr genießbare Lebensmittel sind zeitnah zu entsorgen."}
+{"id": "3.4.1.6", "hp": 10, "xp": 0, "l": 2, "t": "Arbeitsflächen und Küchenutensilien sind nach der Nutzung zu reinigen."}
+{"id": "3.4.1.7", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittelverschwendung ist zu vermeiden."}
+{"id": "3.4.2.1", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittelbeschaffung erfolgt geplant und bedarfsorientiert."}
+{"id": "3.4.2.2", "hp": 10, "xp": 0, "l": 2, "t": "Vor Einkäufen ist der vorhandene Bestand zu prüfen."}
+{"id": "3.4.2.3", "hp": 10, "xp": 0, "l": 2, "t": "Gemeinschaftlich genutzte Lebensmittel werden nur in angemessenen Mengen entnom…"}
+{"id": "3.4.2.4", "hp": 10, "xp": 0, "l": 2, "t": "Einkäufe für den Gemeinschaftshaushalt werden transparent über das Haushaltskon…"}
+{"id": "3.4.2.5", "hp": 10, "xp": 0, "l": 2, "t": "Sonderwünsche oder individuelle Lebensmittel werden eigenständig beschafft und …"}
+{"id": "3.4.2.6", "hp": 10, "xp": 0, "l": 2, "t": "Verderbliche Lebensmittel sind zeitnah zu verbrauchen."}
+{"id": "3.4.3.1", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittel sind möglichst effizient und in angemessenen Mengen herzustellen."}
+{"id": "3.4.3.2", "hp": 10, "xp": 0, "l": 2, "t": "Zutaten sind vollständig zu verwenden und nicht unnötig zu verschwenden."}
+{"id": "3.4.3.3", "hp": 10, "xp": 0, "l": 2, "t": "Arbeitsflächen, Geräte und Kochutensilien sind nach der Nutzung zu reinigen."}
+{"id": "3.4.3.4", "hp": 10, "xp": 0, "l": 2, "t": "Verwendete Geräte sind nach der Herstellung auszuschalten und zu säubern."}
+{"id": "3.4.3.5", "hp": 10, "xp": 0, "l": 2, "t": "Gemeinschaftlich genutzte Zutaten sind sparsam und verantwortungsvoll zu verwen…"}
+{"id": "3.4.3.6", "hp": 10, "xp": 0, "l": 2, "t": "Zubereitete Lebensmittel sind ordnungsgemäß zu lagern oder zeitnah zu verzehren."}
 {"id": "3.4.4.1", "hp": 10, "xp": 0, "l": 1, "t": "Personengebundene Lebensmittel dürfen nur vom jeweiligen Eigentümer genutzt wer…"}
 {"id": "3.4.4.2", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittel, die einer Person zugeordnet sind, sind zu respektieren und nicht …"}
 {"id": "3.4.4.3", "hp": 10, "xp": 0, "l": 1, "t": "Unklar zugeordnete Lebensmittel sind vor der Nutzung zu klären."}
 {"id": "3.4.4.4", "hp": 10, "xp": 0, "l": 1, "t": "Private Lebensmittel sind getrennt von gemeinschaftlichen Lebensmitteln zu lage…"}
-{"id": "3.4.5.1", "hp": 10, "xp": 0, "l": 1, "t": "Fehlende oder benötigte Lebensmittel sind zeitnah in die gemeinsame Einkaufs- u…"}
-{"id": "3.4.5.2", "hp": 10, "xp": 0, "l": 1, "t": "Die Einkaufs- und Bedarfsliste ist vor Einkäufen zu prüfen."}
-{"id": "3.4.5.3", "hp": 10, "xp": 0, "l": 1, "t": "Entnommene oder aufgebrauchte Lebensmittel sind entsprechend auf der Liste zu v…"}
-{"id": "3.4.5.4", "hp": 10, "xp": 0, "l": 1, "t": "Spontankäufe ohne Bezug zur Bedarfsliste sind zu vermeiden."}
-{"id": "3.4.5.5", "hp": 10, "xp": 0, "l": 1, "t": "Die Bedarfsliste dient der transparenten Planung gemeinsamer Einkäufe."}
-{"id": "3.5.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Räume sind regelmäßig zu lüften, um Geruchsbildung zu vermeiden."}
-{"id": "3.5.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Beim Kochen sind Dunstabzug oder Lüftung zu nutzen."}
+{"id": "3.4.5.1", "hp": 10, "xp": 0, "l": 2, "t": "Fehlende oder benötigte Lebensmittel sind zeitnah in die gemeinsame Einkaufs- u…"}
+{"id": "3.4.5.2", "hp": 10, "xp": 0, "l": 2, "t": "Die Einkaufs- und Bedarfsliste ist vor Einkäufen zu prüfen."}
+{"id": "3.4.5.3", "hp": 10, "xp": 0, "l": 2, "t": "Entnommene oder aufgebrauchte Lebensmittel sind entsprechend auf der Liste zu v…"}
+{"id": "3.4.5.4", "hp": 10, "xp": 0, "l": 2, "t": "Spontankäufe ohne Bezug zur Bedarfsliste sind zu vermeiden."}
+{"id": "3.4.5.5", "hp": 10, "xp": 0, "l": 2, "t": "Die Bedarfsliste dient der transparenten Planung gemeinsamer Einkäufe."}
+{"id": "3.5.1.1", "hp": 10, "xp": 0, "l": 2, "t": "Räume sind regelmäßig zu lüften, um Geruchsbildung zu vermeiden."}
+{"id": "3.5.1.2", "hp": 10, "xp": 0, "l": 2, "t": "Beim Kochen sind Dunstabzug oder Lüftung zu nutzen."}
 {"id": "3.5.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Stark riechende Tätigkeiten sind durch ausreichendes Lüften zu begleiten."}
 {"id": "3.5.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Müll mit Geruchsentwicklung ist zeitnah zu entsorgen."}
 {"id": "3.5.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittelreste sind nicht offen stehen zu lassen."}
-{"id": "3.5.1.6", "hp": 10, "xp": 0, "l": 1, "t": "Geruchsbelastende Gegenstände oder Kleidung sind nicht in Gemeinschaftsbereiche…"}
-{"id": "3.5.1.7", "hp": 10, "xp": 0, "l": 1, "t": "Künstliche Duftstoffe sind in Gemeinschaftsbereichen sparsam zu verwenden."}
-{"id": "3.5.1.8", "hp": 10, "xp": 0, "l": 1, "t": "Stark parfümierte Kosmetika sind in Innenräumen nur in angemessener Menge zu nu…"}
-{"id": "3.5.1.9", "hp": 10, "xp": 0, "l": 1, "t": "Das Versprühen von Parfüm oder Spray in Gemeinschaftsbereichen ist zu vermeiden."}
-{"id": "3.5.1.10", "hp": 10, "xp": 0, "l": 1, "t": "Duftstoffe sind bevorzugt in privaten Räumen zu verwenden."}
-{"id": "3.5.1.11", "hp": 10, "xp": 0, "l": 1, "t": "Rücksicht auf empfindliche oder geruchssensible Personen ist zu nehmen."}
-{"id": "3.5.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Innenräume sind regelmäßig durch Stoßlüften mit Frischluft zu versorgen."}
+{"id": "3.5.1.6", "hp": 10, "xp": 0, "l": 2, "t": "Geruchsbelastende Gegenstände oder Kleidung sind nicht in Gemeinschaftsbereiche…"}
+{"id": "3.5.1.7", "hp": 10, "xp": 0, "l": 2, "t": "Künstliche Duftstoffe sind in Gemeinschaftsbereichen sparsam zu verwenden."}
+{"id": "3.5.1.8", "hp": 10, "xp": 0, "l": 2, "t": "Stark parfümierte Kosmetika sind in Innenräumen nur in angemessener Menge zu nu…"}
+{"id": "3.5.1.9", "hp": 10, "xp": 0, "l": 2, "t": "Das Versprühen von Parfüm oder Spray in Gemeinschaftsbereichen ist zu vermeiden."}
+{"id": "3.5.1.10", "hp": 10, "xp": 0, "l": 2, "t": "Duftstoffe sind bevorzugt in privaten Räumen zu verwenden."}
+{"id": "3.5.1.11", "hp": 10, "xp": 0, "l": 2, "t": "Rücksicht auf empfindliche oder geruchssensible Personen ist zu nehmen."}
+{"id": "3.5.2.1", "hp": 10, "xp": 0, "l": 2, "t": "Innenräume sind regelmäßig durch Stoßlüften mit Frischluft zu versorgen."}
 {"id": "3.5.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Verbrauchte oder stickige Luft ist durch Lüften zeitnah auszutauschen."}
-{"id": "3.5.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Rauchen ist in Innenräumen nicht gestattet."}
-{"id": "3.5.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Tätigkeiten mit Staub- oder Schadstoffentwicklung sind zu vermeiden oder nur mi…"}
-{"id": "3.5.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Gemeinschaftsräume sind so zu nutzen, dass eine gute Luftqualität erhalten blei…"}
-{"id": "3.5.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Luftverschmutzende Stoffe sind nicht unnötig in Innenräume einzubringen."}
-{"id": "3.6.1", "hp": 10, "xp": 0, "l": 1, "t": "Der Verbrauch zentraler Ressourcen (Strom, Wasser, Wärme) wird regelmäßig überw…"}
-{"id": "3.6.2", "hp": 10, "xp": 0, "l": 1, "t": "Informationen zum Ressourcenverbrauch stehen allen Hausbewohnern offen zur Eins…"}
-{"id": "3.6.3", "hp": 10, "xp": 0, "l": 1, "t": "Jeder Bewohner ist angehalten, seinen persönlichen Ressourcenverbrauch bewusst …"}
-{"id": "3.6.4", "hp": 10, "xp": 0, "l": 1, "t": "Ein verantwortungsvoller Umgang mit Ressourcen wird von allen erwartet."}
-{"id": "3.6.5", "hp": 10, "xp": 0, "l": 1, "t": "Ressourcenverbrauch und Ressourcenbeschaffung sollen in einem angemessenen Verh…"}
-{"id": "3.6.6", "hp": 10, "xp": 0, "l": 1, "t": "Jeder Bewohner trägt Verantwortung für ein ausgewogenes Verhältnis zwischen Nut…"}
-{"id": "4.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Abfälle sind konsequent nach den vorgesehenen Kategorien zu trennen."}
-{"id": "4.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Verpackungen, Papier, Glas, Biomüll und Restmüll sind in die dafür vorgesehenen…"}
-{"id": "4.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Falsch entsorgter Abfall ist durch den Verursacher zu korrigieren."}
+{"id": "3.5.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Rauchen ist in Innenräumen nicht gestattet. Rauchgeruch im Wohnbereich ist zu v…"}
+{"id": "3.5.2.4", "hp": 10, "xp": 0, "l": 2, "t": "Tätigkeiten mit Staub- oder Schadstoffentwicklung sind zu vermeiden oder nur mi…"}
+{"id": "3.5.2.5", "hp": 10, "xp": 0, "l": 2, "t": "Gemeinschaftsräume sind so zu nutzen, dass eine gute Luftqualität erhalten blei…"}
+{"id": "3.5.2.6", "hp": 10, "xp": 0, "l": 2, "t": "Luftverschmutzende Stoffe sind nicht unnötig in Innenräume einzubringen."}
+{"id": "3.6.1", "hp": 10, "xp": 0, "l": 2, "t": "Der Verbrauch zentraler Ressourcen (Strom, Wasser, Wärme) wird regelmäßig überw…"}
+{"id": "3.6.2", "hp": 10, "xp": 0, "l": 2, "t": "Informationen zum Ressourcenverbrauch stehen allen Hausbewohnern offen zur Eins…"}
+{"id": "3.6.3", "hp": 10, "xp": 0, "l": 2, "t": "Jeder Bewohner ist angehalten, seinen persönlichen Ressourcenverbrauch bewusst …"}
+{"id": "3.6.4", "hp": 10, "xp": 0, "l": 2, "t": "Ein verantwortungsvoller Umgang mit Ressourcen wird von allen erwartet."}
+{"id": "3.6.5", "hp": 10, "xp": 0, "l": 2, "t": "Ressourcenverbrauch und Ressourcenbeschaffung sollen in einem angemessenen Verh…"}
+{"id": "3.6.6", "hp": 10, "xp": 0, "l": 2, "t": "Jeder Bewohner trägt Verantwortung für ein ausgewogenes Verhältnis zwischen Nut…"}
+{"id": "4.1.1", "hp": 10, "xp": 0, "l": 2, "t": "Abfälle sind konsequent nach den vorgesehenen Kategorien zu trennen."}
+{"id": "4.1.2", "hp": 10, "xp": 0, "l": 2, "t": "Verpackungen, Papier, Glas, Biomüll und Restmüll sind in die dafür vorgesehenen…"}
+{"id": "4.1.3", "hp": 10, "xp": 0, "l": 2, "t": "Falsch entsorgter Abfall ist durch den Verursacher zu korrigieren."}
 {"id": "4.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Behälter für getrennte Abfälle sind nicht zu überfüllen."}
-{"id": "4.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Bei Unsicherheit über die richtige Trennung ist dies vor der Entsorgung zu klär…"}
-{"id": "4.1.6", "hp": 10, "xp": 0, "l": 1, "t": "Sonderabfälle sind nicht über den Hausmüll zu entsorgen."}
+{"id": "4.1.5", "hp": 10, "xp": 0, "l": 2, "t": "Bei Unsicherheit über die richtige Trennung ist dies vor der Entsorgung zu klär…"}
+{"id": "4.1.6", "hp": 10, "xp": 0, "l": 2, "t": "Sonderabfälle sind nicht über den Hausmüll zu entsorgen."}
 {"id": "4.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Abfälle sind zeitnah in die vorgesehenen Abfallbehälter zu entsorgen."}
 {"id": "4.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Überfüllte Abfallbehälter sind zu vermeiden und rechtzeitig zu leeren."}
-{"id": "4.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Müllbeutel sind vor der Entsorgung ordnungsgemäß zu verschließen."}
+{"id": "4.2.3", "hp": 10, "xp": 0, "l": 2, "t": "Müllbeutel sind vor der Entsorgung ordnungsgemäß zu verschließen."}
 {"id": "4.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Abfälle sind nicht offen oder lose in Gemeinschaftsbereichen liegen zu lassen."}
-{"id": "4.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Müll mit Geruchs- oder Hygieneproblemen ist unverzüglich zu entsorgen."}
-{"id": "4.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Abfallbehälter sind nach der Leerung wieder sauber und ordnungsgemäß bereitzust…"}
+{"id": "4.2.5", "hp": 10, "xp": 0, "l": 2, "t": "Müll mit Geruchs- oder Hygieneproblemen ist unverzüglich zu entsorgen."}
+{"id": "4.2.6", "hp": 10, "xp": 0, "l": 2, "t": "Abfallbehälter sind nach der Leerung wieder sauber und ordnungsgemäß bereitzust…"}
 {"id": "4.3.1", "hp": 10, "xp": 0, "l": 1, "t": "Überfüllte Abfallbehälter sind durch den Nutzer eigenverantwortlich zu leeren."}
 {"id": "4.3.2", "hp": 10, "xp": 0, "l": 1, "t": "Wer einen vollen Abfallbehälter feststellt, sorgt für dessen Entleerung."}
-{"id": "4.3.3", "hp": 10, "xp": 0, "l": 1, "t": "Müllbeutel sind vor dem Herausnehmen ordnungsgemäß zu verschließen."}
-{"id": "4.3.4", "hp": 10, "xp": 0, "l": 1, "t": "Neue Müllbeutel sind nach dem Leeren einzusetzen."}
-{"id": "4.3.5", "hp": 10, "xp": 0, "l": 1, "t": "Entnommene Müllbeutel sind zeitnah in die vorgesehenen Außenbehälter zu verbrin…"}
-{"id": "4.4.1", "hp": 10, "xp": 0, "l": 1, "t": "Abfälle sind so zu entsorgen, dass Abfallbehälter sauber bleiben."}
-{"id": "4.4.2", "hp": 10, "xp": 0, "l": 1, "t": "Flüssigkeiten oder stark verschmutzende Stoffe sind nicht lose in Abfallbehälte…"}
-{"id": "4.4.3", "hp": 10, "xp": 0, "l": 1, "t": "Verschmutzungen an Abfallbehältern sind durch den Verursacher zu reinigen."}
-{"id": "4.4.4", "hp": 10, "xp": 0, "l": 1, "t": "Müllbeutel sind ordnungsgemäß einzusetzen und bei Bedarf zu wechseln."}
-{"id": "4.4.5", "hp": 10, "xp": 0, "l": 1, "t": "Abfallbehälter sind regelmäßig auf Sauberkeit zu prüfen und bei Bedarf zu reini…"}
-{"id": "5.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Der Rasen ist pfleglich zu behandeln und nicht unnötig zu beschädigen."}
-{"id": "5.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Müll oder Gegenstände sind nicht dauerhaft auf dem Rasen liegen zu lassen."}
-{"id": "5.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Der Rasen ist regelmäßig zu mähen, sofern Wachstumsbedingungen dies erfordern."}
-{"id": "5.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Gartenmöbel oder Geräte sind nach der Nutzung wieder geordnet abzustellen."}
-{"id": "5.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Beschädigungen des Rasens sind zu vermeiden und bei Bedarf zu beheben."}
-{"id": "5.1.6", "hp": 10, "xp": 0, "l": 1, "t": "Der Rasen ist als gemeinschaftliche Fläche respektvoll zu nutzen."}
-{"id": "5.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Der Fischteich ist als sensibler Lebensraum zu respektieren."}
-{"id": "5.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Fische dürfen nur durch dafür verantwortliche Personen gefüttert werden."}
-{"id": "5.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Fremdstoffe, Lebensmittelreste oder Abfälle dürfen nicht in den Teich eingebrac…"}
-{"id": "5.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Pflanzen und technische Einrichtungen des Teiches sind nicht zu beschädigen."}
-{"id": "5.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Kinder und Besucher sind im Bereich des Teiches zu beaufsichtigen."}
-{"id": "5.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Arbeiten am Teich oder Veränderungen an der Anlage erfolgen nur nach Abstimmung."}
-{"id": "5.3.1", "hp": 10, "xp": 0, "l": 1, "t": "Brennholz ist sparsam und nur bei tatsächlichem Bedarf zu verwenden."}
-{"id": "5.3.2", "hp": 10, "xp": 0, "l": 1, "t": "Entnommenes Brennholz ist aus den vorgesehenen Lagerbereichen zu nehmen."}
-{"id": "5.3.3", "hp": 10, "xp": 0, "l": 1, "t": "Holzstapel sind nach der Entnahme wieder ordentlich zu schließen."}
-{"id": "5.3.4", "hp": 10, "xp": 0, "l": 1, "t": "Brennholz ist trocken und geschützt zu lagern."}
-{"id": "5.3.5", "hp": 10, "xp": 0, "l": 1, "t": "Holzreste oder Späne sind nach der Nutzung zu beseitigen."}
-{"id": "5.3.6", "hp": 10, "xp": 0, "l": 1, "t": "Brennholz ist ausschließlich für vorgesehene Feuerstellen oder Heizgeräte zu ve…"}
-{"id": "5.4.1", "hp": 10, "xp": 0, "l": 1, "t": "Gewächshaus und Anbauflächen sind pfleglich zu behandeln."}
-{"id": "5.4.2", "hp": 10, "xp": 0, "l": 1, "t": "Pflanzen sind regelmäßig zu kontrollieren, zu gießen und zu pflegen."}
-{"id": "5.4.3", "hp": 10, "xp": 0, "l": 1, "t": "Werkzeuge und Geräte sind nach der Nutzung zu reinigen und an ihren Platz zurüc…"}
-{"id": "5.4.4", "hp": 10, "xp": 0, "l": 1, "t": "Veränderungen an Beeten, Pflanzungen oder Einrichtungen erfolgen nur nach Absti…"}
-{"id": "5.4.5", "hp": 10, "xp": 0, "l": 1, "t": "Ernte aus gemeinschaftlichem Anbau erfolgt in angemessener Menge und unter Rück…"}
-{"id": "5.4.6", "hp": 10, "xp": 0, "l": 1, "t": "Pflanzabfälle und Gartenreste sind ordnungsgemäß zu entsorgen oder zu kompostie…"}
-{"id": "5.5.1", "hp": 10, "xp": 0, "l": 1, "t": "Der Garten ist als gemeinschaftlicher Raum sauber und ordentlich zu halten."}
-{"id": "5.5.2", "hp": 10, "xp": 0, "l": 1, "t": "Müll, Verpackungen oder sonstige Gegenstände sind nach der Nutzung zu entfernen."}
-{"id": "5.5.3", "hp": 10, "xp": 0, "l": 1, "t": "Gartenmöbel und Geräte sind nach der Nutzung geordnet zurückzustellen."}
-{"id": "5.5.4", "hp": 10, "xp": 0, "l": 1, "t": "Verschmutzungen oder Beschädigungen sind durch den Verursacher zu beseitigen."}
-{"id": "5.5.5", "hp": 10, "xp": 0, "l": 1, "t": "Wege, Flächen und Aufenthaltsbereiche sind frei und begehbar zu halten."}
-{"id": "5.5.6", "hp": 10, "xp": 0, "l": 1, "t": "Jeder Nutzer trägt Verantwortung für den gepflegten Zustand des Gartens."}
-{"id": "6.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Mediengeräte sind rücksichtsvoll und in angemessener Lautstärke zu nutzen."}
-{"id": "6.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Gemeinschaftsbereiche sind nicht dauerhaft durch Mediennutzung zu blockieren."}
-{"id": "6.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Medieninhalte sind so zu wählen, dass andere Hausbewohner nicht belästigt werde…"}
-{"id": "6.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Nach der Nutzung sind Geräte auszuschalten und ordnungsgemäß zu hinterlassen."}
-{"id": "6.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Kopfhörer sind zu verwenden, wenn andere Personen im Raum gestört werden könnte…"}
-{"id": "6.1.6", "hp": 10, "xp": 0, "l": 1, "t": "Mediennutzung darf nicht zu dauerhafter Lärmbelastung im Wohnbereich führen."}
-{"id": "6.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Kopfhörer sind im Wohnbereich nur bei individueller Mediennutzung zu verwenden."}
-{"id": "6.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Dauerhafte Nutzung von Kopfhörern in Gemeinschaftsbereichen ist zu vermeiden."}
-{"id": "6.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Bei direkter Ansprache sind Kopfhörer abzunehmen und zu reagieren."}
-{"id": "6.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Kopfhörer dürfen nicht als Mittel zur Abschottung von der Hausgemeinschaft genu…"}
-{"id": "6.2.5", "hp": 10, "xp": 0, "l": 1, "t": "In Gesprächen oder gemeinschaftlichen Situationen sind Kopfhörer abzulegen."}
-{"id": "6.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Gemeinschaftsräume dienen der Begegnung und Kommunikation."}
-{"id": "6.3.1", "hp": 10, "xp": 0, "l": 1, "t": "Sitzbereich und Tisch sind nach der Nutzung sauber und ordentlich zu hinterlass…"}
-{"id": "6.3.2", "hp": 10, "xp": 0, "l": 1, "t": "Geschirr, Gläser und Essensreste sind zeitnah abzuräumen."}
-{"id": "6.3.3", "hp": 10, "xp": 0, "l": 1, "t": "Verschüttete Flüssigkeiten oder Verschmutzungen sind sofort zu beseitigen."}
-{"id": "6.3.4", "hp": 10, "xp": 0, "l": 1, "t": "Gegenstände sind nach der Nutzung wieder an ihren vorgesehenen Platz zu legen."}
-{"id": "6.3.5", "hp": 10, "xp": 0, "l": 1, "t": "Der Sitzbereich ist nicht dauerhaft mit persönlichen Gegenständen zu belegen."}
-{"id": "6.3.6", "hp": 10, "xp": 0, "l": 1, "t": "Gemeinschaftsflächen sind für alle Hausbewohner frei zugänglich zu halten."}
-{"id": "6.4.1", "hp": 10, "xp": 0, "l": 1, "t": "Vorhänge sind pfleglich zu behandeln und nicht unnötig zu berühren oder zu vers…"}
-{"id": "6.4.2", "hp": 10, "xp": 0, "l": 1, "t": "Vorhänge dürfen nicht als Ablage oder zum Abwischen von Händen genutzt werden."}
-{"id": "6.4.3", "hp": 10, "xp": 0, "l": 1, "t": "Geruchsbelastungen durch Rauch, Lebensmittel oder Kosmetika sind in Vorhangnähe…"}
-{"id": "6.4.4", "hp": 10, "xp": 0, "l": 1, "t": "Vorhänge sind nicht unnötig zu verschieben oder zu verknoten."}
-{"id": "6.4.5", "hp": 10, "xp": 0, "l": 1, "t": "Verschmutzungen an Vorhängen sind zu vermeiden und bei Bedarf zu melden."}
-{"id": "6.5.1", "hp": 10, "xp": 0, "l": 1, "t": "Der Wohnbereich ist unabhängig vom Reinigungsplan sauber und ordentlich zu halt…"}
-{"id": "6.5.2", "hp": 10, "xp": 0, "l": 1, "t": "Verschmutzungen sind unmittelbar durch den Verursacher zu beseitigen."}
-{"id": "6.5.3", "hp": 10, "xp": 0, "l": 1, "t": "Ein verbindlicher Reinigungsplan regelt die regelmäßigen Grundreinigungen."}
-{"id": "6.5.4", "hp": 10, "xp": 0, "l": 1, "t": "Die im Reinigungsplan zugewiesenen Aufgaben sind termingerecht zu erledigen."}
-{"id": "6.5.5", "hp": 10, "xp": 0, "l": 1, "t": "Gemeinschaftsflächen sind nach der Nutzung in einen ordentlichen Zustand zu ver…"}
-{"id": "6.5.6", "hp": 10, "xp": 0, "l": 1, "t": "Reinigungsgeräte sind nach der Nutzung zu säubern und an ihren vorgesehenen Pla…"}
+{"id": "4.3.3", "hp": 10, "xp": 0, "l": 2, "t": "Müllbeutel sind vor dem Herausnehmen ordnungsgemäß zu verschließen."}
+{"id": "4.3.4", "hp": 10, "xp": 0, "l": 2, "t": "Neue Müllbeutel sind nach dem Leeren einzusetzen."}
+{"id": "4.3.5", "hp": 10, "xp": 0, "l": 2, "t": "Entnommene Müllbeutel sind zeitnah in die vorgesehenen Außenbehälter zu verbrin…"}
+{"id": "4.4.1", "hp": 10, "xp": 0, "l": 2, "t": "Abfälle sind so zu entsorgen, dass Abfallbehälter sauber bleiben."}
+{"id": "4.4.2", "hp": 10, "xp": 0, "l": 2, "t": "Flüssigkeiten oder stark verschmutzende Stoffe sind nicht lose in Abfallbehälte…"}
+{"id": "4.4.3", "hp": 10, "xp": 0, "l": 2, "t": "Verschmutzungen an Abfallbehältern sind durch den Verursacher zu reinigen."}
+{"id": "4.4.4", "hp": 10, "xp": 0, "l": 2, "t": "Müllbeutel sind ordnungsgemäß einzusetzen und bei Bedarf zu wechseln."}
+{"id": "4.4.5", "hp": 10, "xp": 0, "l": 2, "t": "Abfallbehälter sind regelmäßig auf Sauberkeit zu prüfen und bei Bedarf zu reini…"}
+{"id": "5.1.1", "hp": 10, "xp": 0, "l": 2, "t": "Der Rasen ist pfleglich zu behandeln und nicht unnötig zu beschädigen."}
+{"id": "5.1.2", "hp": 10, "xp": 0, "l": 2, "t": "Müll oder Gegenstände sind nicht dauerhaft auf dem Rasen liegen zu lassen."}
+{"id": "5.1.3", "hp": 10, "xp": 0, "l": 2, "t": "Der Rasen ist regelmäßig zu mähen, sofern Wachstumsbedingungen dies erfordern."}
+{"id": "5.1.4", "hp": 10, "xp": 0, "l": 2, "t": "Gartenmöbel oder Geräte sind nach der Nutzung wieder geordnet abzustellen."}
+{"id": "5.1.5", "hp": 10, "xp": 0, "l": 2, "t": "Beschädigungen des Rasens sind zu vermeiden und bei Bedarf zu beheben."}
+{"id": "5.1.6", "hp": 10, "xp": 0, "l": 2, "t": "Der Rasen ist als gemeinschaftliche Fläche respektvoll zu nutzen."}
+{"id": "5.2.1", "hp": 10, "xp": 0, "l": 2, "t": "Der Fischteich ist als sensibler Lebensraum zu respektieren."}
+{"id": "5.2.2", "hp": 10, "xp": 0, "l": 2, "t": "Fische dürfen nur durch dafür verantwortliche Personen gefüttert werden."}
+{"id": "5.2.3", "hp": 10, "xp": 0, "l": 2, "t": "Fremdstoffe, Lebensmittelreste oder Abfälle dürfen nicht in den Teich eingebrac…"}
+{"id": "5.2.4", "hp": 10, "xp": 0, "l": 2, "t": "Pflanzen und technische Einrichtungen des Teiches sind nicht zu beschädigen."}
+{"id": "5.2.5", "hp": 10, "xp": 0, "l": 2, "t": "Kinder und Besucher sind im Bereich des Teiches zu beaufsichtigen."}
+{"id": "5.2.6", "hp": 10, "xp": 0, "l": 2, "t": "Arbeiten am Teich oder Veränderungen an der Anlage erfolgen nur nach Abstimmung."}
+{"id": "5.3.1", "hp": 10, "xp": 0, "l": 2, "t": "Brennholz ist sparsam und nur bei tatsächlichem Bedarf zu verwenden."}
+{"id": "5.3.2", "hp": 10, "xp": 0, "l": 2, "t": "Entnommenes Brennholz ist aus den vorgesehenen Lagerbereichen zu nehmen."}
+{"id": "5.3.3", "hp": 10, "xp": 0, "l": 2, "t": "Holzstapel sind nach der Entnahme wieder ordentlich zu schließen."}
+{"id": "5.3.4", "hp": 10, "xp": 0, "l": 2, "t": "Brennholz ist trocken und geschützt zu lagern."}
+{"id": "5.3.5", "hp": 10, "xp": 0, "l": 2, "t": "Holzreste oder Späne sind nach der Nutzung zu beseitigen."}
+{"id": "5.3.6", "hp": 10, "xp": 0, "l": 2, "t": "Brennholz ist ausschließlich für vorgesehene Feuerstellen oder Heizgeräte zu ve…"}
+{"id": "5.4.1", "hp": 10, "xp": 0, "l": 2, "t": "Gewächshaus und Anbauflächen sind pfleglich zu behandeln."}
+{"id": "5.4.2", "hp": 10, "xp": 0, "l": 2, "t": "Pflanzen sind regelmäßig zu kontrollieren, zu gießen und zu pflegen."}
+{"id": "5.4.3", "hp": 10, "xp": 0, "l": 2, "t": "Werkzeuge und Geräte sind nach der Nutzung zu reinigen und an ihren Platz zurüc…"}
+{"id": "5.4.4", "hp": 10, "xp": 0, "l": 2, "t": "Veränderungen an Beeten, Pflanzungen oder Einrichtungen erfolgen nur nach Absti…"}
+{"id": "5.4.5", "hp": 10, "xp": 0, "l": 2, "t": "Ernte aus gemeinschaftlichem Anbau erfolgt in angemessener Menge und unter Rück…"}
+{"id": "5.4.6", "hp": 10, "xp": 0, "l": 2, "t": "Pflanzabfälle und Gartenreste sind ordnungsgemäß zu entsorgen oder zu kompostie…"}
+{"id": "5.5.1", "hp": 10, "xp": 0, "l": 2, "t": "Der Garten ist als gemeinschaftlicher Raum sauber und ordentlich zu halten."}
+{"id": "5.5.2", "hp": 10, "xp": 0, "l": 2, "t": "Müll, Verpackungen oder sonstige Gegenstände sind nach der Nutzung zu entfernen."}
+{"id": "5.5.3", "hp": 10, "xp": 0, "l": 2, "t": "Gartenmöbel und Geräte sind nach der Nutzung geordnet zurückzustellen."}
+{"id": "5.5.4", "hp": 10, "xp": 0, "l": 2, "t": "Verschmutzungen oder Beschädigungen sind durch den Verursacher zu beseitigen."}
+{"id": "5.5.5", "hp": 10, "xp": 0, "l": 2, "t": "Wege, Flächen und Aufenthaltsbereiche sind frei und begehbar zu halten."}
+{"id": "5.5.6", "hp": 10, "xp": 0, "l": 2, "t": "Jeder Nutzer trägt Verantwortung für den gepflegten Zustand des Gartens."}
+{"id": "6.1.1", "hp": 10, "xp": 0, "l": 2, "t": "Mediengeräte sind rücksichtsvoll und in angemessener Lautstärke zu nutzen."}
+{"id": "6.1.2", "hp": 10, "xp": 0, "l": 2, "t": "Gemeinschaftsbereiche sind nicht dauerhaft durch Mediennutzung zu blockieren."}
+{"id": "6.1.3", "hp": 10, "xp": 0, "l": 2, "t": "Medieninhalte sind so zu wählen, dass andere Hausbewohner nicht belästigt werde…"}
+{"id": "6.1.4", "hp": 10, "xp": 0, "l": 2, "t": "Nach der Nutzung sind Geräte auszuschalten und ordnungsgemäß zu hinterlassen."}
+{"id": "6.1.5", "hp": 10, "xp": 0, "l": 2, "t": "Kopfhörer sind zu verwenden, wenn andere Personen im Raum gestört werden könnte…"}
+{"id": "6.1.6", "hp": 10, "xp": 0, "l": 2, "t": "Mediennutzung darf nicht zu dauerhafter Lärmbelastung im Wohnbereich führen."}
+{"id": "6.2.1", "hp": 10, "xp": 0, "l": 2, "t": "Kopfhörer sind im Wohnbereich nur bei individueller Mediennutzung zu verwenden."}
+{"id": "6.2.2", "hp": 10, "xp": 0, "l": 2, "t": "Dauerhafte Nutzung von Kopfhörern in Gemeinschaftsbereichen ist zu vermeiden."}
+{"id": "6.2.3", "hp": 10, "xp": 0, "l": 2, "t": "Bei direkter Ansprache sind Kopfhörer abzunehmen und zu reagieren."}
+{"id": "6.2.4", "hp": 10, "xp": 0, "l": 2, "t": "Kopfhörer dürfen nicht als Mittel zur Abschottung von der Hausgemeinschaft genu…"}
+{"id": "6.2.5", "hp": 10, "xp": 0, "l": 2, "t": "In Gesprächen oder gemeinschaftlichen Situationen sind Kopfhörer abzulegen."}
+{"id": "6.2.6", "hp": 10, "xp": 0, "l": 2, "t": "Gemeinschaftsräume dienen der Begegnung und Kommunikation."}
+{"id": "6.3.1", "hp": 10, "xp": 0, "l": 2, "t": "Sitzbereich und Tisch sind nach der Nutzung sauber und ordentlich zu hinterlass…"}
+{"id": "6.3.2", "hp": 10, "xp": 0, "l": 2, "t": "Geschirr, Gläser und Essensreste sind zeitnah abzuräumen."}
+{"id": "6.3.3", "hp": 10, "xp": 0, "l": 2, "t": "Verschüttete Flüssigkeiten oder Verschmutzungen sind sofort zu beseitigen."}
+{"id": "6.3.4", "hp": 10, "xp": 0, "l": 2, "t": "Gegenstände sind nach der Nutzung wieder an ihren vorgesehenen Platz zu legen."}
+{"id": "6.3.5", "hp": 10, "xp": 0, "l": 2, "t": "Der Sitzbereich ist nicht dauerhaft mit persönlichen Gegenständen zu belegen."}
+{"id": "6.3.6", "hp": 10, "xp": 0, "l": 2, "t": "Gemeinschaftsflächen sind für alle Hausbewohner frei zugänglich zu halten."}
+{"id": "6.4.1", "hp": 10, "xp": 0, "l": 2, "t": "Vorhänge sind pfleglich zu behandeln und nicht unnötig zu berühren oder zu vers…"}
+{"id": "6.4.2", "hp": 10, "xp": 0, "l": 2, "t": "Vorhänge dürfen nicht als Ablage oder zum Abwischen von Händen genutzt werden."}
+{"id": "6.4.3", "hp": 10, "xp": 0, "l": 2, "t": "Geruchsbelastungen durch Rauch, Lebensmittel oder Kosmetika sind in Vorhangnähe…"}
+{"id": "6.4.4", "hp": 10, "xp": 0, "l": 2, "t": "Vorhänge sind nicht unnötig zu verschieben oder zu verknoten."}
+{"id": "6.4.5", "hp": 10, "xp": 0, "l": 2, "t": "Verschmutzungen an Vorhängen sind zu vermeiden und bei Bedarf zu melden."}
+{"id": "6.5.1", "hp": 10, "xp": 0, "l": 2, "t": "Der Wohnbereich ist unabhängig vom Reinigungsplan sauber und ordentlich zu halt…"}
+{"id": "6.5.2", "hp": 10, "xp": 0, "l": 2, "t": "Verschmutzungen sind unmittelbar durch den Verursacher zu beseitigen."}
+{"id": "6.5.3", "hp": 10, "xp": 0, "l": 2, "t": "Ein verbindlicher Reinigungsplan regelt die regelmäßigen Grundreinigungen."}
+{"id": "6.5.4", "hp": 10, "xp": 0, "l": 2, "t": "Die im Reinigungsplan zugewiesenen Aufgaben sind termingerecht zu erledigen."}
+{"id": "6.5.5", "hp": 10, "xp": 0, "l": 2, "t": "Gemeinschaftsflächen sind nach der Nutzung in einen ordentlichen Zustand zu ver…"}
+{"id": "6.5.6", "hp": 10, "xp": 0, "l": 2, "t": "Reinigungsgeräte sind nach der Nutzung zu säubern und an ihren vorgesehenen Pla…"}
 {"id": "7.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Die Toilette ist nach jeder Nutzung sauber zu hinterlassen."}
 {"id": "7.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Verunreinigungen an Sitz, Schüssel oder Boden sind unmittelbar zu beseitigen."}
 {"id": "7.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Die Toilettenspülung ist nach jeder Nutzung zu betätigen."}
 {"id": "7.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Die Toilettenbürste ist bei Bedarf zu verwenden und anschließend sauber zu hint…"}
-{"id": "7.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Toilettenpapier ist ausschließlich in der dafür vorgesehenen Weise zu entsorgen."}
-{"id": "7.1.6", "hp": 10, "xp": 0, "l": 1, "t": "Fremdstoffe dürfen nicht über die Toilette entsorgt werden."}
+{"id": "7.1.5", "hp": 10, "xp": 0, "l": 2, "t": "Toilettenpapier ist ausschließlich in der dafür vorgesehenen Weise zu entsorgen."}
+{"id": "7.1.6", "hp": 10, "xp": 0, "l": 2, "t": "Fremdstoffe dürfen nicht über die Toilette entsorgt werden."}
 {"id": "7.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Das Waschbecken ist nach jeder Nutzung sauber zu hinterlassen."}
-{"id": "7.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Zahnpasta-, Seifen- oder Haarreste sind unmittelbar zu entfernen."}
-{"id": "7.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Wasser ist nach der Nutzung vollständig abzudrehen."}
-{"id": "7.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Verschüttetes Wasser auf Ablagen oder Boden ist zu beseitigen."}
-{"id": "7.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Abflüsse sind frei von Haaren und Rückständen zu halten."}
+{"id": "7.2.2", "hp": 10, "xp": 0, "l": 2, "t": "Zahnpasta-, Seifen- oder Haarreste sind unmittelbar zu entfernen."}
+{"id": "7.2.3", "hp": 10, "xp": 0, "l": 2, "t": "Wasser ist nach der Nutzung vollständig abzudrehen."}
+{"id": "7.2.4", "hp": 10, "xp": 0, "l": 2, "t": "Verschüttetes Wasser auf Ablagen oder Boden ist zu beseitigen."}
+{"id": "7.2.5", "hp": 10, "xp": 0, "l": 2, "t": "Abflüsse sind frei von Haaren und Rückständen zu halten."}
 {"id": "7.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Persönliche Gegenstände sind geordnet und platzsparend abzulegen."}
-{"id": "7.3.1", "hp": 10, "xp": 0, "l": 1, "t": "Dusche und Badewanne sind nach jeder Nutzung sauber zu hinterlassen."}
-{"id": "7.3.2", "hp": 10, "xp": 0, "l": 1, "t": "Haare und Rückstände sind nach der Nutzung aus Ablauf und Flächen zu entfernen."}
-{"id": "7.3.3", "hp": 10, "xp": 0, "l": 1, "t": "Wasserreste auf Randflächen oder Boden sind zu beseitigen."}
-{"id": "7.3.4", "hp": 10, "xp": 0, "l": 1, "t": "Duschwände oder -vorhänge sind nach der Nutzung so zu hinterlassen, dass sie tr…"}
-{"id": "7.3.5", "hp": 10, "xp": 0, "l": 1, "t": "Persönliche Pflegeprodukte sind geordnet zu lagern und nicht dauerhaft zu verte…"}
-{"id": "7.3.6", "hp": 10, "xp": 0, "l": 1, "t": "Nach der Nutzung ist das Badezimmer zu lüften."}
+{"id": "7.3.1", "hp": 10, "xp": 0, "l": 2, "t": "Dusche und Badewanne sind nach jeder Nutzung sauber zu hinterlassen."}
+{"id": "7.3.2", "hp": 10, "xp": 0, "l": 2, "t": "Haare und Rückstände sind nach der Nutzung aus Ablauf und Flächen zu entfernen."}
+{"id": "7.3.3", "hp": 10, "xp": 0, "l": 2, "t": "Wasserreste auf Randflächen oder Boden sind zu beseitigen."}
+{"id": "7.3.4", "hp": 10, "xp": 0, "l": 2, "t": "Duschwände oder -vorhänge sind nach der Nutzung so zu hinterlassen, dass sie tr…"}
+{"id": "7.3.5", "hp": 10, "xp": 0, "l": 2, "t": "Persönliche Pflegeprodukte sind geordnet zu lagern und nicht dauerhaft zu verte…"}
+{"id": "7.3.6", "hp": 10, "xp": 0, "l": 2, "t": "Nach der Nutzung ist das Badezimmer zu lüften."}
 {"id": "7.4.1", "hp": 10, "xp": 0, "l": 1, "t": "Der Badezimmerboden ist frei von Gegenständen zu halten."}
 {"id": "7.4.2", "hp": 10, "xp": 0, "l": 1, "t": "Kleidung, Handtücher oder persönliche Gegenstände sind nicht auf dem Boden lieg…"}
 {"id": "7.4.3", "hp": 10, "xp": 0, "l": 1, "t": "Tuben, Verpackungen oder Pflegeprodukte sind nach der Nutzung wegzuräumen."}
-{"id": "7.4.4", "hp": 10, "xp": 0, "l": 1, "t": "Wasser, Haare oder Verschmutzungen auf dem Boden sind unmittelbar zu beseitigen."}
+{"id": "7.4.4", "hp": 10, "xp": 0, "l": 2, "t": "Wasser, Haare oder Verschmutzungen auf dem Boden sind unmittelbar zu beseitigen."}
 {"id": "7.4.5", "hp": 10, "xp": 0, "l": 1, "t": "Der Boden ist so zu hinterlassen, dass der Raum jederzeit sauber und nutzbar bl…"}
-{"id": "7.5.1", "hp": 10, "xp": 0, "l": 1, "t": "Die Bäder sind unabhängig vom Reinigungsplan sauber und hygienisch zu halten."}
+{"id": "7.5.1", "hp": 10, "xp": 0, "l": 2, "t": "Die Bäder sind unabhängig vom Reinigungsplan sauber und hygienisch zu halten."}
 {"id": "7.5.2", "hp": 10, "xp": 0, "l": 1, "t": "Verschmutzungen sind unmittelbar durch den Verursacher zu beseitigen."}
-{"id": "7.5.3", "hp": 10, "xp": 0, "l": 1, "t": "Ein verbindlicher Reinigungsplan regelt die regelmäßige Grundreinigung der Bäde…"}
-{"id": "7.5.4", "hp": 10, "xp": 0, "l": 1, "t": "Die im Reinigungsplan zugewiesenen Aufgaben sind termingerecht auszuführen."}
-{"id": "7.5.5", "hp": 10, "xp": 0, "l": 1, "t": "Waschbecken, Dusche, Badewanne, Toilette und Boden sind regelmäßig gründlich zu…"}
-{"id": "7.5.6", "hp": 10, "xp": 0, "l": 1, "t": "Reinigungsmittel und -geräte sind nach der Nutzung zu säubern und ordnungsgemäß…"}
+{"id": "7.5.3", "hp": 10, "xp": 0, "l": 2, "t": "Ein verbindlicher Reinigungsplan regelt die regelmäßige Grundreinigung der Bäde…"}
+{"id": "7.5.4", "hp": 10, "xp": 0, "l": 2, "t": "Die im Reinigungsplan zugewiesenen Aufgaben sind termingerecht auszuführen."}
+{"id": "7.5.5", "hp": 10, "xp": 0, "l": 2, "t": "Waschbecken, Dusche, Badewanne, Toilette und Boden sind regelmäßig gründlich zu…"}
+{"id": "7.5.6", "hp": 10, "xp": 0, "l": 2, "t": "Reinigungsmittel und -geräte sind nach der Nutzung zu säubern und ordnungsgemäß…"}
 {"id": "8.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Geschirr ist vor dem Einräumen von groben Speiseresten zu befreien."}
-{"id": "8.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Der Geschirrspüler ist sachgerecht und platzsparend zu beladen."}
-{"id": "8.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Der Geschirrspüler wird nur bei ausreichender Füllung gestartet."}
+{"id": "8.1.2", "hp": 10, "xp": 0, "l": 2, "t": "Der Geschirrspüler ist sachgerecht und platzsparend zu beladen."}
+{"id": "8.1.3", "hp": 10, "xp": 0, "l": 2, "t": "Der Geschirrspüler wird nur bei ausreichender Füllung gestartet."}
 {"id": "8.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Nach Programmende ist der Geschirrspüler zeitnah auszuräumen."}
-{"id": "8.1.5", "hp": 10, "xp": 0, "l": 1, "t": "Sauberes Geschirr ist an seinen vorgesehenen Platz zurückzustellen."}
-{"id": "8.1.6", "hp": 10, "xp": 0, "l": 1, "t": "Filter und Innenraum des Geschirrspülers sind regelmäßig zu kontrollieren und b…"}
+{"id": "8.1.5", "hp": 10, "xp": 0, "l": 2, "t": "Sauberes Geschirr ist an seinen vorgesehenen Platz zurückzustellen."}
+{"id": "8.1.6", "hp": 10, "xp": 0, "l": 2, "t": "Filter und Innenraum des Geschirrspülers sind regelmäßig zu kontrollieren und b…"}
 {"id": "8.2.1", "hp": 10, "xp": 0, "l": 1, "t": "Herd und Ofen sind nach jeder Nutzung sauber zu hinterlassen."}
-{"id": "8.2.2", "hp": 10, "xp": 0, "l": 1, "t": "Übergelaufene Flüssigkeiten oder Speisereste sind unmittelbar zu entfernen."}
-{"id": "8.2.3", "hp": 10, "xp": 0, "l": 1, "t": "Kochfelder sind nach dem Abkühlen zu reinigen."}
-{"id": "8.2.4", "hp": 10, "xp": 0, "l": 1, "t": "Ofen und Backbleche sind nach Nutzung von Verschmutzungen zu befreien."}
-{"id": "8.2.5", "hp": 10, "xp": 0, "l": 1, "t": "Kochgeräte sind nach der Nutzung vollständig auszuschalten."}
-{"id": "8.2.6", "hp": 10, "xp": 0, "l": 1, "t": "Kochutensilien und verwendetes Zubehör sind nach Gebrauch zu reinigen und zurüc…"}
-{"id": "8.3.1", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittel sind in der Mikrowelle nur mit geeigneter Abdeckung zu erwärmen."}
-{"id": "8.3.2", "hp": 10, "xp": 0, "l": 1, "t": "Verschmutzungen im Innenraum sind unmittelbar nach der Nutzung zu entfernen."}
-{"id": "8.3.3", "hp": 10, "xp": 0, "l": 1, "t": "Übergelaufene oder verspritzte Lebensmittel sind vollständig zu reinigen."}
-{"id": "8.3.4", "hp": 10, "xp": 0, "l": 1, "t": "Die Mikrowelle ist nach der Nutzung auszuschalten."}
-{"id": "8.3.5", "hp": 10, "xp": 0, "l": 1, "t": "Drehteller und Innenflächen sind sauber zu halten."}
-{"id": "8.3.6", "hp": 10, "xp": 0, "l": 1, "t": "Die Mikrowelle ist frei von Lebensmittelresten zu hinterlassen."}
-{"id": "8.4.1", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittel sind im Kühlschrank geordnet und hygienisch zu lagern."}
-{"id": "8.4.2", "hp": 10, "xp": 0, "l": 1, "t": "Angebrochene Lebensmittel sind zu verschließen oder abzudecken."}
-{"id": "8.4.3", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittel sind so zu lagern, dass Verderb und Geruchsbildung vermieden werde…"}
-{"id": "8.4.4", "hp": 10, "xp": 0, "l": 1, "t": "Verdorbene oder überlagerte Lebensmittel sind unverzüglich zu entsorgen."}
-{"id": "8.4.5", "hp": 10, "xp": 0, "l": 1, "t": "Verschüttete Flüssigkeiten oder Verschmutzungen im Kühlschrank sind sofort zu r…"}
-{"id": "8.4.6", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittel sind so zu platzieren, dass der Kühlschrank effizient geschlossen …"}
-{"id": "8.4.7", "hp": 10, "xp": 0, "l": 1, "t": "Die Kühlschranktür ist nach jeder Nutzung vollständig zu schließen."}
-{"id": "8.5.1", "hp": 10, "xp": 0, "l": 1, "t": "Elektrische Küchengeräte sind sachgerecht und nur für ihren vorgesehenen Zweck …"}
-{"id": "8.5.2", "hp": 10, "xp": 0, "l": 1, "t": "Geräte sind nach der Nutzung auszuschalten und vom Stromnetz zu trennen, sofern…"}
-{"id": "8.5.3", "hp": 10, "xp": 0, "l": 1, "t": "Geräte und Zubehör sind nach der Nutzung zu reinigen."}
-{"id": "8.5.4", "hp": 10, "xp": 0, "l": 1, "t": "Elektrische Kleingeräte sind nach der Nutzung an ihren vorgesehenen Platz zurüc…"}
-{"id": "8.5.5", "hp": 10, "xp": 0, "l": 1, "t": "Beschädigte oder fehlerhafte Geräte sind nicht weiter zu benutzen und zu melden."}
-{"id": "8.5.6", "hp": 10, "xp": 0, "l": 1, "t": "Kabel, Aufsätze und Zubehör sind vollständig und geordnet aufzubewahren."}
-{"id": "8.6.1", "hp": 10, "xp": 0, "l": 1, "t": "Die Küche ist nach jeder Nutzung sauber und hygienisch zu hinterlassen."}
-{"id": "8.6.2", "hp": 10, "xp": 0, "l": 1, "t": "Lebensmittelreste, Krümel und Verschmutzungen sind unmittelbar zu entfernen."}
-{"id": "8.6.3", "hp": 10, "xp": 0, "l": 1, "t": "Arbeitsflächen sind nach der Nutzung mit sauberen Tüchern zu reinigen."}
-{"id": "8.6.4", "hp": 10, "xp": 0, "l": 1, "t": "Fett und Speisereste sind nicht mit verschmutzten Lappen zu verteilen, sondern …"}
-{"id": "8.6.5", "hp": 10, "xp": 0, "l": 1, "t": "Spül- und Reinigungstücher sind regelmäßig zu wechseln und sauber zu halten."}
-{"id": "8.6.6", "hp": 10, "xp": 0, "l": 1, "t": "Schneideflächen und Arbeitsbereiche sind lebensmittelhygienisch zu reinigen."}
-{"id": "8.6.7", "hp": 10, "xp": 0, "l": 1, "t": "Ein verbindlicher Reinigungsplan regelt die regelmäßige Grundreinigung der Küch…"}
+{"id": "8.2.2", "hp": 10, "xp": 0, "l": 2, "t": "Übergelaufene Flüssigkeiten oder Speisereste sind unmittelbar zu entfernen."}
+{"id": "8.2.3", "hp": 10, "xp": 0, "l": 2, "t": "Kochfelder sind nach dem Abkühlen zu reinigen."}
+{"id": "8.2.4", "hp": 10, "xp": 0, "l": 2, "t": "Ofen und Backbleche sind nach Nutzung von Verschmutzungen zu befreien."}
+{"id": "8.2.5", "hp": 10, "xp": 0, "l": 2, "t": "Kochgeräte sind nach der Nutzung vollständig auszuschalten."}
+{"id": "8.2.6", "hp": 10, "xp": 0, "l": 2, "t": "Kochutensilien und verwendetes Zubehör sind nach Gebrauch zu reinigen und zurüc…"}
+{"id": "8.3.1", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittel sind in der Mikrowelle nur mit geeigneter Abdeckung zu erwärmen."}
+{"id": "8.3.2", "hp": 10, "xp": 0, "l": 2, "t": "Verschmutzungen im Innenraum sind unmittelbar nach der Nutzung zu entfernen."}
+{"id": "8.3.3", "hp": 10, "xp": 0, "l": 2, "t": "Übergelaufene oder verspritzte Lebensmittel sind vollständig zu reinigen."}
+{"id": "8.3.4", "hp": 10, "xp": 0, "l": 2, "t": "Die Mikrowelle ist nach der Nutzung auszuschalten."}
+{"id": "8.3.5", "hp": 10, "xp": 0, "l": 2, "t": "Drehteller und Innenflächen sind sauber zu halten."}
+{"id": "8.3.6", "hp": 10, "xp": 0, "l": 2, "t": "Die Mikrowelle ist frei von Lebensmittelresten zu hinterlassen."}
+{"id": "8.4.1", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittel sind im Kühlschrank geordnet und hygienisch zu lagern."}
+{"id": "8.4.2", "hp": 10, "xp": 0, "l": 2, "t": "Angebrochene Lebensmittel sind zu verschließen oder abzudecken."}
+{"id": "8.4.3", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittel sind so zu lagern, dass Verderb und Geruchsbildung vermieden werde…"}
+{"id": "8.4.4", "hp": 10, "xp": 0, "l": 2, "t": "Verdorbene oder überlagerte Lebensmittel sind unverzüglich zu entsorgen."}
+{"id": "8.4.5", "hp": 10, "xp": 0, "l": 2, "t": "Verschüttete Flüssigkeiten oder Verschmutzungen im Kühlschrank sind sofort zu r…"}
+{"id": "8.4.6", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittel sind so zu platzieren, dass der Kühlschrank effizient geschlossen …"}
+{"id": "8.4.7", "hp": 10, "xp": 0, "l": 2, "t": "Die Kühlschranktür ist nach jeder Nutzung vollständig zu schließen."}
+{"id": "8.5.1", "hp": 10, "xp": 0, "l": 2, "t": "Elektrische Küchengeräte sind sachgerecht und nur für ihren vorgesehenen Zweck …"}
+{"id": "8.5.2", "hp": 10, "xp": 0, "l": 2, "t": "Geräte sind nach der Nutzung auszuschalten und vom Stromnetz zu trennen, sofern…"}
+{"id": "8.5.3", "hp": 10, "xp": 0, "l": 2, "t": "Geräte und Zubehör sind nach der Nutzung zu reinigen."}
+{"id": "8.5.4", "hp": 10, "xp": 0, "l": 2, "t": "Elektrische Kleingeräte sind nach der Nutzung an ihren vorgesehenen Platz zurüc…"}
+{"id": "8.5.5", "hp": 10, "xp": 0, "l": 2, "t": "Beschädigte oder fehlerhafte Geräte sind nicht weiter zu benutzen und zu melden."}
+{"id": "8.5.6", "hp": 10, "xp": 0, "l": 2, "t": "Kabel, Aufsätze und Zubehör sind vollständig und geordnet aufzubewahren."}
+{"id": "8.6.1", "hp": 10, "xp": 0, "l": 2, "t": "Die Küche ist nach jeder Nutzung sauber und hygienisch zu hinterlassen."}
+{"id": "8.6.2", "hp": 10, "xp": 0, "l": 2, "t": "Lebensmittelreste, Krümel und Verschmutzungen sind unmittelbar zu entfernen."}
+{"id": "8.6.3", "hp": 10, "xp": 0, "l": 2, "t": "Arbeitsflächen sind nach der Nutzung mit sauberen Tüchern zu reinigen."}
+{"id": "8.6.4", "hp": 10, "xp": 0, "l": 2, "t": "Fett und Speisereste sind nicht mit verschmutzten Lappen zu verteilen, sondern …"}
+{"id": "8.6.5", "hp": 10, "xp": 0, "l": 2, "t": "Spül- und Reinigungstücher sind regelmäßig zu wechseln und sauber zu halten."}
+{"id": "8.6.6", "hp": 10, "xp": 0, "l": 2, "t": "Schneideflächen und Arbeitsbereiche sind lebensmittelhygienisch zu reinigen."}
+{"id": "8.6.7", "hp": 10, "xp": 0, "l": 2, "t": "Ein verbindlicher Reinigungsplan regelt die regelmäßige Grundreinigung der Küch…"}
+{"id": "9.1.1", "hp": 10, "xp": 0, "l": 1, "t": "Die privaten Zimmer sind sauber und ordentlich zu halten. Der Boden ist begehba…"}
+{"id": "9.1.2", "hp": 10, "xp": 0, "l": 1, "t": "Gebrauchtes Geschirr ist spätestens am selben Tag in Küche oder Spülmaschine zu…"}
+{"id": "9.1.3", "hp": 10, "xp": 0, "l": 1, "t": "Müll und verderbliche Lebensmittel dürfen nicht im Zimmer lagern."}
+{"id": "9.1.4", "hp": 10, "xp": 0, "l": 1, "t": "Gegenstände benötigen einen festen Platz. Fehlt dieser, ist gemeinsam eine Lösu…"}
 {"id": "10.1.1", "hp": 0, "xp": 5, "l": 1, "t": "Geschirrspüler ausräumen."}
 {"id": "10.1.2", "hp": 0, "xp": 5, "l": 1, "t": "Müll rausbringen."}
 {"id": "10.2.1", "hp": 0, "xp": 10, "l": 1, "t": "Küche putzen."}
