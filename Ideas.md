@@ -102,3 +102,14 @@ def data_penalty(gb):
 | Bandwidth Goblin   | >10 GB    |
 | Streaming Overlord | >20 GB    |
 | Silent Ninja       | <0.5 GB   |
+
+
+## 📌 Post-It: Raspberry Pi Board mit großem Display
+
+Die ESP32-Panels haben nur 320×240 — für die Wand im Flur/Küche wäre ein großes Board schöner.
+
+- Raspi + großes (Touch-)Display, Browser im Kiosk-Modus
+- Kleine Web-App, die `house/quest/#` per MQTT over WebSockets abonniert → kein Extra-Backend nötig
+- Platz für mehr: alle Spieler auf einen Blick, Verlauf/Log, Awards, aktuelles Level + Regelauszug
+- Der Raspi könnte gleich Mosquitto im IoT-VLAN mit hosten
+- ESP32-Panels bleiben als kleine Admin-/Raum-Displays

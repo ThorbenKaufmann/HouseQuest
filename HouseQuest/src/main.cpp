@@ -3,13 +3,32 @@
 #include <TFT_eSPI.h>
 #include <ArduinoJson.h>
 #include <LittleFS.h>
+#include <Preferences.h>
+#include <WiFiManager.h>
 
-const char* ssid        = "***REMOVED***";
-const char* password    = "***REMOVED***";
-const char* mqtt_server = "datacenter.itc-embedded.de";
+// Optional defaults for the very first boot (see include/secrets.h.example).
+// After that, WiFi / MQTT / PIN are configured on the device via the setup portal
+// and stored in NVS.
+#if __has_include("secrets.h")
+#include "secrets.h"
+#endif
+#ifndef MQTT_HOST
+#define MQTT_HOST      ""
+#endif
+#ifndef MQTT_PORT
+#define MQTT_PORT      1883
+#endif
+#ifndef MQTT_USER
+#define MQTT_USER      ""
+#endif
+#ifndef MQTT_PASSWORD
+#define MQTT_PASSWORD  ""
+#endif
+#ifndef ADMIN_PIN
+#define ADMIN_PIN      "1234"
+#endif
 
 // ── Admin config ──────────────────────────────────────────────────────────────
-#define ADMIN_PIN  "1234"   // change to your PIN
 #define XP_STEP    5
 #define HP_STEP    10
 
@@ -26,12 +45,40 @@ uint16_t touchCalData[5] = { 235, 3347, 377, 3385, 1 };
 WiFiClient   espClient;
 PubSubClient client(espClient);
 
-bool wifiConnected = false;
-bool mqttConnected = false;
+// Written by the network task, read by the UI
+volatile bool wifiConnected = false;
+volatile bool mqttConnected = false;
 bool dataReceived  = false;
 
-unsigned long lastWifiCheck   = 0;
-unsigned long lastMQTTAttempt = 0;
+// The network task (core 0) owns `client` while holding mqttMutex. The UI task
+// (Arduino loop, core 1) only publishes, with a short timeout, so a slow
+// connect / DNS lookup never freezes the touch UI.
+SemaphoreHandle_t mqttMutex;
+QueueHandle_t     mqttInbox;   // incoming messages → UI task
+
+struct MqttMsg {
+  char     topic[64];
+  char     payload[400];
+  uint16_t len;
+};
+
+#define MQTT_RETRY_MIN_MS   2000
+#define MQTT_RETRY_MAX_MS  60000
+#define WIFI_RETRY_MS      30000
+unsigned long mqttRetryDelay = MQTT_RETRY_MIN_MS;
+
+// ── Device config (NVS, editable via setup portal) ────────────────────────────
+Preferences prefs;
+
+char     cfgMqttHost[64];
+uint16_t cfgMqttPort;
+char     cfgMqttUser[32];
+char     cfgMqttPass[64];
+char     cfgAdminPin[5];
+
+char     deviceId[20];            // "HouseQuest-A1B2C3" — AP name + MQTT client id
+
+#define SETUP_PORTAL_TIMEOUT 300  // s — fallback / on-demand portal
 
 // ── Screen state ──────────────────────────────────────────────────────────────
 enum ScreenMode {
@@ -101,6 +148,7 @@ void drawAdminSelect();
 void drawAdminAction();
 void drawAdminRule();
 void drawAdminSettings();
+void runSetupPortal();
 
 
 // =============================================================================
@@ -116,37 +164,86 @@ void drawStatus(String text)
   tft.print(text);
 }
 
-void setup_wifi()
+void loadConfig()
 {
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    drawStatus("Connecting WiFi...");
-  }
-  wifiConnected = true;
+  prefs.begin("housequest", true);
+  strlcpy(cfgMqttHost, prefs.getString("mqtt_host", MQTT_HOST).c_str(),     sizeof(cfgMqttHost));
+  cfgMqttPort = prefs.getUShort("mqtt_port", MQTT_PORT);
+  strlcpy(cfgMqttUser, prefs.getString("mqtt_user", MQTT_USER).c_str(),     sizeof(cfgMqttUser));
+  strlcpy(cfgMqttPass, prefs.getString("mqtt_pass", MQTT_PASSWORD).c_str(), sizeof(cfgMqttPass));
+  strlcpy(cfgAdminPin, prefs.getString("admin_pin", ADMIN_PIN).c_str(),     sizeof(cfgAdminPin));
+  prefs.end();
+
+  uint32_t nic = (ESP.getEfuseMac() >> 24) & 0xFFFFFF;
+  snprintf(deviceId, sizeof(deviceId), "HouseQuest-%06X", nic);
 }
 
-void handleWifi()
+void saveConfig()
 {
-  if (WiFi.status() == WL_CONNECTED) { wifiConnected = true; return; }
-  wifiConnected = false;
-  if (millis() - lastWifiCheck < 5000) return;
-  lastWifiCheck = millis();
-  WiFi.begin(ssid, password);
+  prefs.begin("housequest", false);
+  prefs.putString("mqtt_host", cfgMqttHost);
+  prefs.putUShort("mqtt_port", cfgMqttPort);
+  prefs.putString("mqtt_user", cfgMqttUser);
+  prefs.putString("mqtt_pass", cfgMqttPass);
+  prefs.putString("admin_pin", cfgAdminPin);
+  prefs.end();
 }
 
-void handleMQTT()
+// Runs on core 0. Everything that may block (DNS, TCP connect) happens here.
+void networkTask(void*)
 {
-  if (!wifiConnected) { mqttConnected = false; return; }
-  if (client.connected()) { mqttConnected = true; client.loop(); return; }
-  mqttConnected = false;
-  if (millis() - lastMQTTAttempt < 3000) return;
-  lastMQTTAttempt = millis();
-  if (client.connect("housequest_panel")) {
-    client.subscribe("house/quest/players/+/state");
-    client.subscribe("house/quest/settings");
-    mqttConnected = true;
+  unsigned long lastMqttAttempt = 0;
+  unsigned long wifiLostSince   = 0;
+
+  for (;;) {
+    xSemaphoreTake(mqttMutex, portMAX_DELAY);
+
+    bool wifiUp = WiFi.isConnected();
+    if (!wifiUp) {
+      // Auto-reconnect normally handles this; kick it only if it stays down.
+      if (wifiLostSince == 0) wifiLostSince = millis();
+      else if (millis() - wifiLostSince > WIFI_RETRY_MS) { WiFi.begin(); wifiLostSince = millis(); }
+    } else {
+      wifiLostSince = 0;
+    }
+
+    if (wifiUp && cfgMqttHost[0] != '\0') {
+      if (client.connected()) {
+        client.loop();
+      } else if (millis() - lastMqttAttempt >= mqttRetryDelay) {
+        lastMqttAttempt = millis();
+        bool ok = (cfgMqttUser[0] != '\0')
+                    ? client.connect(deviceId, cfgMqttUser, cfgMqttPass)
+                    : client.connect(deviceId);
+        if (ok) {
+          client.subscribe("house/quest/players/+/state");
+          client.subscribe("house/quest/settings");
+          client.subscribe("house/quest/awards");
+          mqttRetryDelay = MQTT_RETRY_MIN_MS;
+        } else {
+          mqttRetryDelay = min(mqttRetryDelay * 2, (unsigned long)MQTT_RETRY_MAX_MS);
+          Serial.printf("MQTT connect failed (rc=%d), retry in %lus\n",
+                        client.state(), mqttRetryDelay / 1000);
+        }
+      }
+    }
+
+    wifiConnected = wifiUp;
+    mqttConnected = wifiUp && client.connected();
+    xSemaphoreGive(mqttMutex);
+
+    vTaskDelay(pdMS_TO_TICKS(20));
   }
+}
+
+// Called from the UI task. Fails fast instead of waiting for a connect attempt.
+bool mqttPublish(const char* topic, const char* payload)
+{
+  if (xSemaphoreTake(mqttMutex, pdMS_TO_TICKS(100)) != pdTRUE) return false;
+  bool ok = client.connected() &&
+            client.publish(topic, (const uint8_t*)payload, strlen(payload), true);
+  xSemaphoreGive(mqttMutex);
+  return ok;
 }
 
 
@@ -218,8 +315,6 @@ int findOrCreatePlayer(String name)
 bool publishPlayerState(int idx)
 {
   if (idx < 0 || idx >= playerCount) return false;
-  if (!client.connected()) return false;
-
   Player &p  = players[idx];
   String key = p.name;
   key.toLowerCase();
@@ -234,24 +329,35 @@ bool publishPlayerState(int idx)
   doc["last_action"] = p.lastAction;
   serializeJson(doc, payload, sizeof(payload));
 
-  return client.publish(topic.c_str(), (uint8_t*)payload, strlen(payload), true);
+  return mqttPublish(topic.c_str(), payload);
 }
 
 void publishGameSettings()
 {
-  if (!client.connected()) return;
   char payload[64];
   JsonDocument doc;
   doc["level"] = gameLevel;
   serializeJson(doc, payload, sizeof(payload));
-  client.publish("house/quest/settings", (uint8_t*)payload, strlen(payload), true);
+  mqttPublish("house/quest/settings", payload);
 }
 
+// Network task context: just hand the message over to the UI task.
 void callback(char* topic, byte* payload, unsigned int length)
 {
-  String topicStr = String(topic);
+  MqttMsg msg;
+  if (length > sizeof(msg.payload)) return;
+  strlcpy(msg.topic, topic, sizeof(msg.topic));
+  memcpy(msg.payload, payload, length);
+  msg.len = length;
+  xQueueSend(mqttInbox, &msg, 0);   // drop if UI is far behind
+}
+
+// UI task context.
+void processMessage(const MqttMsg& msg)
+{
+  String topicStr = String(msg.topic);
   JsonDocument doc;
-  if (deserializeJson(doc, payload, length)) return;
+  if (deserializeJson(doc, msg.payload, msg.len)) return;
 
   if (topicStr.startsWith("house/quest/players/")) {
     String name = doc["name"] | "";
@@ -273,9 +379,24 @@ void callback(char* topic, byte* payload, unsigned int length)
     currentAward.duration = doc["duration"] | "day";
     awardAvailable = true;
   }
+}
 
-  // Only refresh display if on a normal screen
-  if (currentScreen == SCREEN_PLAYERS || currentScreen == SCREEN_AWARDS)
+// Apply queued messages; redraw once per batch (retained burst on connect),
+// or when the connection LEDs change.
+void handleInbox()
+{
+  static bool lastWifi = false, lastMqtt = false;
+  bool dirty = (wifiConnected != lastWifi) || (mqttConnected != lastMqtt);
+  lastWifi = wifiConnected;
+  lastMqtt = mqttConnected;
+
+  MqttMsg msg;
+  while (xQueueReceive(mqttInbox, &msg, 0) == pdTRUE) {
+    processMessage(msg);
+    dirty = true;
+  }
+
+  if (dirty && (currentScreen == SCREEN_PLAYERS || currentScreen == SCREEN_AWARDS))
     drawScreen();
 }
 
@@ -404,17 +525,11 @@ static const char* PIN_LABELS[12] = {
 #define PIN_BH   40
 #define PIN_Y0   80
 
-void drawAdminPin()
+// Only the PIN boxes + error line — redrawn on every key press.
+void drawPinBoxes()
 {
-  tft.fillScreen(TFT_BLACK);
+  tft.fillRect(0, 36, 320, PIN_Y0 - 36, TFT_BLACK);
 
-  // Header
-  tft.setTextColor(TFT_CYAN);
-  tft.setTextSize(2);
-  tft.setCursor(85, 8);
-  tft.print("ADMIN PIN");
-
-  // PIN boxes
   for (int i = 0; i < 4; i++) {
     int bx = 64 + i * 52;
     tft.drawRect(bx, 38, 40, 28, TFT_WHITE);
@@ -428,6 +543,19 @@ void drawAdminPin()
     tft.setCursor(100, 71);
     tft.print("Wrong PIN!");
   }
+}
+
+void drawAdminPin()
+{
+  tft.fillScreen(TFT_BLACK);
+
+  // Header
+  tft.setTextColor(TFT_CYAN);
+  tft.setTextSize(2);
+  tft.setCursor(85, 8);
+  tft.print("ADMIN PIN");
+
+  drawPinBoxes();
 
   // Numpad
   for (int r = 0; r < 4; r++) {
@@ -456,19 +584,19 @@ void handleAdminPinTouch(uint16_t tx, uint16_t ty)
 
   if (strcmp(PIN_LABELS[idx], "DEL") == 0) {
     if (pinLen > 0) pinInput[--pinLen] = '\0';
-    drawAdminPin();
+    drawPinBoxes();
     return;
   }
 
   if (strcmp(PIN_LABELS[idx], "OK") == 0) {
-    if (strcmp(pinInput, ADMIN_PIN) == 0) {
+    if (strcmp(pinInput, cfgAdminPin) == 0) {
       pinLen = 0; pinInput[0] = '\0';
       adminSelectPage = 0;
       currentScreen = SCREEN_ADMIN_SELECT;
       drawAdminSelect();
     } else {
       pinError = true; pinLen = 0; pinInput[0] = '\0';
-      drawAdminPin();
+      drawPinBoxes();
     }
     return;
   }
@@ -478,19 +606,19 @@ void handleAdminPinTouch(uint16_t tx, uint16_t ty)
 
   // Auto-confirm on 4th digit
   if (pinLen == 4) {
-    if (strcmp(pinInput, ADMIN_PIN) == 0) {
+    if (strcmp(pinInput, cfgAdminPin) == 0) {
       pinLen = 0; pinInput[0] = '\0';
       adminSelectPage = 0;
       currentScreen = SCREEN_ADMIN_SELECT;
       drawAdminSelect();
     } else {
       pinError = true; pinLen = 0; pinInput[0] = '\0';
-      drawAdminPin();
+      drawPinBoxes();
     }
     return;
   }
 
-  drawAdminPin();
+  drawPinBoxes();
 }
 
 
@@ -737,6 +865,25 @@ static const char* RULE_LABELS[12] = {
   "1","2","3","4","5","6","7","8","9",".","0","DEL"
 };
 
+// Only the rule-ID input box + "not found" — redrawn on every key press.
+void drawRuleInput()
+{
+  tft.fillRect(0, 16, 320, RULE_Y0 - 17, TFT_BLACK);
+  tft.drawRect(4, 18, 232, 28, TFT_WHITE);
+  tft.setTextColor(TFT_WHITE);
+  tft.setTextSize(2);
+  tft.setCursor(9, 24);
+  tft.print(ruleIdInput);
+  tft.print("_");
+
+  if (ruleNotFound) {
+    tft.setTextColor(TFT_RED);
+    tft.setTextSize(1);
+    tft.setCursor(242, 25);
+    tft.print("not found");
+  }
+}
+
 void drawAdminRule()
 {
   if (adminTarget < 0) return;
@@ -752,19 +899,7 @@ void drawAdminRule()
 
   if (!ruleConfirm) {
     // ── Entry mode ────────────────────────────────────────────────────────────
-    tft.drawRect(4, 18, 232, 28, TFT_WHITE);
-    tft.setTextColor(TFT_WHITE);
-    tft.setTextSize(2);
-    tft.setCursor(9, 24);
-    tft.print(ruleIdInput);
-    tft.print("_");
-
-    if (ruleNotFound) {
-      tft.setTextColor(TFT_RED);
-      tft.setTextSize(1);
-      tft.setCursor(242, 25);
-      tft.print("not found");
-    }
+    drawRuleInput();
 
     // Numpad
     for (int r = 0; r < 4; r++) {
@@ -868,10 +1003,11 @@ void handleAdminRuleTouch(uint16_t tx, uint16_t ty)
           if (getRuleById(ruleIdInput)) {
             ruleConfirm  = true;
             ruleNotFound = false;
+            drawAdminRule();
           } else {
             ruleNotFound = true;
+            drawRuleInput();
           }
-          drawAdminRule();
         }
       }
       return;
@@ -891,7 +1027,7 @@ void handleAdminRuleTouch(uint16_t tx, uint16_t ty)
       ruleIdInput[ruleIdLen]   = '\0';
     }
     ruleNotFound = false;
-    drawAdminRule();
+    drawRuleInput();
 
   } else {
     // ── Confirm mode ──────────────────────────────────────────────────────────
@@ -951,8 +1087,9 @@ void handleAdminRuleTouch(uint16_t tx, uint16_t ty)
 //
 //  0- 35  header "SETTINGS"
 // 40- 60  "Game Level" label + current level (large)
-// 70-130  [Lvl -]  [Lvl +]
-//         ... future settings rows ...
+// 95-145  [Lvl -]  [Lvl +]
+//154-172  WiFi / MQTT status lines
+//176-204  [WIFI / MQTT SETUP]
 //208-239  [BACK]
 // =============================================================================
 
@@ -989,7 +1126,19 @@ void drawAdminSettings()
   drawButton(  3,  95, 152, 50, TFT_MAROON,    TFT_WHITE, "Lvl -", 2);
   drawButton(162,  95, 152, 50, TFT_DARKGREEN, TFT_WHITE, "Lvl +", 2);
 
-  tft.drawFastHLine(0, 152, 320, TFT_DARKGREY);
+  tft.drawFastHLine(0, 150, 320, TFT_DARKGREY);
+
+  // Connection info
+  tft.setTextSize(1);
+  tft.setTextColor(wifiConnected ? TFT_GREEN : TFT_RED);
+  tft.setCursor(5, 155);
+  if (wifiConnected) tft.printf("WiFi: %s  %s", WiFi.SSID().c_str(), WiFi.localIP().toString().c_str());
+  else               tft.print("WiFi: not connected");
+  tft.setTextColor(mqttConnected ? TFT_GREEN : TFT_ORANGE);
+  tft.setCursor(5, 166);
+  tft.printf("MQTT: %s:%u", cfgMqttHost[0] ? cfgMqttHost : "(not set)", cfgMqttPort);
+
+  drawButton(3, 176, 314, 28, TFT_NAVY, TFT_WHITE, "WIFI / MQTT SETUP", 1);
 
   // Back
   drawButton(3, 208, 314, 28, TFT_DARKGREY, TFT_WHITE, "BACK", 1);
@@ -1007,10 +1156,175 @@ void handleAdminSettingsTouch(uint16_t tx, uint16_t ty)
     }
     return;
   }
+  if (ty >= 176 && ty < 205) {
+    runSetupPortal();
+    drawAdminSettings();
+    return;
+  }
   if (ty >= 208) {
     currentScreen = SCREEN_ADMIN_SELECT;
     drawAdminSelect();
   }
+}
+
+
+// =============================================================================
+// Setup portal — WiFiManager
+//
+// Opens the AP "HouseQuest-XXXXXX" (password shown on the display) with a
+// web form for WiFi, MQTT broker and admin PIN at 192.168.4.1.
+//  - at boot, when no WiFi is saved (waits until configured)
+//  - at boot, when the saved WiFi is unreachable (gives up after timeout)
+//  - on demand from the admin settings screen
+// =============================================================================
+
+WiFiManager wm;
+
+WiFiManagerParameter paramMqttHost("mqtt_host", "MQTT Broker (Host/IP)",              "", 63);
+WiFiManagerParameter paramMqttPort("mqtt_port", "MQTT Port",                          "", 5,
+                                   "type='number' min='1' max='65535'");
+WiFiManagerParameter paramMqttUser("mqtt_user", "MQTT User (leer = anonym)",          "", 31);
+WiFiManagerParameter paramMqttPass("mqtt_pass", "MQTT Passwort (leer = unverändert)", "", 63,
+                                   "type='password'");
+WiFiManagerParameter paramAdminPin("admin_pin", "Admin-PIN, 4 Ziffern (leer = unverändert)", "", 4,
+                                   "type='password' inputmode='numeric' pattern='[0-9]{4}'");
+
+static char apPassword[9];
+
+// Prefill the form with the current config; secrets stay blank.
+void preparePortal()
+{
+  char port[6];
+  snprintf(port, sizeof(port), "%u", cfgMqttPort);
+  paramMqttHost.setValue(cfgMqttHost, 63);
+  paramMqttPort.setValue(port,        5);
+  paramMqttUser.setValue(cfgMqttUser, 31);
+  paramMqttPass.setValue("",          63);
+  paramAdminPin.setValue("",          4);
+
+  // Fresh AP password each time; it is only shown on the panel itself
+  snprintf(apPassword, sizeof(apPassword), "%08lu", (unsigned long)(esp_random() % 100000000UL));
+}
+
+void onPortalSave()
+{
+  strlcpy(cfgMqttHost, paramMqttHost.getValue(), sizeof(cfgMqttHost));
+
+  long port = atol(paramMqttPort.getValue());
+  if (port > 0 && port <= 65535) cfgMqttPort = (uint16_t)port;
+
+  strlcpy(cfgMqttUser, paramMqttUser.getValue(), sizeof(cfgMqttUser));
+  if (paramMqttPass.getValue()[0] != '\0')
+    strlcpy(cfgMqttPass, paramMqttPass.getValue(), sizeof(cfgMqttPass));
+
+  const char* pin = paramAdminPin.getValue();
+  bool pinOk = strlen(pin) == 4;
+  for (int i = 0; pinOk && i < 4; i++) pinOk = isdigit((unsigned char)pin[i]);
+  if (pinOk) strlcpy(cfgAdminPin, pin, sizeof(cfgAdminPin));
+
+  saveConfig();
+  client.disconnect();   // caller holds mqttMutex (or network task not started yet)
+  client.setServer(cfgMqttHost, cfgMqttPort);
+  mqttRetryDelay = MQTT_RETRY_MIN_MS;
+  Serial.printf("Config saved: mqtt=%s:%u user=%s\n", cfgMqttHost, cfgMqttPort, cfgMqttUser);
+}
+
+void drawSetupScreen(bool cancelable)
+{
+  tft.fillScreen(TFT_BLACK);
+
+  tft.setTextColor(TFT_CYAN);
+  tft.setTextSize(2);
+  tft.setCursor(50, 8);
+  tft.print("WIFI / MQTT SETUP");
+  tft.drawFastHLine(0, 30, 320, TFT_DARKGREY);
+
+  tft.setTextColor(TFT_WHITE);
+  tft.setTextSize(1);
+  tft.setCursor(5, 42);  tft.print("1. Mit diesem WLAN verbinden:");
+  tft.setTextColor(TFT_YELLOW);
+  tft.setTextSize(2);
+  tft.setCursor(15, 56); tft.print(deviceId);
+  tft.setTextColor(TFT_WHITE);
+  tft.setTextSize(1);
+  tft.setCursor(15, 80); tft.print("Passwort:");
+  tft.setTextColor(TFT_YELLOW);
+  tft.setTextSize(2);
+  tft.setCursor(80, 76); tft.print(apPassword);
+
+  tft.setTextColor(TFT_WHITE);
+  tft.setTextSize(1);
+  tft.setCursor(5, 110); tft.print("2. Im Browser oeffnen (falls nicht automatisch):");
+  tft.setTextColor(TFT_YELLOW);
+  tft.setTextSize(2);
+  tft.setCursor(15, 124); tft.print("http://192.168.4.1");
+
+  tft.setTextColor(TFT_DARKGREY);
+  tft.setTextSize(1);
+  tft.setCursor(5, 156); tft.print("3. WLAN waehlen, MQTT + PIN eintragen, Speichern.");
+
+  if (cancelable)
+    drawButton(3, 208, 314, 28, TFT_MAROON, TFT_WHITE, "CANCEL", 1);
+}
+
+// Boot: connect with saved WiFi, otherwise open the portal.
+void setupWifi()
+{
+  static std::vector<const char*> menu = { "wifi", "info", "exit" };
+
+  WiFi.mode(WIFI_STA);
+  wm.setTitle("HouseQuest");
+  wm.setMenu(menu);
+  wm.addParameter(&paramMqttHost);
+  wm.addParameter(&paramMqttPort);
+  wm.addParameter(&paramMqttUser);
+  wm.addParameter(&paramMqttPass);
+  wm.addParameter(&paramAdminPin);
+  wm.setSaveParamsCallback(onPortalSave);
+  wm.setAPCallback([](WiFiManager*) { drawSetupScreen(false); });
+  wm.setConnectTimeout(20);
+
+  // Nothing saved → wait in the portal until configured.
+  // Saved but unreachable (e.g. router still booting) → give up, loop() keeps retrying.
+  wm.setConfigPortalTimeout(wm.getWiFiIsSaved() ? SETUP_PORTAL_TIMEOUT : 0);
+
+  preparePortal();
+  drawStatus("Connecting WiFi...");
+  wifiConnected = wm.autoConnect(deviceId, apPassword);
+}
+
+// On demand from settings. Runs its own loop so the panel can cancel it.
+void runSetupPortal()
+{
+  // Holding the mutex pauses the network task for the whole portal session
+  drawStatus("Please wait...");
+  xSemaphoreTake(mqttMutex, portMAX_DELAY);
+  client.disconnect();
+  mqttConnected = false;
+  preparePortal();
+
+  wm.setConfigPortalBlocking(false);
+  wm.startConfigPortal(deviceId, apPassword);   // AP callback draws the screen
+  drawSetupScreen(true);
+
+  unsigned long start = millis();
+  while (wm.getConfigPortalActive()) {
+    wm.process();
+
+    uint16_t tx, ty;
+    bool cancel = tft.getTouch(&tx, &ty) && ty >= 208 && millis() - start > 1000;
+    if (cancel || millis() - start > SETUP_PORTAL_TIMEOUT * 1000UL) {
+      wm.stopConfigPortal();
+      while (tft.getTouch(&tx, &ty)) delay(10);   // don't let CANCEL hit BACK below
+      break;
+    }
+    delay(10);
+  }
+  wm.setConfigPortalBlocking(true);
+
+  wifiConnected = (WiFi.status() == WL_CONNECTED);
+  if (!wifiConnected) WiFi.begin();
+  xSemaphoreGive(mqttMutex);
 }
 
 
@@ -1042,14 +1356,20 @@ void drawScreen()
 // Touch handling
 // =============================================================================
 
-unsigned long lastTouchDebounce = 0;
-
+// One action per tap: fire on touch-down, re-arm after the finger is lifted.
 void handleTouch()
 {
+  static bool          touchDown     = false;
+  static unsigned long lastTouchSeen = 0;
+
   uint16_t tx, ty;
-  if (!tft.getTouch(&tx, &ty)) return;
-  if (millis() - lastTouchDebounce < 200) return;
-  lastTouchDebounce = millis();
+  if (!tft.getTouch(&tx, &ty)) {
+    if (touchDown && millis() - lastTouchSeen > 60) touchDown = false;
+    return;
+  }
+  lastTouchSeen = millis();
+  if (touchDown) return;
+  touchDown = true;
 
   Serial.printf("Touch x=%d y=%d screen=%d\n", tx, ty, (int)currentScreen);
 
@@ -1126,28 +1446,32 @@ void setup()
   runTouchCalibration();
 #endif
 
+  loadConfig();
   initRuleset();
   drawScreen();
-  setup_wifi();
+  setupWifi();
 
-  client.setServer(mqtt_server, 1883);
+  client.setServer(cfgMqttHost, cfgMqttPort);
   client.setCallback(callback);
   client.setBufferSize(512);
   client.setKeepAlive(30);
   client.setSocketTimeout(2);
+
+  mqttMutex = xSemaphoreCreateMutex();
+  mqttInbox = xQueueCreate(24, sizeof(MqttMsg));
+  xTaskCreatePinnedToCore(networkTask, "network", 8192, nullptr, 1, nullptr, 0);
 
   drawScreen();
 }
 
 void loop()
 {
-  handleWifi();
-  handleMQTT();
+  handleInbox();
   handleTouch();
 
   // Auto-paging only on normal display screens
   if (currentScreen == SCREEN_PLAYERS || currentScreen == SCREEN_AWARDS)
     handlePaging();
 
-  delay(50);
+  delay(10);
 }

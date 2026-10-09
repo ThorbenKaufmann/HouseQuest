@@ -6,11 +6,30 @@ source python/venv/bin/activate
 python python/ruleset_to_yaml.py
 # → Doc/ruleset.yaml, Doc/ruleset_flat.yaml, HouseQuest/data/ruleset.json
 
+# Device setup (WiFi / MQTT / PIN) happens on the panel itself, see below.
+
 # 2. Upload filesystem (rules only, no reflash):
 pio run --target uploadfs
 
 # 3. Upload firmware (when code changes):
 pio run --target upload
+Device setup (WiFi / MQTT / admin PIN):
+
+  First boot (no WiFi saved) → panel opens the hotspot "HouseQuest-XXXXXX"
+  and shows its password on the display.
+    1. Connect phone/laptop to that hotspot
+    2. Browser → http://192.168.4.1 (usually opens automatically)
+    3. Pick WiFi, enter MQTT broker / user / password and admin PIN → Save
+  Settings are stored in NVS and survive firmware uploads.
+  Change later: Admin PIN → SETTINGS → [WIFI / MQTT SETUP]
+  Saved WiFi unreachable at boot → portal opens for 5 min, then retries in background.
+  Optional first-boot defaults for MQTT/PIN: HouseQuest/include/secrets.h
+  (copy from secrets.h.example, git-ignored).
+
+CLI (python/quest.py) reads the broker from the environment:
+  export HOUSEQUEST_MQTT_HOST=mqtt.local
+  export HOUSEQUEST_MQTT_USER=...  HOUSEQUEST_MQTT_PASSWORD=...   # optional
+
 User flow on the device:
 
 

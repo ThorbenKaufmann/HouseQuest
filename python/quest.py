@@ -2,12 +2,17 @@
 
 import argparse
 import json
+import os
 import sys
 import threading
 import paho.mqtt.client as mqtt
 
-MQTT_HOST = "datacenter.itc-embedded.de"
-MQTT_PORT = 1883
+# Broker config from environment, e.g.:
+#   export HOUSEQUEST_MQTT_HOST=mqtt.local HOUSEQUEST_MQTT_USER=... HOUSEQUEST_MQTT_PASSWORD=...
+MQTT_HOST     = os.environ.get("HOUSEQUEST_MQTT_HOST", "localhost")
+MQTT_PORT     = int(os.environ.get("HOUSEQUEST_MQTT_PORT", "1883"))
+MQTT_USER     = os.environ.get("HOUSEQUEST_MQTT_USER")
+MQTT_PASSWORD = os.environ.get("HOUSEQUEST_MQTT_PASSWORD")
 
 # -----------------------------
 # Argumente
@@ -67,6 +72,8 @@ def on_message(client, userdata, msg):
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
 client.on_message = on_message
+if MQTT_USER:
+    client.username_pw_set(MQTT_USER, MQTT_PASSWORD)
 
 client.connect(MQTT_HOST, MQTT_PORT, 60)
 client.loop_start()
