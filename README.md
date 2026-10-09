@@ -4,7 +4,8 @@
 # 1. Edit rules / values in Doc/ruleset.md, then:
 source python/venv/bin/activate
 python python/ruleset_to_yaml.py
-# → Doc/ruleset.yaml, Doc/ruleset_flat.yaml, HouseQuest/data/ruleset.json
+# → Doc/ruleset.yaml, Doc/ruleset_flat.yaml,
+#   HouseQuest/data/ruleset.json (panel lookup), HouseQuest/data/rules.json (web page)
 
 # Device setup (WiFi / MQTT / PIN) happens on the panel itself, see below.
 
@@ -38,6 +39,14 @@ Device setup (WiFi / MQTT / admin PIN):
 CLI (python/quest.py) reads the broker from the environment:
   export HOUSEQUEST_MQTT_HOST=mqtt.local
   export HOUSEQUEST_MQTT_USER=...  HOUSEQUEST_MQTT_PASSWORD=...   # optional
+
+Rules on your phone:
+
+  Tap anywhere on the board (except the bottom-left admin corner) → QR code
+  with the panel's address. Scan it → searchable rules page, filtered to the
+  current game level. Read-only, open to everyone on the same WiFi.
+  Page and data come from HouseQuest/data/ (index.html, rules.json) — after
+  changing rules run ruleset_to_yaml.py and "pio run -t uploadfs".
 
 User flow on the device:
 

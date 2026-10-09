@@ -5,6 +5,8 @@
 #include <LittleFS.h>
 #include <Preferences.h>
 #include <WiFiManager.h>
+#include <WebServer.h>
+#include <qrcode.h>          // ESP-IDF QR generator (esp_qrcode_*)
 
 // Optional defaults for the very first boot (see include/secrets.h.example).
 // After that, WiFi / MQTT / PIN are configured on the device via the setup portal
@@ -70,6 +72,12 @@ struct MqttMsg {
   uint16_t len;
 };
 
+// Rules web page on port 80. Started / stopped only by the network task;
+// the setup portal clears webWanted to get port 80 for itself.
+WebServer     web(80);
+volatile bool webWanted  = true;
+volatile bool webRunning = false;
+
 #define MQTT_RETRY_MIN_MS   2000
 #define MQTT_RETRY_MAX_MS  60000
 #define WIFI_RETRY_MS      30000
@@ -96,7 +104,8 @@ enum ScreenMode {
   SCREEN_ADMIN_SELECT,
   SCREEN_ADMIN_ACTION,
   SCREEN_ADMIN_RULE,
-  SCREEN_ADMIN_SETTINGS
+  SCREEN_ADMIN_SETTINGS,
+  SCREEN_QR
 };
 ScreenMode currentScreen = SCREEN_PLAYERS;
 
@@ -214,6 +223,12 @@ void networkTask(void*)
   unsigned long wifiLostSince   = 0;
 
   for (;;) {
+    if (webWanted != webRunning) {
+      if (webWanted) web.begin(); else web.stop();
+      webRunning = webWanted;
+    }
+    if (webRunning) web.handleClient();
+
     xSemaphoreTake(mqttMutex, portMAX_DELAY);
 
     bool wifiUp = WiFi.isConnected();
@@ -254,6 +269,38 @@ void networkTask(void*)
   }
 }
 
+// Looks the file up per request (serveStatic decides once at registration).
+void serveFile(const char* path, const char* type)
+{
+  fs::File f = LittleFS.open(path, "r");
+  if (!f) {
+    Serial.printf("Web: %s missing on LittleFS\n", path);
+    web.send(404, "text/plain; charset=utf-8",
+             String(path) + " fehlt auf dem Panel.\n"
+             "Dateisystem hochladen: pio run -t uploadfs");
+    return;
+  }
+  web.sendHeader("Cache-Control", "no-cache");
+  web.streamFile(f, type);
+  f.close();
+}
+
+// Read-only rules page for everyone on the WiFi (files from LittleFS, see data/).
+void setupWeb()
+{
+  web.on("/",           HTTP_GET, [] { serveFile("/index.html", "text/html; charset=utf-8"); });
+  web.on("/rules.json", HTTP_GET, [] { serveFile("/rules.json", "application/json"); });
+  web.on("/status.json", HTTP_GET, [] {
+    char buf[96];
+    snprintf(buf, sizeof(buf), "{\"level\":%d,\"device\":\"%s\"}", gameLevel, deviceId);
+    web.send(200, "application/json", buf);
+  });
+  web.onNotFound([] {
+    Serial.printf("Web: 404 %s\n", web.uri().c_str());
+    web.send(404, "text/plain", "Not found");
+  });
+}
+
 // Called from the UI task. Fails fast instead of waiting for a connect attempt.
 bool mqttPublish(const char* topic, const char* payload)
 {
@@ -276,6 +323,10 @@ void initRuleset()
     return;
   }
   rulesetAvailable = LittleFS.exists("/ruleset.json");
+  Serial.printf("LittleFS: %u/%u bytes used, index.html %s, rules.json %s\n",
+                LittleFS.usedBytes(), LittleFS.totalBytes(),
+                LittleFS.exists("/index.html") ? "ok" : "MISSING",
+                LittleFS.exists("/rules.json") ? "ok" : "MISSING");
   Serial.printf("Ruleset: %s\n", rulesetAvailable ? "loaded" : "not found");
 }
 
@@ -1316,8 +1367,10 @@ void setupWifi()
 // On demand from settings. Runs its own loop so the panel can cancel it.
 void runSetupPortal()
 {
-  // Holding the mutex pauses the network task for the whole portal session
+  // Free port 80, then hold the mutex to pause the network task for the whole session
   drawStatus("Please wait...");
+  webWanted = false;
+  while (webRunning) delay(10);
   xSemaphoreTake(mqttMutex, portMAX_DELAY);
   client.disconnect();
   mqttConnected = false;
@@ -1345,6 +1398,82 @@ void runSetupPortal()
   wifiConnected = (WiFi.status() == WL_CONNECTED);
   if (!wifiConnected) WiFi.begin();
   xSemaphoreGive(mqttMutex);
+  webWanted = true;
+}
+
+
+// =============================================================================
+// QR screen — tap on the board shows the address of the rules page  (320×240)
+//
+//  QR code left (~170 px), hint text right, URL across the bottom.
+//  Any tap or QR_SCREEN_TIMEOUT returns to the board.
+// =============================================================================
+
+#define QR_SCREEN_TIMEOUT 60000
+unsigned long qrShownAt = 0;
+
+static const int QR_X = 8, QR_Y = 8, QR_MAX_PX = 176, QR_QUIET = 2;
+
+void drawQrModules(esp_qrcode_handle_t qr)
+{
+  int n     = esp_qrcode_get_size(qr);
+  int scale = QR_MAX_PX / (n + 2 * QR_QUIET);
+  int px    = (n + 2 * QR_QUIET) * scale;
+
+  tft.fillRect(QR_X, QR_Y, px, px, TFT_WHITE);
+  for (int y = 0; y < n; y++)
+    for (int x = 0; x < n; x++)
+      if (esp_qrcode_get_module(qr, x, y))
+        tft.fillRect(QR_X + (x + QR_QUIET) * scale, QR_Y + (y + QR_QUIET) * scale,
+                     scale, scale, TFT_BLACK);
+}
+
+void drawQrScreen()
+{
+  tft.fillScreen(TFT_BLACK);
+
+  const int tx = QR_X + QR_MAX_PX + 10;
+  tft.setTextColor(TFT_CYAN);
+  tft.setTextSize(2);
+  tft.setCursor(tx, 14);  tft.print("REGELN");
+
+  tft.setTextColor(TFT_WHITE);
+  tft.setTextSize(1);
+  tft.setCursor(tx, 44);  tft.print("QR-Code mit dem");
+  tft.setCursor(tx, 56);  tft.print("Handy scannen.");
+  tft.setCursor(tx, 76);  tft.print("Gleiches WLAN");
+  tft.setCursor(tx, 88);  tft.print("wie das Board.");
+  tft.setTextColor(TFT_DARKGREY);
+  tft.setCursor(tx, 168); tft.print("Tippen = zurueck");
+
+  if (!wifiConnected) {
+    tft.setTextColor(TFT_RED);
+    tft.setTextSize(2);
+    tft.setCursor(20, 90);
+    tft.print("Kein WLAN");
+    return;
+  }
+
+  char url[40];
+  snprintf(url, sizeof(url), "http://%s/", WiFi.localIP().toString().c_str());
+
+  esp_qrcode_config_t cfg = {};
+  cfg.display_func       = drawQrModules;
+  cfg.max_qrcode_version = 5;
+  cfg.qrcode_ecc_level   = ESP_QRCODE_ECC_MED;
+  esp_qrcode_generate(&cfg, url);
+
+  tft.setTextColor(TFT_YELLOW);
+  tft.setTextSize(2);
+  tft.setCursor(8, 205);
+  tft.print(url);
+}
+
+void showQrScreen()
+{
+  currentScreen = SCREEN_QR;
+  qrShownAt     = millis();
+  drawQrScreen();
 }
 
 
@@ -1368,6 +1497,7 @@ void drawScreen()
     case SCREEN_ADMIN_ACTION:   drawAdminAction();   break;
     case SCREEN_ADMIN_RULE:     drawAdminRule();     break;
     case SCREEN_ADMIN_SETTINGS: drawAdminSettings(); break;
+    case SCREEN_QR:             drawQrScreen();      break;
   }
 }
 
@@ -1401,7 +1531,13 @@ void handleTouch()
         pinLen = 0; pinInput[0] = '\0'; pinError = false;
         currentScreen = SCREEN_ADMIN_PIN;
         drawAdminPin();
+      } else {
+        showQrScreen();
       }
+      break;
+    case SCREEN_QR:
+      currentScreen = SCREEN_PLAYERS;
+      drawPlayersPage();
       break;
     case SCREEN_ADMIN_PIN:      handleAdminPinTouch(tx, ty);      break;
     case SCREEN_ADMIN_SELECT:   handleAdminSelectTouch(tx, ty);   break;
@@ -1482,6 +1618,7 @@ void setup()
 
   mqttMutex = xSemaphoreCreateMutex();
   mqttInbox = xQueueCreate(24, sizeof(MqttMsg));
+  setupWeb();
   xTaskCreatePinnedToCore(networkTask, "network", 8192, nullptr, 1, nullptr, 0);
 
   drawScreen();
@@ -1495,6 +1632,11 @@ void loop()
   // Auto-paging only on normal display screens
   if (currentScreen == SCREEN_PLAYERS || currentScreen == SCREEN_AWARDS)
     handlePaging();
+
+  if (currentScreen == SCREEN_QR && millis() - qrShownAt > QR_SCREEN_TIMEOUT) {
+    currentScreen = SCREEN_PLAYERS;
+    drawPlayersPage();
+  }
 
   delay(10);
 }

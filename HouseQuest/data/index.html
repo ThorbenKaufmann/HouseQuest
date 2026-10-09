@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HouseQuest Regeln</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #fff; --fg: #1c1f24; --muted: #6b7280; --line: #e3e6ea;
+    --accent: #0e7490; --hp: #b91c1c; --hp-bg: #fde8e8; --xp: #15803d; --xp-bg: #e3f6e9;
+    --chip-bg: #eef0f3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111418; --card: #1a1e24; --fg: #e6e8eb; --muted: #9aa3ad; --line: #2a3038;
+      --accent: #22d3ee; --hp: #fca5a5; --hp-bg: #3b1d1d; --xp: #86efac; --xp-bg: #1a3324;
+      --chip-bg: #262b33;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { padding: 16px 16px 8px; }
+  h1 { margin: 0; font-size: 22px; color: var(--accent); letter-spacing: .5px; }
+  .sub { color: var(--muted); font-size: 14px; }
+  .bar { position: sticky; top: 0; z-index: 1; background: var(--bg);
+         padding: 8px 16px 10px; border-bottom: 1px solid var(--line); }
+  input[type=search] { width: 100%; padding: 10px 12px; font-size: 16px; border-radius: 10px;
+         border: 1px solid var(--line); background: var(--card); color: var(--fg); }
+  label.toggle { display: flex; gap: 8px; align-items: center; margin-top: 8px;
+         font-size: 14px; color: var(--muted); }
+  main { padding: 8px 16px 40px; max-width: 760px; margin: 0 auto; }
+  h2, h3, h4, h5 { margin: 20px 0 6px; line-height: 1.25; }
+  h2 { font-size: 19px; } h3 { font-size: 16px; color: var(--muted); }
+  h4, h5 { font-size: 15px; color: var(--muted); }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { display: grid; grid-template-columns: 4.6em 1fr; gap: 4px 10px; padding: 10px 12px;
+       margin: 6px 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+  li.inactive { opacity: .45; }
+  .id { font: 600 17px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--accent); }
+  .meta { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--chip-bg); color: var(--muted); }
+  .chip.hp { background: var(--hp-bg); color: var(--hp); }
+  .chip.xp { background: var(--xp-bg); color: var(--xp); }
+  .empty, .error { color: var(--muted); text-align: center; padding: 32px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>HOUSE QUEST</h1>
+  <div class="sub" id="sub">Regeln werden geladen…</div>
+</header>
+<div class="bar">
+  <input type="search" id="q" placeholder="Suchen: Text oder Nummer, z. B. 2.1" autocomplete="off">
+  <label class="toggle"><input type="checkbox" id="onlyActive" checked> <span id="onlyActiveLabel">Nur aktive Regeln</span></label>
+</div>
+<main id="list"></main>
+
+<script>
+let sections = [], level = null;
+
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function render() {
+  const q = $("q").value.trim().toLowerCase();
+  const onlyActive = $("onlyActive").checked && level !== null;
+  let html = "", shown = 0;
+
+  // "2.1" → rule-ID prefix; anything else → full-text search
+  const byId = /^[\d.]+$/.test(q);
+  const matches = (s, r) => !q || (byId ? r.id.startsWith(q)
+    : r.t.toLowerCase().includes(q) || s.title.toLowerCase().includes(q));
+
+  const visible = sections.map(s => s.rules.filter(r =>
+    (!onlyActive || r.l <= level) && matches(s, r)));
+
+  // A heading is shown if it, or any of its subsections, has visible rules
+  const show = new Array(sections.length).fill(false);
+  for (let i = sections.length - 1; i >= 0; i--) {
+    show[i] = visible[i].length > 0;
+    for (let j = i + 1; !show[i] && j < sections.length && sections[j].depth > sections[i].depth; j++)
+      show[i] = show[j];
+  }
+
+  sections.forEach((s, i) => {
+    if (!show[i]) return;
+    const rules = visible[i];
+
+    const h = "h" + Math.min(s.depth, 5);
+    html += `<${h}>${esc(s.title.replace(/_/g, ""))}</${h}>`;
+    if (!rules.length) return;
+
+    html += "<ul>";
+    for (const r of rules) {
+      const inactive = level !== null && r.l > level;
+      const chips = [];
+      if (r.hp) chips.push(`<span class="chip hp">−${r.hp} HP</span>`);
+      if (r.xp) chips.push(`<span class="chip xp">+${r.xp} XP</span>`);
+      chips.push(`<span class="chip">${inactive ? "ab " : ""}Level ${r.l}</span>`);
+      html += `<li class="${inactive ? "inactive" : ""}"><span class="id">${r.id}</span>` +
+              `<span>${esc(r.t)}</span><span class="meta">${chips.join("")}</span></li>`;
+      shown++;
+    }
+    html += "</ul>";
+  });
+  $("list").innerHTML = shown ? html : `<div class="empty">Keine passenden Regeln.</div>`;
+}
+
+async function load() {
+  try {
+    const st = await fetch("/status.json").then(r => r.json());
+    level = st.level;
+  } catch (e) { /* offline preview: show all */ }
+
+  try {
+    sections = (await fetch("/rules.json").then(r => r.json())).sections;
+  } catch (e) {
+    $("sub").textContent = "";
+    $("list").innerHTML = `<div class="error">Regelwerk nicht gefunden.<br>Auf dem Panel fehlt rules.json (pio run -t uploadfs).</div>`;
+    return;
+  }
+
+  const total = sections.reduce((n, s) => n + s.rules.length, 0);
+  if (level !== null) {
+    const active = sections.reduce((n, s) => n + s.rules.filter(r => r.l <= level).length, 0);
+    $("sub").textContent = `Spiel-Level ${level} · ${active} von ${total} Regeln aktiv`;
+    $("onlyActiveLabel").textContent = `Nur aktive Regeln (bis Level ${level})`;
+  } else {
+    $("sub").textContent = `${total} Regeln`;
+    $("onlyActive").parentElement.hidden = true;
+  }
+  render();
+}
+
+$("q").addEventListener("input", render);
+$("onlyActive").addEventListener("change", render);
+load();
+</script>
+</body>
+</html>

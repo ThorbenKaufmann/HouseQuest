@@ -122,6 +122,10 @@ def parse_markdown(content: str) -> list:
 
 # ── flat output ───────────────────────────────────────────────────────────────
 
+def _rule_id(sec_num: str | None, index: int) -> str:
+    return f"{sec_num}.{index}" if sec_num else f"?.{index}"
+
+
 def _flatten(nodes: list, breadcrumb: list[str] | None = None) -> list:
     """Walk the hierarchy and emit one dict per rule with a stable ID."""
     if breadcrumb is None:
@@ -136,7 +140,7 @@ def _flatten(nodes: list, breadcrumb: list[str] | None = None) -> list:
         path_str = " > ".join(crumb)
 
         for i, rule in enumerate(node.get("rules", []), start=1):
-            rule_id = f"{sec_num}.{i}" if sec_num else f"?.{i}"
+            rule_id = _rule_id(sec_num, i)
             flat.append({
                 "id":    rule_id,
                 "path":  path_str,
@@ -189,6 +193,27 @@ def _write_esp32_jsonl(flat: list, path: Path) -> None:
             fh.write(json.dumps(obj, ensure_ascii=False) + "\n")
 
 
+def _web_sections(nodes: list, depth: int = 2) -> list:
+    """Sections in document order, each with its full-text rules (for the web page)."""
+    out = []
+    for node in nodes:
+        sec_num = _section_num(node["title"])
+        rules = [{"id": _rule_id(sec_num, i), "t": r["text"],
+                  "xp": r["xp"], "hp": r["hp"], "l": r["level"]}
+                 for i, r in enumerate(node.get("rules", []), start=1)]
+        out.append({"title": node["title"], "depth": depth, "rules": rules})
+        out.extend(_web_sections(node.get("children", []), depth + 1))
+    return out
+
+
+def _write_web_json(tree: list, path: Path) -> None:
+    """Full rule texts for the panel's web page (served from LittleFS)."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as fh:
+        json.dump({"sections": _web_sections(tree)}, fh,
+                  ensure_ascii=False, separators=(",", ":"))
+
+
 # ── main ──────────────────────────────────────────────────────────────────────
 
 def convert(md_path: Path, out_dir: Path, esp32_dir: Path) -> None:
@@ -199,10 +224,12 @@ def convert(md_path: Path, out_dir: Path, esp32_dir: Path) -> None:
     hier_path  = out_dir  / "ruleset.yaml"
     flat_path  = out_dir  / "ruleset_flat.yaml"
     json_path  = esp32_dir / "ruleset.json"
+    web_path   = esp32_dir / "rules.json"
 
     _write_yaml({"ruleset": tree}, hier_path)
     _write_yaml({"rules": flat},   flat_path)
     _write_esp32_jsonl(flat,       json_path)
+    _write_web_json(tree,          web_path)
 
     rules    = sum(1 for _ in _iter_rules(tree))
     sections = _count_sections(tree)
@@ -210,6 +237,7 @@ def convert(md_path: Path, out_dir: Path, esp32_dir: Path) -> None:
     print(f"  → {hier_path}   ({sections} sections, {rules} rules)")
     print(f"  → {flat_path}   ({len(flat)} rules, flat)")
     print(f"  → {json_path}  ({len(flat)} rules, JSONL for ESP32)")
+    print(f"  → {web_path}  (full texts for the web page)")
 
 
 if __name__ == "__main__":
