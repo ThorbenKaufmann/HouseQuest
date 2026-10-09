@@ -1,6 +1,10 @@
 
 ---
 
+# 0. Once: Python environment for the tools
+python3 -m venv python/venv
+python/venv/bin/pip install -r python/requirements.txt
+
 # 1. Edit rules / values in Doc/ruleset.md, then:
 source python/venv/bin/activate
 python python/ruleset_to_yaml.py
