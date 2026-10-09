@@ -33,13 +33,21 @@
 #define HP_STEP    10
 
 // ── Hardware ──────────────────────────────────────────────────────────────────
-#define TFT_LED       15
+// Display variant comes from platformio.ini (one env per kit).
+#ifndef HQ_TFT_LED
+#define HQ_TFT_LED       15
+#endif
+#ifndef HQ_TFT_ROTATION
+#define HQ_TFT_ROTATION  1
+#endif
 #define MAX_PLAYERS   16
 #define PLAYERS_PER_PAGE 4
 
 // ── Touch calibration ─────────────────────────────────────────────────────────
-#define TOUCH_CALIBRATED 1
-uint16_t touchCalData[5] = { 235, 3347, 377, 3385, 1 };
+// Stored in NVS. HQ_TOUCH_CAL (platformio.ini) is the factory default; without
+// it, or when a finger is on the screen at boot, the panel calibrates itself.
+uint16_t touchCalData[5];
+bool     touchCalValid = false;
 
 // ── MQTT / WiFi ───────────────────────────────────────────────────────────────
 WiFiClient   espClient;
@@ -149,6 +157,7 @@ void drawAdminAction();
 void drawAdminRule();
 void drawAdminSettings();
 void runSetupPortal();
+void runTouchCalibration();
 
 
 // =============================================================================
@@ -172,6 +181,15 @@ void loadConfig()
   strlcpy(cfgMqttUser, prefs.getString("mqtt_user", MQTT_USER).c_str(),     sizeof(cfgMqttUser));
   strlcpy(cfgMqttPass, prefs.getString("mqtt_pass", MQTT_PASSWORD).c_str(), sizeof(cfgMqttPass));
   strlcpy(cfgAdminPin, prefs.getString("admin_pin", ADMIN_PIN).c_str(),     sizeof(cfgAdminPin));
+
+  touchCalValid = prefs.getBytes("touch_cal", touchCalData, sizeof(touchCalData)) == sizeof(touchCalData);
+#ifdef HQ_TOUCH_CAL
+  if (!touchCalValid) {
+    const uint16_t factoryCal[5] = HQ_TOUCH_CAL;
+    memcpy(touchCalData, factoryCal, sizeof(touchCalData));
+    touchCalValid = true;
+  }
+#endif
   prefs.end();
 
   uint32_t nic = (ESP.getEfuseMac() >> 24) & 0xFFFFFF;
@@ -1089,7 +1107,7 @@ void handleAdminRuleTouch(uint16_t tx, uint16_t ty)
 // 40- 60  "Game Level" label + current level (large)
 // 95-145  [Lvl -]  [Lvl +]
 //154-172  WiFi / MQTT status lines
-//176-204  [WIFI / MQTT SETUP]
+//176-204  [WIFI / MQTT SETUP] [TOUCH CAL]
 //208-239  [BACK]
 // =============================================================================
 
@@ -1138,7 +1156,8 @@ void drawAdminSettings()
   tft.setCursor(5, 166);
   tft.printf("MQTT: %s:%u", cfgMqttHost[0] ? cfgMqttHost : "(not set)", cfgMqttPort);
 
-  drawButton(3, 176, 314, 28, TFT_NAVY, TFT_WHITE, "WIFI / MQTT SETUP", 1);
+  drawButton(  3, 176, 204, 28, TFT_NAVY,     TFT_WHITE, "WIFI / MQTT SETUP", 1);
+  drawButton(211, 176, 106, 28, TFT_DARKGREY, TFT_WHITE, "TOUCH CAL",         1);
 
   // Back
   drawButton(3, 208, 314, 28, TFT_DARKGREY, TFT_WHITE, "BACK", 1);
@@ -1157,7 +1176,8 @@ void handleAdminSettingsTouch(uint16_t tx, uint16_t ty)
     return;
   }
   if (ty >= 176 && ty < 205) {
-    runSetupPortal();
+    if (tx < 209) runSetupPortal();
+    else          runTouchCalibration();
     drawAdminSettings();
     return;
   }
@@ -1408,15 +1428,16 @@ void runTouchCalibration()
   delay(2000);
 
   tft.calibrateTouch(touchCalData, TFT_WHITE, TFT_RED, 15);
+  tft.setTouch(touchCalData);
+  touchCalValid = true;
 
-  Serial.println("\n=== Calibration done ===");
-  Serial.print("uint16_t touchCalData[5] = { ");
-  for (int i = 0; i < 5; i++) {
-    Serial.print(touchCalData[i]);
-    if (i < 4) Serial.print(", ");
-  }
-  Serial.println(" };");
-  Serial.println("Set TOUCH_CALIBRATED 1 and paste above.");
+  prefs.begin("housequest", false);
+  prefs.putBytes("touch_cal", touchCalData, sizeof(touchCalData));
+  prefs.end();
+
+  // Handy as HQ_TOUCH_CAL for a new variant in platformio.ini
+  Serial.printf("Touch calibration saved: {%u,%u,%u,%u,%u}\n",
+                touchCalData[0], touchCalData[1], touchCalData[2], touchCalData[3], touchCalData[4]);
 
   tft.fillScreen(TFT_BLACK);
   tft.setTextColor(TFT_GREEN);
@@ -1434,19 +1455,21 @@ void setup()
 {
   Serial.begin(115200);
 
-  pinMode(TFT_LED, OUTPUT);
-  digitalWrite(TFT_LED, LOW);
+  pinMode(HQ_TFT_LED, OUTPUT);
+  digitalWrite(HQ_TFT_LED, LOW);
 
   tft.init();
-  tft.setRotation(1);
-
-#if TOUCH_CALIBRATED
-  tft.setTouch(touchCalData);
-#else
-  runTouchCalibration();
-#endif
+  tft.setRotation(HQ_TFT_ROTATION);
 
   loadConfig();
+
+  // Finger on the screen at power-up → recalibrate (escape hatch for a bad calibration)
+  if (!touchCalValid || tft.getTouchRawZ() > 600) {
+    runTouchCalibration();
+  } else {
+    tft.setTouch(touchCalData);
+  }
+
   initRuleset();
   drawScreen();
   setupWifi();

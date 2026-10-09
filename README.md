@@ -11,8 +11,17 @@ python python/ruleset_to_yaml.py
 # 2. Upload filesystem (rules only, no reflash):
 pio run --target uploadfs
 
-# 3. Upload firmware (when code changes):
-pio run --target upload
+# 3. Upload firmware (when code changes) — pick your display kit:
+pio run -e aztouch-24 --target upload    # AZ-Touch 2.4" (default)
+pio run -e aztouch-28 --target upload    # AZ-Touch MOD 2.8"
+
+Display variants live in HouseQuest/platformio.ini (TFT_eSPI is configured
+there via build_flags — don't edit the library's User_Setup.h).
+
+Touch calibration is stored on the device. It runs automatically on first
+boot if the variant has no factory values (HQ_TOUCH_CAL), and can be redone:
+  - Admin → SETTINGS → [TOUCH CAL]
+  - or keep a finger on the screen while powering up
 Device setup (WiFi / MQTT / admin PIN):
 
   First boot (no WiFi saved) → panel opens the hotspot "HouseQuest-XXXXXX"
