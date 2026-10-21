@@ -76,6 +76,26 @@ input { -webkit-user-select: text; user-select: text; }
 .award b { color: var(--accent); }
 .empty { color: var(--muted); text-align: center; padding: 48px 0; font-size: 1.2em; }
 
+/* ── Tasks (claims) ─────────────────────────────────────────────────────── */
+#tasks { flex: 1; display: flex; flex-direction: column; gap: 16px; padding: 20px 24px; min-height: 0; overflow-y: auto; }
+.tasks-head { display: flex; align-items: baseline; gap: 16px; font-size: 1.2em; }
+.backlog h3 { margin: 0 0 8px; font-size: 1em; color: var(--muted); }
+.cards { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+.task { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-height: 64px; padding: 10px 16px;
+        border: 1px solid var(--line); border-radius: 12px; background: var(--card); color: var(--fg);
+        font: inherit; text-align: left; cursor: pointer; }
+.task .title { font-weight: 600; }
+.task .meta { display: flex; gap: 6px; }
+.task.open { border-color: var(--accent); border-width: 2px; }
+.task.review { border-color: var(--warn); }
+.task.done { opacity: .6; }
+.lanes { display: flex; flex-direction: column; gap: 10px; }
+.lane { display: grid; grid-template-columns: 9em repeat(3, 1fr); gap: 14px; align-items: start;
+        padding: 12px 16px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+.lane.head { background: none; border: 0; padding: 0 16px; color: var(--muted); font-size: .9em; }
+.lane .who { font-size: 1.3em; font-weight: 700; padding-top: 12px; }
+.lane .task { background: var(--bg); }
+
 /* ── Overlays ───────────────────────────────────────────────────────────── */
 .overlay { position: fixed; inset: 0; z-index: 10; background: var(--shade);
            display: flex; align-items: center; justify-content: center; padding: 24px; }
@@ -121,6 +141,14 @@ label.toggle input { width: 26px; height: 26px; }
            display: flex; flex-direction: column; gap: 10px; }
 .confirm .preview { font-size: 1.4em; font-variant-numeric: tabular-nums; }
 .note { color: var(--warn); }
+.panel h3 { margin: 6px 0 0; font-size: 1.05em; color: var(--muted); }
+.taskrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 14px;
+           background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+.taskrow > span { flex: 1; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.stepper { align-items: center; }
+.stepper > b { min-width: 3.5em; text-align: center; font-variant-numeric: tabular-nums; }
+.stepper .btn { min-width: 64px; font-size: 1.3em; }
+.select .btn.inactive { opacity: .5; }
 .namebox { font-size: 1.6em !important; text-align: center; }
 .kb { display: flex; flex-direction: column; gap: 8px; }
 .kbrow { display: flex; gap: 8px; justify-content: center; }
@@ -140,6 +168,10 @@ label.toggle input { width: 26px; height: 26px; }
   .rules-side .pad { display: none; }
   .actions { grid-template-columns: 1fr; }
   .kb { display: none; }   /* phones bring their own keyboard */
+  #tasks { padding: 16px; }
+  .lane { grid-template-columns: 1fr; }
+  .lane.head { display: none; }
+  .lane .who { padding-top: 0; }
 }
 
 /* Short screens (e.g. 1024×600 panels): admin dialogs must fit without scrolling */
@@ -156,4 +188,10 @@ label.toggle input { width: 26px; height: 26px; }
   .namebox { font-size: 1.3em !important; padding: 6px 12px !important; }
   .kb, .kbrow { gap: 6px; }
   .kbrow .btn { min-height: 44px; font-size: 1.1em; }
+  #tasks { padding: 12px 16px; gap: 10px; }
+  .tasks-head { font-size: 1.05em; }
+  .task { min-height: 0; padding: 6px 12px; gap: 4px; }
+  .lanes { gap: 6px; }
+  .lane { padding: 6px 12px; grid-template-columns: 6em repeat(3, 1fr); }
+  .lane .who { font-size: 1.1em; padding-top: 6px; }
 }

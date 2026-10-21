@@ -8,6 +8,9 @@
 // in flight at a time. If another writer's message with the same rev arrives
 // after our own echo, ours was overwritten — the operation is re-applied on top
 // of the newer state.
+//
+// Tasks (claims) live in the game service on the Pi (pi/game.py): the board only
+// sends requests on house/quest/cmd/<connection> and shows the retained views.
 
 const XP_STEP   = 5;
 const HP_STEP   = 10;
@@ -18,6 +21,11 @@ const IDLE_MS   = 90000;   // overlays close (and admin locks) after this long w
 const T_PLAYERS  = "house/quest/players/";
 const T_SETTINGS = "house/quest/settings";
 const T_AWARDS   = "house/quest/awards";
+const T_CMD      = "house/quest/cmd/";
+const T_REPLY    = "house/quest/reply/";
+const T_PLAN     = "house/quest/plan";
+const T_CATALOG  = "house/quest/catalog";
+const REQUEST_MS = 5000;
 
 const $   = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -37,6 +45,15 @@ const players = new Map();    // key → state
 const pending = new Map();    // key → { queue: [op], inflight: { rev, op, echoed, t } }
 
 let sections = [];
+
+let connId   = "";            // MQTT client id of this connection (reply topic)
+let catalog  = [];            // task templates
+let plan     = null;          // { id, starts, ends } or null
+let claims   = [];
+let gameSeen = false;         // got a plan view from the game service
+let view     = "players";     // main view: players | tasks
+const requests = new Map();   // request id → { resolve, reject, timer }
+let reqSeq   = 0;
 
 
 // =============================================================================
@@ -72,12 +89,17 @@ function describeAction(a) {
   if (!a) return "";
   if (a === "demote")  return "→ Gast";
   if (a === "promote") return "→ Mitbewohner";
-  const [deltas, rule] = a.split(":");
-  const parts = deltas === "rule" ? [] : deltas.split(",").map(d => {
+  // "hp-10:2.1.2", "rule:2.1", "xp+15:task:Bad putzen", "task:Bad putzen"
+  const i      = a.indexOf(":");
+  const deltas = i < 0 ? a : a.slice(0, i);
+  let   ref    = i < 0 ? "" : a.slice(i + 1);
+  const isTask = deltas === "task" || ref.startsWith("task:");
+  if (ref.startsWith("task:")) ref = ref.slice(5);
+  const parts = deltas === "rule" || deltas === "task" ? [] : deltas.split(",").map(d => {
     const m = /^(hp|xp)([+-]\d+)$/.exec(d);
     return m ? `${m[2].replace("-", "−")} ${m[1].toUpperCase()}` : d;
   });
-  if (rule) parts.push(`Regel ${rule}`);
+  if (ref) parts.push(`${isTask ? "Aufgabe" : "Regel"} ${ref}`);
   return parts.join(" · ");
 }
 
@@ -180,9 +202,11 @@ function connect() {
   setConn("wait");
   $("boardMsg").textContent = "Verbinde…";
 
+  connId = clientId + "-" + Math.random().toString(16).slice(2, 8);
+  gameSeen = false; plan = null; claims = []; catalog = [];
   client = mqtt.connect(url, {
     username: cfg.user, password: cfg.password,
-    clientId: clientId + "-" + Math.random().toString(16).slice(2, 8),
+    clientId: connId,
     reconnectPeriod: 3000, connectTimeout: 8000,
   });
   client.brokerUrl = url;
@@ -190,7 +214,7 @@ function connect() {
   client.on("connect", () => {
     setConn("ok");
     if (level === null) level = 1;   // ESP default until the retained settings arrive
-    client.subscribe([T_PLAYERS + "+/state", T_SETTINGS, T_AWARDS], { qos: 1 });
+    client.subscribe([T_PLAYERS + "+/state", T_SETTINGS, T_AWARDS, T_PLAN, T_CATALOG, T_REPLY + connId], { qos: 1 });
     $("boardMsg").textContent = "Noch keine Spieler.";
     renderBoard();
   });
@@ -217,9 +241,25 @@ function connect() {
       level = doc ? num(doc.level, 1) : 1;
     } else if (topic === T_AWARDS) {
       award = doc && doc.title ? doc : null;
+    } else if (topic === T_PLAN) {
+      gameSeen = !!doc;
+      plan   = doc ? doc.plan : null;
+      claims = doc ? doc.claims || [] : [];
+    } else if (topic === T_CATALOG) {
+      catalog = doc ? doc.templates || [] : [];
+    } else if (topic === T_REPLY + connId) {
+      const r = doc && requests.get(doc.id);
+      if (r) {
+        requests.delete(doc.id);
+        clearTimeout(r.timer);
+        doc.ok ? r.resolve() : r.reject(new Error(doc.error || "Abgelehnt."));
+      }
+      return;
     }
     renderBoard();
+    renderTasks();
     renderAdmin();
+    if (!dlg.busy) renderDialog();
     if (!$("rules").hidden) renderRules();
   });
 }
@@ -274,6 +314,133 @@ function updateClock() {
 }
 updateClock();
 setInterval(updateClock, 10000);
+
+
+// =============================================================================
+// Tasks (claims) — requests to the game service
+// =============================================================================
+
+function request(op, args = {}) {
+  return new Promise((resolve, reject) => {
+    if (!client || !client.connected) return reject(new Error("Offline – nicht gesendet."));
+    const id = String(++reqSeq);
+    const timer = setTimeout(() => {
+      requests.delete(id);
+      reject(new Error("Der Spieldienst antwortet nicht."));
+    }, REQUEST_MS);
+    requests.set(id, { resolve, reject, timer });
+    client.publish(T_CMD + connId, JSON.stringify({ id, op, ...args }), { qos: 1 });
+  });
+}
+
+const hhmm = iso => new Date(iso).toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+const playerName = key => players.get(key)?.name || key || "?";
+const claimById  = id => claims.find(c => c.id === +id);
+
+function taskChips(c) {
+  return (c.xp ? `<span class="chip xp">+${c.xp} XP</span>` : "") +
+         (c.hp ? `<span class="chip hp">−${c.hp} HP</span>` : "");
+}
+
+function taskCard(c) {
+  return `<button class="task ${c.state}" data-claim="${c.id}"><span class="title">${esc(c.title)}</span>` +
+         `<span class="meta">${taskChips(c)}</span></button>`;
+}
+
+function setView(v) {
+  view = v;
+  $("board").hidden = v !== "players";
+  $("tasks").hidden = v !== "tasks";
+  $("btnView").textContent = v === "players" ? "Aufgaben" : "Spieler";
+  renderTasks();
+}
+
+function renderTasks() {
+  const review = claims.filter(c => c.state === "review").length;
+  $("btnView").classList.toggle("primary", view === "players" && claims.some(c => c.state === "open"));
+  if (view !== "tasks") return;
+
+  if (!gameSeen) {
+    $("tasksHead").innerHTML = `<span class="muted">Der Spieldienst ist nicht erreichbar.</span>`;
+    $("backlog").innerHTML = $("lanes").innerHTML = "";
+    return;
+  }
+  const open = claims.filter(c => c.state === "open");
+  $("tasksHead").innerHTML = plan
+    ? `<b>Plan bis ${hhmm(plan.ends)} Uhr</b><span class="muted">${open.length} offen · ${review} zu prüfen</span>`
+    : `<b>Kein Plan aktiv</b><span class="muted">${review ? `${review} zu prüfen · ` : ""}Admin → Aufgaben → Plan anlegen</span>`;
+
+  $("backlog").innerHTML = plan
+    ? `<h3>Offen – antippen zum Übernehmen</h3><div class="cards">` +
+      (open.length ? open.map(taskCard).join("") : `<span class="muted">Alles vergeben.</span>`) + `</div>`
+    : "";
+
+  const cols = [["claimed", "Übernommen"], ["review", "Zu prüfen"], ["done", "Erledigt"]];
+  const keys = sortedPlayers().map(([k]) => k);
+  for (const c of claims) if (c.player && !keys.includes(c.player)) keys.push(c.player);
+  $("lanes").innerHTML = `<div class="lane head"><span></span>${cols.map(([, t]) => `<span>${t}</span>`).join("")}</div>` +
+    keys.map(k => `<div class="lane"><span class="who">${esc(playerName(k))}</span>` +
+      cols.map(([st]) => `<div class="cards">${claims.filter(c => c.player === k && c.state === st).map(taskCard).join("")}</div>`).join("") +
+      `</div>`).join("");
+}
+
+// ── Dialog: who takes it / report done ──────────────────────────────────────
+
+const dlg = { claim: null, error: "", busy: false };
+
+function openDialog(claim) {
+  Object.assign(dlg, { claim: claim.id, error: "", busy: false });
+  $("dialog").hidden = false;
+  renderDialog();
+}
+
+function closeDialog() { $("dialog").hidden = true; dlg.claim = null; }
+
+function renderDialog() {
+  if ($("dialog").hidden) return;
+  const c = claimById(dlg.claim);
+  if (!c) return closeDialog();
+  const err = dlg.error ? `<div class="error">${esc(dlg.error)}</div>` : "";
+  const top = `<h2>${esc(c.title)}</h2><div class="row">${taskChips(c)}</div>`;
+  let body;
+  if (c.state === "open") {
+    body = `<div>Wer übernimmt das?</div><div class="select">` +
+      sortedPlayers().map(([k, p]) =>
+        `<button class="btn" data-take="${esc(k)}" ${dlg.busy ? "disabled" : ""}>${esc(p.name)}</button>`).join("") + `</div>`;
+  } else if (c.state === "claimed") {
+    body = `<div>Übernommen von <b>${esc(playerName(c.player))}</b>.</div>` +
+      `<button class="btn big primary" data-done="1" ${dlg.busy ? "disabled" : ""}>${esc(playerName(c.player))}: Erledigt melden</button>`;
+  } else if (c.state === "review") {
+    body = `<div>${esc(playerName(c.player))} hat das als erledigt gemeldet – ein Admin muss es bestätigen.</div>`;
+  } else {
+    body = `<div>Erledigt von ${esc(playerName(c.player))}.</div>`;
+  }
+  $("dialogPanel").innerHTML = top + body + err + `<button class="btn" data-close="1">Schließen</button>`;
+}
+
+$("tasks").addEventListener("click", e => {
+  const b = e.target.closest("[data-claim]");
+  const c = b && claimById(b.dataset.claim);
+  if (c) openDialog(c);
+});
+
+$("dialogPanel").addEventListener("click", async e => {
+  const b = e.target.closest("button");
+  if (!b || b.disabled) return;
+  if (b.dataset.close) return closeDialog();
+  const c = claimById(dlg.claim);
+  if (!c) return closeDialog();
+  dlg.busy = true; dlg.error = ""; renderDialog();
+  try {
+    if (b.dataset.take) await request("claim", { claim: c.id, player: b.dataset.take });
+    else if (b.dataset.done) await request("submit", { claim: c.id, player: c.player });
+    closeDialog();
+  } catch (err) {
+    dlg.busy = false; dlg.error = err.message; renderDialog();
+  }
+});
+
+$("btnView").addEventListener("click", () => setView(view === "players" ? "tasks" : "players"));
 
 
 // =============================================================================
@@ -382,7 +549,8 @@ $("btnRules").addEventListener("click", () => openRules());
 // =============================================================================
 
 const admin = { view: "pin", pin: "", pinError: false, target: null, rule: null, msg: "",
-                newName: "", newGuest: false, shift: true };
+                text: "", textMax: 10, shift: true, newGuest: false,   // keyboard input
+                hours: 12, counts: {}, tpl: null, busy: false };       // tasks
 
 const MAX_PLAYERS = 16;    // ESP panel limit
 const NAME_MAX    = 10;    // fits the ESP's player row
@@ -391,9 +559,27 @@ const NAME_MAX    = 10;    // fits the ESP's player row
 const playerKey = name => name.replace(/[A-Z]/g, c => c.toLowerCase());
 
 const KEYBOARD = ["1234567890", "QWERTZUIOPÜ", "ASDFGHJKLÖÄ", "YXCVBNMß-"];
+const TITLE_MAX = 30;      // game.py
+
+// Text field + on-screen keyboard bound to admin.text
+function keyboardHtml(placeholder) {
+  const keys = KEYBOARD.map(row => `<div class="kbrow">` + [...row].map(c => {
+    const k = admin.shift ? c : c.toLowerCase();
+    return `<button class="btn" data-kb="${esc(k)}">${esc(k)}</button>`;
+  }).join("") + `</div>`).join("");
+  return `<input class="namebox" id="textInput" maxlength="${admin.textMax}" value="${esc(admin.text)}"
+            placeholder="${placeholder}" autocomplete="off">
+     <div class="kb">${keys}
+       <div class="kbrow"><button class="btn ${admin.shift ? "primary" : ""}" data-kb="shift">⇧</button>
+         <button class="btn wide" data-kb=" ">Leerzeichen</button><button class="btn" data-kb="del">⌫</button></div></div>`;
+}
+
+function startText(text, max) {
+  Object.assign(admin, { text, textMax: max, shift: !text });
+}
 
 function createPlayer() {
-  const name = admin.newName.trim();
+  const name = admin.text.trim();
   const key  = playerKey(name);
   if (!name)                         return "Bitte einen Namen eingeben.";
   if (/[\/+#]/.test(name))           return "Name darf kein / + # enthalten.";
@@ -451,8 +637,11 @@ function renderAdmin() {
 
   else if (admin.view === "select") {
     const list = sortedPlayers();
+    const review = claims.filter(c => c.state === "review").length;
     el.innerHTML = head("Spieler wählen",
-        `<button class="btn" data-act="settings">Einstellungen</button>
+        `<button class="btn ${review ? "primary" : ""}" data-act="tasks">Aufgaben${review ? ` (${review})` : ""}</button>
+         <button class="btn" data-act="catalog">Katalog</button>
+         <button class="btn" data-act="settings">Einstellungen</button>
          <button class="btn" data-act="close">Schließen</button>`) + msg +
       (list.length ? `<div class="select">` + list.map(([key, s]) =>
         `<button class="btn" data-player="${esc(key)}">${esc(s.name)}<small>XP ${s.xp} · HP ${s.hp}</small></button>`
@@ -461,20 +650,82 @@ function renderAdmin() {
   }
 
   else if (admin.view === "add") {
-    const keys = KEYBOARD.map(row => `<div class="kbrow">` + [...row].map(c => {
-      const k = admin.shift ? c : c.toLowerCase();
-      return `<button class="btn" data-kb="${esc(k)}">${esc(k)}</button>`;
-    }).join("") + `</div>`).join("");
     el.innerHTML = head("Spieler anlegen", `<button class="btn" data-act="select">Zurück</button>`) +
-      `<input class="namebox" id="newName" maxlength="${NAME_MAX}" value="${esc(admin.newName)}" placeholder="Name" autocomplete="off">
-       <div class="kb">${keys}
-         <div class="kbrow"><button class="btn ${admin.shift ? "primary" : ""}" data-kb="shift">⇧</button>
-           <button class="btn wide" data-kb=" ">Leerzeichen</button><button class="btn" data-kb="del">⌫</button></div></div>
-       <div class="row"><button class="btn ${admin.newGuest ? "" : "primary"}" data-act="asResident">Mitbewohner</button>
+      keyboardHtml("Name") +
+      `<div class="row"><button class="btn ${admin.newGuest ? "" : "primary"}" data-act="asResident">Mitbewohner</button>
          <button class="btn ${admin.newGuest ? "primary" : ""}" data-act="asGuest">Gast</button></div>` + msg +
       `<button class="btn big primary" data-act="create">Anlegen</button>`;
-    const inp = $("newName");
-    inp.addEventListener("input", () => { admin.newName = inp.value; });
+  }
+
+  else if (admin.view === "tasks") {
+    const review = claims.filter(c => c.state === "review");
+    const active = claims.filter(c => c.state === "open" || c.state === "claimed");
+    const dis = admin.busy ? "disabled" : "";
+    el.innerHTML = head("Aufgaben", `<button class="btn" data-act="select">Zurück</button>`) + msg +
+      (!gameSeen ? `<div class="note">Der Spieldienst ist nicht erreichbar.</div>` : "") +
+      `<h3>Zu prüfen</h3>` +
+      (review.length ? review.map(c => `<div class="taskrow"><span><b>${esc(c.title)}</b> – ${esc(playerName(c.player))}
+          ${taskChips(c)}</span>
+          <button class="btn plus" data-approve="${c.id}" ${dis}>Bestätigen</button>
+          <button class="btn" data-reject="${c.id}" ${dis}>Ablehnen</button>
+          <button class="btn minus" data-cancel="${c.id}" ${dis}>Abbrechen</button></div>`).join("")
+        : `<div class="muted">Nichts zu prüfen.</div>`) +
+      `<h3>Plan</h3>` +
+      (plan
+        ? `<div class="row"><span class="muted">läuft bis ${hhmm(plan.ends)} Uhr</span><span class="spacer"></span>
+             <button class="btn" data-act="planAdd">Aufgaben hinzufügen</button>
+             <button class="btn minus" data-act="planClose">Plan beenden</button></div>` +
+          active.map(c => `<div class="taskrow"><span><b>${esc(c.title)}</b> –
+              ${c.state === "open" ? `<span class="muted">offen</span>` : esc(playerName(c.player))} ${taskChips(c)}</span>
+              <button class="btn minus" data-cancel="${c.id}" ${dis}>Abbrechen</button></div>`).join("")
+        : `<button class="btn big primary" data-act="planNew" ${catalog.some(t => t.active) ? "" : "disabled"}>Plan anlegen</button>` +
+          (catalog.some(t => t.active) ? "" : `<div class="muted">Zuerst Vorlagen im Katalog anlegen.</div>`));
+  }
+
+  else if (admin.view === "planEdit") {
+    const creating = !plan;
+    const tpls = catalog.filter(t => t.active);
+    const total = Object.values(admin.counts).reduce((a, b) => a + b, 0);
+    el.innerHTML = head(creating ? "Plan anlegen" : "Aufgaben hinzufügen", `<button class="btn" data-act="tasks">Zurück</button>`) +
+      (creating ? `<div class="row stepper"><span>Laufzeit</span><span class="spacer"></span>
+          <button class="btn" data-hours="-1">−</button><b>${admin.hours} h</b><button class="btn" data-hours="1">+</button>
+          <span class="muted">bis ${hhmm(new Date(Date.now() + admin.hours * 3600e3).toISOString())} Uhr</span></div>` : "") +
+      tpls.map(t => `<div class="row stepper"><span><b>${esc(t.title)}</b> ${taskChips(t)}</span><span class="spacer"></span>
+          <button class="btn" data-count="${t.id}" data-d="-1">−</button><b>${admin.counts[t.id] || 0}</b>
+          <button class="btn" data-count="${t.id}" data-d="1">+</button></div>`).join("") + msg +
+      `<button class="btn big primary" data-act="planSave" ${total && !admin.busy ? "" : "disabled"}>
+         ${creating ? "Plan anlegen" : "Hinzufügen"} (${total})</button>`;
+  }
+
+  else if (admin.view === "planClose") {
+    el.innerHTML = head("Plan beenden?", `<button class="btn" data-act="tasks">Zurück</button>`) +
+      `<div class="confirm">Offene Aufgaben verfallen. Übernommene, aber nicht erledigte kosten ihre HP.
+         Was auf Bestätigung wartet, bleibt in der Liste.</div>` + msg +
+      `<div class="row"><button class="btn big" data-act="tasks">Abbrechen</button>
+         <button class="btn big minus" data-act="planCloseYes" ${admin.busy ? "disabled" : ""}>Plan beenden</button></div>`;
+  }
+
+  else if (admin.view === "catalog") {
+    const sorted = [...catalog].sort((a, b) => b.active - a.active || a.title.localeCompare(b.title, "de"));
+    el.innerHTML = head("Katalog", `<button class="btn" data-act="newTpl">+ Vorlage</button>
+        <button class="btn" data-act="select">Zurück</button>`) + msg +
+      (sorted.length ? `<div class="select">` + sorted.map(t =>
+        `<button class="btn ${t.active ? "" : "inactive"}" data-tpl="${t.id}">${esc(t.title)}
+           <small>+${t.xp} XP · −${t.hp} HP${t.active ? "" : " · inaktiv"}</small></button>`).join("") + `</div>`
+        : `<div class="muted">Noch keine Vorlagen.</div>`);
+  }
+
+  else if (admin.view === "tpl") {
+    const t = admin.tpl;
+    el.innerHTML = head(t.id ? "Vorlage bearbeiten" : "Neue Vorlage", `<button class="btn" data-act="catalog">Zurück</button>`) +
+      keyboardHtml("Titel, z. B. Bad putzen") +
+      `<div class="row stepper"><span>Belohnung</span><span class="spacer"></span>
+         <button class="btn" data-xp="-5">−</button><b class="chip xp">+${t.xp} XP</b><button class="btn" data-xp="5">+</button></div>
+       <div class="row stepper"><span>Abzug, wenn liegen gelassen</span><span class="spacer"></span>
+         <button class="btn" data-hp="-5">−</button><b class="chip hp">−${t.hp} HP</b><button class="btn" data-hp="5">+</button></div>
+       <label class="toggle"><input type="checkbox" id="tplActive" ${t.active ? "checked" : ""}> Aktiv (im Plan auswählbar)</label>` + msg +
+      `<button class="btn big primary" data-act="tplSave" ${admin.busy ? "disabled" : ""}>Speichern</button>`;
+    $("tplActive").addEventListener("change", e => { admin.tpl.active = e.target.checked; });
   }
 
   else if (admin.view === "remove") {
@@ -533,11 +784,41 @@ function renderAdmin() {
   }
 }
 
+$("adminPanel").addEventListener("input", e => {
+  if (e.target.id === "textInput") admin.text = e.target.value;
+});
+
+// Runs a game-service request from the admin; re-renders with the outcome.
+async function adminRequest(op, args, okMsg, nextView) {
+  admin.busy = true; renderAdmin();
+  try {
+    await request(op, args);
+    admin.msg = okMsg;
+    if (nextView) admin.view = nextView;
+  } catch (err) {
+    admin.msg = err.message;
+  }
+  admin.busy = false;
+  renderAdmin();
+}
+
 $("adminPanel").addEventListener("click", e => {
   const b = e.target.closest("button");
   if (!b || b.disabled) return;
   const d = b.dataset;
   admin.msg = "";
+
+  if (d.approve) return adminRequest("approve", { claim: +d.approve }, "Bestätigt – XP gebucht.");
+  if (d.reject)  return adminRequest("reject",  { claim: +d.reject },  "Abgelehnt – zurück zum Spieler.");
+  if (d.cancel)  return adminRequest("cancel",  { claim: +d.cancel },  "Abgebrochen.");
+  if (d.hours) admin.hours = Math.max(1, Math.min(24, admin.hours + +d.hours));
+  if (d.count) admin.counts[d.count] = Math.max(0, Math.min(10, (admin.counts[d.count] || 0) + +d.d));
+  if (d.xp)    admin.tpl.xp = Math.max(0, Math.min(100, admin.tpl.xp + +d.xp));
+  if (d.hp)    admin.tpl.hp = Math.max(0, Math.min(100, admin.tpl.hp + +d.hp));
+  if (d.tpl) {
+    const t = catalog.find(x => x.id === +d.tpl);
+    if (t) { admin.tpl = { ...t }; startText(t.title, TITLE_MAX); admin.view = "tpl"; }
+  }
 
   if (d.pin) {
     if (d.pin === "⌫")                           admin.pin = admin.pin.slice(0, -1);
@@ -553,9 +834,9 @@ $("adminPanel").addEventListener("click", e => {
   else if (d.player) { admin.target = d.player; admin.view = "player"; }
   else if (d.kb) {
     if (d.kb === "shift")    admin.shift = !admin.shift;
-    else if (d.kb === "del") admin.newName = admin.newName.slice(0, -1);
-    else if (admin.newName.length < NAME_MAX) {
-      admin.newName += d.kb;
+    else if (d.kb === "del") admin.text = admin.text.slice(0, -1);
+    else if (admin.text.length < admin.textMax) {
+      admin.text += d.kb;
       admin.shift = false;   // capital first letter, then lower case
     }
   }
@@ -571,15 +852,36 @@ $("adminPanel").addEventListener("click", e => {
     case "settings": admin.view = "settings"; break;
     case "player":   admin.view = "player"; break;
     case "add":
-      Object.assign(admin, { view: "add", newName: "", newGuest: false, shift: true });
+      startText("", NAME_MAX);
+      Object.assign(admin, { view: "add", newGuest: false });
       break;
+    case "tasks":     admin.view = "tasks"; break;
+    case "catalog":   admin.view = "catalog"; break;
+    case "planNew":
+    case "planAdd":   Object.assign(admin, { view: "planEdit", counts: {} }); break;
+    case "planClose": admin.view = "planClose"; break;
+    case "planSave": {
+      const items = Object.entries(admin.counts).filter(([, n]) => n > 0).map(([t, n]) => ({ template: +t, count: n }));
+      return plan
+        ? adminRequest("plan.add", { items }, "Aufgaben hinzugefügt.", "tasks")
+        : adminRequest("plan.create", { hours: admin.hours, items }, "Plan angelegt.", "tasks");
+    }
+    case "planCloseYes": return adminRequest("plan.close", {}, "Plan beendet.", "tasks");
+    case "newTpl":
+      admin.tpl = { title: "", xp: 10, hp: 5, active: true };
+      startText("", TITLE_MAX);
+      admin.view = "tpl";
+      break;
+    case "tplSave":
+      return adminRequest("catalog.save", { template: { ...admin.tpl, title: admin.text.trim() } },
+                          `„${admin.text.trim()}“ gespeichert.`, "catalog");
     case "asResident": admin.newGuest = false; break;
     case "asGuest":    admin.newGuest = true;  break;
     case "create": {
       const err = createPlayer();
       if (err) { admin.msg = err; break; }
-      admin.target = playerKey(admin.newName.trim());
-      admin.msg    = `${admin.newName.trim()} angelegt.`;
+      admin.target = playerKey(admin.text.trim());
+      admin.msg    = `${admin.text.trim()} angelegt.`;
       admin.view   = "select";
       break;
     }
@@ -650,10 +952,11 @@ let lastTouch = Date.now();
 document.addEventListener("pointerdown", () => { lastTouch = Date.now(); }, true);
 setInterval(() => {
   if (Date.now() - lastTouch < IDLE_MS) return;
-  if (!$("admin").hidden || !$("rules").hidden) {
+  if (!$("admin").hidden || !$("rules").hidden || !$("dialog").hidden) {
     rulesPick = null;
     $("rules").hidden = true;
     closeAdmin();
+    closeDialog();
   }
 }, 5000);
 

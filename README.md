@@ -87,6 +87,19 @@ Raspberry Pi — broker + wall board (pi/):
   (stored in that browser). The kiosk gets it from /etc/housequest/kiosk.json,
   which the server hands to loopback clients only.
 
+  Tasks (claims) — Pi only, service housequest-game (pi/game.py):
+    Admins keep a catalog of task templates (XP reward, HP cost) and start a
+    plan (1–24 h) from it. Players take open tasks on the board ("Aufgaben",
+    tap task → tap your name), then report them done; an admin approves (XP
+    booked), rejects (back to the player) or cancels (HP cost). A task taken
+    by one player can't be taken or reported by another. When the plan ends,
+    open tasks lapse, taken-but-not-done ones cost their HP, tasks waiting for
+    approval stay in the queue.
+    Data: SQLite /var/lib/housequest/game.db (catalog, plans, claims, event log).
+    MQTT is only the interface: requests on house/quest/cmd/<client>, answers
+    on house/quest/reply/<client>, retained views house/quest/plan and
+    house/quest/catalog. Tests: python3 pi/test_game.py
+
   Concurrent writes: player states carry "rev" and "by". Each write publishes
   rev+1; if another panel's message with the same rev arrives after our own,
   ours was overwritten and the operation is re-applied on the newer state

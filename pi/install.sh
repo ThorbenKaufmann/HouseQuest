@@ -5,10 +5,13 @@ cd "$(dirname "$0")"
 KIOSK_USER=${SUDO_USER:-tkaufmann}
 KIOSK_HOME=$(getent passwd "$KIOSK_USER" | cut -d: -f6)
 
+# Game service needs paho (Debian package, same version as python/requirements.txt)
+dpkg -s python3-paho-mqtt >/dev/null 2>&1 || apt-get install -y -q python3-paho-mqtt
+
 # App
 install -d /opt/housequest
 rsync -a --delete www/ /opt/housequest/www/
-install -m 644 server.py rules.json /opt/housequest/
+install -m 644 server.py game.py rules.json /opt/housequest/
 install -m 755 kiosk.sh /opt/housequest/
 
 # Kiosk login — created once from the example, never overwritten
@@ -26,11 +29,13 @@ if ! cmp -s mosquitto/housequest.conf /etc/mosquitto/conf.d/housequest.conf ||
   systemctl restart mosquitto
 fi
 
-# Web service
-install -m 644 housequest-web.service /etc/systemd/system/
+# Services
+install -m 644 housequest-web.service housequest-game.service /etc/systemd/system/
 systemctl daemon-reload
-systemctl enable housequest-web >/dev/null 2>&1
-systemctl restart housequest-web
+for s in housequest-web housequest-game; do
+  systemctl enable $s >/dev/null 2>&1
+  systemctl restart $s
+done
 
 # Kiosk autostart for the desktop user (previous file kept as .orig)
 AUTOSTART="$KIOSK_HOME/.config/labwc/autostart"
@@ -40,4 +45,4 @@ if ! cmp -s labwc-autostart "$AUTOSTART"; then
   echo "NOTE: kiosk autostart installed — takes effect at next login/reboot"
 fi
 
-systemctl is-active mosquitto housequest-web
+systemctl is-active mosquitto housequest-web housequest-game

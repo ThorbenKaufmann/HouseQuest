@@ -14,6 +14,7 @@
   <span class="dot" id="conn" title="Verbindung"></span>
   <span class="spacer"></span>
   <span class="clock" id="clock"></span>
+  <button class="btn" id="btnView">Aufgaben</button>
   <button class="btn" id="btnRules">Regeln</button>
   <button class="btn" id="btnAdmin">Admin</button>
 </header>
@@ -23,6 +24,17 @@
   <div class="award" id="award" hidden></div>
   <div class="empty" id="boardMsg">Verbinde…</div>
 </main>
+
+<main id="tasks" hidden>
+  <div class="tasks-head" id="tasksHead"></div>
+  <div class="backlog" id="backlog"></div>
+  <div class="lanes" id="lanes"></div>
+</main>
+
+<!-- Claim / submit dialog -->
+<section class="overlay" id="dialog" hidden>
+  <div class="panel narrow" id="dialogPanel"></div>
+</section>
 
 <!-- Login (devices without kiosk config) -->
 <section class="overlay" id="login" hidden>
