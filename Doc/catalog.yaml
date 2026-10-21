@@ -1,0 +1,23 @@
+# Task templates for "Aufgaben" on the Pi board (pi/game.py).
+#   xp: reward when an admin approves the task
+#   hp: cost when the task was taken but not done (cancelled / plan ended)
+#   active: false → kept for history, no longer offered for new plans
+# Import (updates templates with the same title, adds new ones):
+#   python python/catalog_import.py [--dry-run]     # broker from HOUSEQUEST_MQTT_*
+# Titles: max. 30 characters.
+
+templates:
+  - { title: "Spülmaschine ausräumen",       xp: 10, hp: 5 }
+  - { title: "Spülmaschine einräumen",       xp: 10, hp: 5 }
+  - { title: "Arbeitsflächen Küche wischen", xp: 10, hp: 5 }
+  - { title: "Tisch decken",                 xp: 5,  hp: 0 }
+  - { title: "Tisch abräumen und abwischen", xp: 5,  hp: 5 }
+  - { title: "Müll rausbringen",             xp: 5,  hp: 5 }    # also a level-1 rule
+  - { title: "Bad putzen",                   xp: 20, hp: 10 }
+  - { title: "Staubsaugen Wohnbereich",      xp: 10, hp: 10 }
+  - { title: "Eigenes Zimmer aufräumen",     xp: 10, hp: 10 }   # close to a rule
+  - { title: "Wäsche aufhängen",             xp: 15, hp: 5 }
+  - { title: "Wäsche zusammenlegen",         xp: 15, hp: 5 }
+  - { title: "Pflanzen gießen",              xp: 5,  hp: 5 }
+  - { title: "Garten/Terrasse aufräumen",    xp: 10, hp: 5 }
+  - { title: "Einkaufsliste prüfen",         xp: 5,  hp: 0 }

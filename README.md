@@ -99,6 +99,9 @@ Raspberry Pi — broker + wall board (pi/):
     MQTT is only the interface: requests on house/quest/cmd/<client>, answers
     on house/quest/reply/<client>, retained views house/quest/plan and
     house/quest/catalog. Tests: python3 pi/test_game.py
+    Catalog in the repo: Doc/catalog.yaml →
+      python python/catalog_import.py [--dry-run]   (HOUSEQUEST_MQTT_* as for quest.py)
+    updates templates with the same title, adds new ones, leaves others alone.
 
   Concurrent writes: player states carry "rev" and "by". Each write publishes
   rev+1; if another panel's message with the same rev arrives after our own,
