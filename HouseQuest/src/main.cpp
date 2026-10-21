@@ -167,6 +167,7 @@ void drawAdminRule();
 void drawAdminSettings();
 void runSetupPortal();
 void runTouchCalibration();
+void showQrScreen(ScreenMode returnTo);
 
 
 // =============================================================================
@@ -918,7 +919,7 @@ void handleAdminActionTouch(uint16_t tx, uint16_t ty)
 // Admin UI — By Rule  (320×240)
 //
 //  0- 14  header "BY RULE  →  PlayerName"
-// 17- 47  input box  (entry mode)  /  rule title  (confirm mode)
+// 17- 47  input box + [QR]  (entry mode)  /  rule title  (confirm mode)
 // 50- 80  rule text lines          (confirm mode only)
 // 55-213  numpad                   (entry mode only)
 // 85-155  HP/XP impact + HP preview (confirm mode only)
@@ -948,9 +949,12 @@ void drawRuleInput()
   if (ruleNotFound) {
     tft.setTextColor(TFT_RED);
     tft.setTextSize(1);
-    tft.setCursor(242, 25);
+    tft.setCursor(176, 29);
     tft.print("not found");
   }
+
+  // Rules page on the phone, to look up the ID
+  drawButton(242, 18, 74, 28, TFT_NAVY, TFT_WHITE, "QR", 2);
 }
 
 void drawAdminRule()
@@ -1079,6 +1083,12 @@ void handleAdminRuleTouch(uint16_t tx, uint16_t ty)
           }
         }
       }
+      return;
+    }
+
+    // QR → rules page on the phone; comes back here with the input kept
+    if (ty >= 16 && ty < RULE_Y0 && tx >= 240) {
+      showQrScreen(SCREEN_ADMIN_RULE);
       return;
     }
 
@@ -1410,7 +1420,8 @@ void runSetupPortal()
 // =============================================================================
 
 #define QR_SCREEN_TIMEOUT 60000
-unsigned long qrShownAt = 0;
+unsigned long qrShownAt    = 0;
+ScreenMode    qrReturnTo   = SCREEN_PLAYERS;
 
 static const int QR_X = 8, QR_Y = 8, QR_MAX_PX = 176, QR_QUIET = 2;
 
@@ -1469,8 +1480,15 @@ void drawQrScreen()
   tft.print(url);
 }
 
-void showQrScreen()
+void closeQrScreen()
 {
+  currentScreen = qrReturnTo;
+  drawScreen();
+}
+
+void showQrScreen(ScreenMode returnTo)
+{
+  qrReturnTo    = returnTo;
   currentScreen = SCREEN_QR;
   qrShownAt     = millis();
   drawQrScreen();
@@ -1532,12 +1550,11 @@ void handleTouch()
         currentScreen = SCREEN_ADMIN_PIN;
         drawAdminPin();
       } else {
-        showQrScreen();
+        showQrScreen(SCREEN_PLAYERS);
       }
       break;
     case SCREEN_QR:
-      currentScreen = SCREEN_PLAYERS;
-      drawPlayersPage();
+      closeQrScreen();
       break;
     case SCREEN_ADMIN_PIN:      handleAdminPinTouch(tx, ty);      break;
     case SCREEN_ADMIN_SELECT:   handleAdminSelectTouch(tx, ty);   break;
@@ -1633,10 +1650,8 @@ void loop()
   if (currentScreen == SCREEN_PLAYERS || currentScreen == SCREEN_AWARDS)
     handlePaging();
 
-  if (currentScreen == SCREEN_QR && millis() - qrShownAt > QR_SCREEN_TIMEOUT) {
-    currentScreen = SCREEN_PLAYERS;
-    drawPlayersPage();
-  }
+  if (currentScreen == SCREEN_QR && millis() - qrShownAt > QR_SCREEN_TIMEOUT)
+    closeQrScreen();
 
   delay(10);
 }
