@@ -44,6 +44,25 @@ CLI (python/quest.py) reads the broker from the environment:
   export HOUSEQUEST_MQTT_HOST=mqtt.local
   export HOUSEQUEST_MQTT_USER=...  HOUSEQUEST_MQTT_PASSWORD=...   # optional
 
+Moving to another broker (python/migrate_broker.py):
+
+  Copies the retained game state (house/quest/#) from SRC to DST, then
+  verifies it topic by topic. Brokers from the environment:
+    export HOUSEQUEST_SRC_MQTT_HOST=old.broker HOUSEQUEST_SRC_MQTT_USER=...
+    export HOUSEQUEST_DST_MQTT_HOST=new.broker HOUSEQUEST_DST_MQTT_USER=...
+    read -rsp "SRC password: " HOUSEQUEST_SRC_MQTT_PASSWORD; export HOUSEQUEST_SRC_MQTT_PASSWORD
+    read -rsp "DST password: " HOUSEQUEST_DST_MQTT_PASSWORD; export HOUSEQUEST_DST_MQTT_PASSWORD
+    (optional: HOUSEQUEST_SRC_MQTT_PORT / HOUSEQUEST_DST_MQTT_PORT, default 1883)
+    1. python python/migrate_broker.py copy
+       (aborts if DST already holds different data; --force overwrites)
+    2. Point the panel to the new broker: Admin PIN → SETTINGS → [WIFI / MQTT SETUP]
+       and check that all players show up
+    3. python python/migrate_broker.py clear-source
+       (deletes the retained state on SRC, only what DST holds identically;
+        --force deletes without comparing, DST not needed)
+  Every run writes a backup of the SRC state to migrate_backup_<time>.json
+  (git-ignored).
+
 Rules on your phone:
 
   Tap anywhere on the board (except the bottom-left admin corner) → QR code
