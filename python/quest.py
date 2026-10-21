@@ -89,6 +89,7 @@ client.loop_stop()
 current_xp = state.get("xp", 0)
 current_hp = state.get("hp", 100)
 current_role = state.get("role", "resident")
+current_rev  = state.get("rev", 0)
 
 # Falls irgendwo Strings gespeichert wurden:
 try:
@@ -103,6 +104,11 @@ except Exception:
 
 current_role = str(current_role)
 
+try:
+    current_rev = int(current_rev)
+except Exception:
+    current_rev = 0
+
 # -----------------------------
 # Neue Werte berechnen
 # -----------------------------
@@ -115,6 +121,10 @@ new_state = {
     "xp": new_xp,
     "hp": new_hp,
     "role": new_role,
+    "last_action": state.get("last_action", ""),
+    # Write counter shared with the panels (see HouseQuest/src/main.cpp, PendingOp)
+    "rev": current_rev + 1,
+    "by": "cli",
 }
 
 # -----------------------------

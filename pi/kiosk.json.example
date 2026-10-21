@@ -1,0 +1,5 @@
+{
+  "mqtt":   { "user": "housequest", "password": "CHANGE-ME", "port": 9001 },
+  "pin":    "1234",
+  "client": "pi-kiosk"
+}

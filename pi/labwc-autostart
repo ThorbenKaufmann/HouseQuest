@@ -1,0 +1,4 @@
+# HouseQuest kiosk → ~/.config/labwc/autostart (replaces the desktop session).
+# Desktop back: delete this file and log in again.
+/usr/bin/kanshi &
+/usr/bin/lwrespawn /opt/housequest/kiosk.sh &

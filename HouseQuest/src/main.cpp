@@ -118,6 +118,7 @@ struct Player {
   int    xp;
   int    hp;           // >= 0 → resident;  < 0 → guest (penalty)
   String lastAction;   // e.g. "hp-10:2.1.2"  or  "xp+5"
+  int    rev;          // write counter shared by all panels, see PendingOp
 };
 
 struct Award {
@@ -128,6 +129,27 @@ struct Award {
 
 Player players[MAX_PLAYERS];
 int    playerCount   = 0;
+
+// ── Concurrent writes (ESP + Pi board + CLI) ──────────────────────────────────
+// Each write publishes rev+1 with "by" = deviceId. If another panel's message
+// with the same rev arrives after our own echo, ours was overwritten and the
+// operation is re-applied on top of the newer state. One write per player is
+// in flight; taps during that (a few ms) are ignored.
+enum OpKind { OP_XP, OP_HP, OP_ROLE, OP_RULE };
+
+struct PendingOp {
+  bool          active;
+  bool          echoed;
+  int           rev;
+  unsigned long t;
+  OpKind        kind;
+  int           a, b;              // XP/HP: delta | ROLE: a=1 guest | RULE: a=hp, b=xp
+  char          rule[13];        // RULE_ID_MAX + 1
+};
+PendingOp pending[MAX_PLAYERS];
+
+#define OP_ECHO_MS    4000   // no echo by then → give up
+#define OP_SETTLE_MS  1000   // racing writes from other panels show up within this
 Award  currentAward;
 bool   awardAvailable = false;
 
@@ -370,6 +392,34 @@ bool getRuleById(const char* id)
 // Player state
 // =============================================================================
 
+// Empty retained message on house/quest/players/<key>/state → player deleted.
+void removePlayerByKey(const String& key)
+{
+  for (int i = 0; i < playerCount; i++) {
+    String k = players[i].name;
+    k.toLowerCase();
+    if (k != key) continue;
+
+    for (int j = i; j < playerCount - 1; j++) {
+      players[j] = players[j + 1];
+      pending[j] = pending[j + 1];
+    }
+    playerCount--;
+    pending[playerCount].active = false;
+
+    if (adminTarget == i) {
+      adminTarget = -1;
+      if (currentScreen == SCREEN_ADMIN_ACTION || currentScreen == SCREEN_ADMIN_RULE)
+        currentScreen = SCREEN_ADMIN_SELECT;
+    } else if (adminTarget > i) {
+      adminTarget--;
+    }
+    adminSelectPage = 0;
+    currentPage     = 0;
+    return;
+  }
+}
+
 int findOrCreatePlayer(String name)
 {
   for (int i = 0; i < playerCount; i++)
@@ -397,6 +447,8 @@ bool publishPlayerState(int idx)
   doc["hp"]          = p.hp;
   doc["role"]        = (p.hp >= 0) ? "resident" : "guest";
   doc["last_action"] = p.lastAction;
+  doc["rev"]         = p.rev;
+  doc["by"]          = deviceId;
   serializeJson(doc, payload, sizeof(payload));
 
   return mqttPublish(topic.c_str(), payload);
@@ -409,6 +461,90 @@ void publishGameSettings()
   doc["level"] = gameLevel;
   serializeJson(doc, payload, sizeof(payload));
   mqttPublish("house/quest/settings", payload);
+}
+
+void applyHpDelta(Player &p, int delta)
+{
+  p.hp = max(-100, min(100, p.hp + delta));
+}
+
+void applyOp(Player &p, const PendingOp &op)
+{
+  char act[32];
+  switch (op.kind) {
+    case OP_XP:
+      p.xp += op.a;
+      snprintf(act, sizeof(act), "xp%+d", op.a);
+      break;
+    case OP_HP:
+      applyHpDelta(p, op.a);
+      snprintf(act, sizeof(act), "hp%+d", op.a);
+      break;
+    case OP_ROLE:
+      // Explicit target instead of a toggle, so a re-applied write can't flip it back
+      if (op.a && p.hp >= 0)  p.hp = -1;
+      if (!op.a && p.hp < 0)  p.hp = 0;
+      strlcpy(act, op.a ? "demote" : "promote", sizeof(act));
+      break;
+    case OP_RULE:
+      if (op.a > 0 && op.b > 0) snprintf(act, sizeof(act), "hp-%d,xp+%d:%s", op.a, op.b, op.rule);
+      else if (op.a > 0)        snprintf(act, sizeof(act), "hp-%d:%s", op.a, op.rule);
+      else if (op.b > 0)        snprintf(act, sizeof(act), "xp+%d:%s", op.b, op.rule);
+      else                      snprintf(act, sizeof(act), "rule:%s", op.rule);
+      if (op.a > 0) applyHpDelta(p, -op.a);
+      if (op.b > 0) p.xp = min(999, p.xp + op.b);
+      break;
+  }
+  p.lastAction = act;
+}
+
+// Applies the operation locally and publishes it. False only if MQTT is offline.
+bool runOp(int idx, OpKind kind, int a, int b = 0, const char* rule = "")
+{
+  if (idx < 0 || idx >= playerCount) return false;
+  PendingOp &op = pending[idx];
+  if (op.active && !op.echoed) return true;   // previous write still in flight
+
+  op.kind = kind; op.a = a; op.b = b;
+  strlcpy(op.rule, rule, sizeof(op.rule));
+  applyOp(players[idx], op);
+  players[idx].rev++;
+
+  bool ok = publishPlayerState(idx);
+  op.active = ok;
+  op.echoed = false;
+  op.rev    = players[idx].rev;
+  op.t      = millis();
+  return ok;
+}
+
+// Called for every incoming player state (after it was stored).
+void checkPending(int idx, int rev, const char* by)
+{
+  PendingOp &op = pending[idx];
+  if (!op.active) return;
+
+  if (strcmp(by, deviceId) == 0) {
+    if (rev == op.rev) { op.echoed = true; op.t = millis(); }
+  } else if (rev == op.rev && op.echoed) {
+    // Same revision from another panel after ours → ours got overwritten
+    op.active = false;
+    Serial.printf("Write conflict on %s rev %d, re-applying\n", players[idx].name.c_str(), rev);
+    char rule[sizeof(op.rule)];
+    strlcpy(rule, op.rule, sizeof(rule));
+    runOp(idx, op.kind, op.a, op.b, rule);
+  } else if (rev > op.rev) {
+    op.active = false;
+  }
+}
+
+void expirePending()
+{
+  for (int i = 0; i < playerCount; i++) {
+    PendingOp &op = pending[i];
+    if (op.active && millis() - op.t > (op.echoed ? OP_SETTLE_MS : OP_ECHO_MS))
+      op.active = false;
+  }
 }
 
 // Network task context: just hand the message over to the UI task.
@@ -426,6 +562,13 @@ void callback(char* topic, byte* payload, unsigned int length)
 void processMessage(const MqttMsg& msg)
 {
   String topicStr = String(msg.topic);
+
+  if (msg.len == 0) {
+    if (topicStr.startsWith("house/quest/players/") && topicStr.endsWith("/state"))
+      removePlayerByKey(topicStr.substring(20, topicStr.length() - 6));
+    return;
+  }
+
   JsonDocument doc;
   if (deserializeJson(doc, msg.payload, msg.len)) return;
 
@@ -437,6 +580,8 @@ void processMessage(const MqttMsg& msg)
       players[idx].xp         = doc["xp"]          | 0;
       players[idx].hp         = doc["hp"]          | 100;
       players[idx].lastAction = doc["last_action"] | "";
+      players[idx].rev        = doc["rev"]         | 0;
+      checkPending(idx, players[idx].rev, doc["by"] | "");
     }
     dataReceived = true;
   }
@@ -460,13 +605,20 @@ void handleInbox()
   lastWifi = wifiConnected;
   lastMqtt = mqttConnected;
 
+  ScreenMode before = currentScreen;
+  bool       msgs   = false;
   MqttMsg msg;
   while (xQueueReceive(mqttInbox, &msg, 0) == pdTRUE) {
     processMessage(msg);
-    dirty = true;
+    msgs = true;
   }
+  dirty |= msgs;
 
-  if (dirty && (currentScreen == SCREEN_PLAYERS || currentScreen == SCREEN_AWARDS))
+  // Player list changed under the admin (added/removed elsewhere), or the
+  // admin's player was deleted and the screen fell back to the selection
+  if (currentScreen != before || (msgs && currentScreen == SCREEN_ADMIN_SELECT))
+    drawScreen();
+  else if (dirty && (currentScreen == SCREEN_PLAYERS || currentScreen == SCREEN_AWARDS))
     drawScreen();
 }
 
@@ -848,33 +1000,21 @@ void drawAdminAction()
   drawButton(3, 210, 314, 28, TFT_DARKGREY, TFT_WHITE, "BACK", 1);
 }
 
-void applyHpDelta(Player &p, int delta)
-{
-  p.hp = max(-100, min(100, p.hp + delta));
-}
-
 void handleAdminActionTouch(uint16_t tx, uint16_t ty)
 {
   if (adminTarget < 0) return;
   Player &p    = players[adminTarget];
   bool changed = false;
+  bool ok      = true;
 
   if (ty >= 67 && ty < 109) {
     // XP row
-    int delta = (tx < 160) ? -XP_STEP : XP_STEP;
-    p.xp += delta;
-    char act[16];
-    snprintf(act, sizeof(act), "xp%+d", delta);
-    p.lastAction = act;
+    ok = runOp(adminTarget, OP_XP, (tx < 160) ? -XP_STEP : XP_STEP);
     changed = true;
   }
   else if (ty >= 109 && ty < 152) {
     // HP row
-    int delta = (tx < 160) ? -HP_STEP : HP_STEP;
-    applyHpDelta(p, delta);
-    char act[16];
-    snprintf(act, sizeof(act), "hp%+d", delta);
-    p.lastAction = act;
+    ok = runOp(adminTarget, OP_HP, (tx < 160) ? -HP_STEP : HP_STEP);
     changed = true;
   }
   else if (ty >= 152 && ty < 182) {
@@ -889,8 +1029,7 @@ void handleAdminActionTouch(uint16_t tx, uint16_t ty)
   }
   else if (ty >= 182 && ty < 210) {
     // Role override — force hp across the 0 boundary
-    p.hp = (p.hp >= 0) ? -1 : 0;
-    p.lastAction = (p.hp < 0) ? "demote" : "promote";
+    ok = runOp(adminTarget, OP_ROLE, (p.hp >= 0) ? 1 : 0);
     changed = true;
   }
   else if (ty >= 210) {
@@ -901,7 +1040,6 @@ void handleAdminActionTouch(uint16_t tx, uint16_t ty)
   }
 
   if (changed) {
-    bool ok = publishPlayerState(adminTarget);
     drawAdminAction();
     if (!ok) {
       // Overlay warning — change was applied locally but not sent
@@ -1117,25 +1255,9 @@ void handleAdminRuleTouch(uint16_t tx, uint16_t ty)
         drawAdminRule();
       } else {
         // APPLY — blocked if rule level exceeds global game level
-        Player &p = players[adminTarget];
         if (ruleFoundLevel > gameLevel) return;
 
-        // Build action string before mutating scores
-        char act[32];
-        if (ruleFoundHp > 0 && ruleFoundXp > 0)
-          snprintf(act, sizeof(act), "hp-%d,xp+%d:%s", ruleFoundHp, ruleFoundXp, ruleIdInput);
-        else if (ruleFoundHp > 0)
-          snprintf(act, sizeof(act), "hp-%d:%s", ruleFoundHp, ruleIdInput);
-        else if (ruleFoundXp > 0)
-          snprintf(act, sizeof(act), "xp+%d:%s", ruleFoundXp, ruleIdInput);
-        else
-          snprintf(act, sizeof(act), "rule:%s", ruleIdInput);
-        p.lastAction = act;
-
-        if (ruleFoundHp > 0) applyHpDelta(p, -ruleFoundHp);
-        if (ruleFoundXp > 0) p.xp = min(999, p.xp + ruleFoundXp);
-
-        bool ok = publishPlayerState(adminTarget);
+        bool ok = runOp(adminTarget, OP_RULE, ruleFoundHp, ruleFoundXp, ruleIdInput);
 
         // Reset and return to action screen
         ruleIdLen = 0; ruleIdInput[0] = '\0';
@@ -1644,6 +1766,7 @@ void setup()
 void loop()
 {
   handleInbox();
+  expirePending();
   handleTouch();
 
   // Auto-paging only on normal display screens

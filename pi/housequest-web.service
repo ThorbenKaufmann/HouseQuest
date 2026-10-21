@@ -1,0 +1,19 @@
+[Unit]
+Description=HouseQuest web (board app + rules)
+After=network-online.target mosquitto.service
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/housequest/server.py
+Environment=HOUSEQUEST_PORT=8080
+# Kiosk login, handed to the service only (readable by root in /etc)
+LoadCredential=kiosk.json:/etc/housequest/kiosk.json
+DynamicUser=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+NoNewPrivileges=yes
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

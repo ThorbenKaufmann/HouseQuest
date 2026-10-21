@@ -63,6 +63,35 @@ Moving to another broker (python/migrate_broker.py):
   Every run writes a backup of the SRC state to migrate_backup_<time>.json
   (git-ignored).
 
+Raspberry Pi — broker + wall board (pi/):
+
+  Variants: ESP panel with any broker / Pi alone / Pi + ESP panel(s).
+  The Pi runs Mosquitto (1883 MQTT, 9001 WebSockets; LAN/VPN only, no TLS)
+  and the board app in Chromium kiosk mode on the touch display.
+  Tested: Pi 4 (2 GB), Raspberry Pi OS trixie, labwc, HDMI display + USB touch.
+
+  Once on the Pi:
+    sudo apt install mosquitto mosquitto-clients
+    sudo mosquitto_passwd -c /etc/mosquitto/passwd housequest
+  Deploy (from this repo; asks for the sudo password on the Pi):
+    pi/deploy.sh [ssh-host]          # default host: housequest
+  → /opt/housequest (app + server.py), service housequest-web on :8080,
+    broker config from pi/mosquitto/, kiosk autostart for the desktop user
+    (~/.config/labwc/autostart, previous file kept as .orig; delete it to
+    get the desktop back). After the first deploy:
+    sudoedit /etc/housequest/kiosk.json     # MQTT password + admin PIN
+    sudo systemctl restart housequest-web && sudo reboot
+  Rules changed → ruleset_to_yaml.py, then pi/deploy.sh again.
+
+  Board on other devices: http://<pi>:8080 — asks for the MQTT login once
+  (stored in that browser). The kiosk gets it from /etc/housequest/kiosk.json,
+  which the server hands to loopback clients only.
+
+  Concurrent writes: player states carry "rev" and "by". Each write publishes
+  rev+1; if another panel's message with the same rev arrives after our own,
+  ours was overwritten and the operation is re-applied on the newer state
+  (ESP firmware and board app; quest.py only counts rev up).
+
 Rules on your phone:
 
   Tap anywhere on the board (except the bottom-left admin corner) → QR code

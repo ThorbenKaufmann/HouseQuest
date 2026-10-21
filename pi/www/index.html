@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HouseQuest</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <h1>HOUSE QUEST</h1>
+  <span class="badge" id="level">Level –</span>
+  <span class="dot" id="conn" title="Verbindung"></span>
+  <span class="spacer"></span>
+  <span class="clock" id="clock"></span>
+  <button class="btn" id="btnRules">Regeln</button>
+  <button class="btn" id="btnAdmin">Admin</button>
+</header>
+
+<main id="board">
+  <div class="players" id="players"></div>
+  <div class="award" id="award" hidden></div>
+  <div class="empty" id="boardMsg">Verbinde…</div>
+</main>
+
+<!-- Login (devices without kiosk config) -->
+<section class="overlay" id="login" hidden>
+  <form class="panel narrow" id="loginForm">
+    <h2>Anmelden</h2>
+    <p class="muted">MQTT-Zugang des HouseQuest-Brokers. Wird nur in diesem Browser gespeichert.</p>
+    <label>Benutzer <input name="user" autocomplete="username" required></label>
+    <label>Passwort <input name="password" type="password" autocomplete="current-password" required></label>
+    <label>Admin-PIN (optional) <input name="pin" inputmode="numeric" pattern="[0-9]{4}" maxlength="4"></label>
+    <div class="error" id="loginError"></div>
+    <div class="row">
+      <button type="button" class="btn" id="loginCancel">Nur Regeln</button>
+      <button class="btn primary">Verbinden</button>
+    </div>
+  </form>
+</section>
+
+<!-- Rules (also used as rule picker in admin) -->
+<section class="overlay" id="rules" hidden>
+  <div class="panel wide">
+    <div class="panel-head">
+      <h2 id="rulesTitle">Regeln</h2>
+      <span class="muted" id="rulesSub"></span>
+      <span class="spacer"></span>
+      <button class="btn" id="rulesClose">Schließen</button>
+    </div>
+    <div class="rules-body">
+      <div class="rules-side">
+        <input type="search" id="rulesQ" placeholder="Text oder Nummer" autocomplete="off">
+        <div class="pad" id="rulesPad"></div>
+        <label class="toggle"><input type="checkbox" id="rulesOnlyActive" checked> <span>Nur aktive Regeln</span></label>
+      </div>
+      <div class="rules-list" id="rulesList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Admin -->
+<section class="overlay" id="admin" hidden>
+  <div class="panel" id="adminPanel"></div>
+</section>
+
+<script src="vendor/mqtt.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
